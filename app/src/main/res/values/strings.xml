@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_trivia">TriviaActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="artist_text">Please enter the artist or band name</string>
+    <string name="artist_hint">Artist Name</string>
+    <string name="search_btn_text">Search</string>
+    <string name="trivia_header_text">Trivia!</string>
+    <string name="numQ_text">Number of Questions:</string>
+    <string name="q_type_text">Type of Questions (choose one or both):</string>
+    <string name="difficulty_text">Difficulty:</string>
 </resources>
