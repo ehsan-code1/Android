@@ -6,7 +6,7 @@
     android:background="@color/dark_grey"
     android:orientation="vertical">
 
-    <include layout="@layout/common_trivia_header" />
+    <include layout="@layout/t_common_header" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
@@ -27,17 +27,19 @@
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/t_numQ_text"
+                android:labelFor="@+id/t_num_qs"
                 android:textColor="@color/white" />
 
             <EditText
-                android:id="@+id/num_qs"
+                android:id="@+id/t_num_qs"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
                 android:drawableBottom="@color/black"
                 android:inputType="number"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:autofillHints="" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -71,26 +73,26 @@
                 android:orientation="horizontal">
 
                 <ToggleButton
-                    android:id="@+id/q_type_mc"
+                    android:id="@+id/t_q_type_mc"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:textOff="MC"
-                    android:textOn="MC" />
+                    android:textOff="@string/t_mc_btn_text"
+                    android:textOn="@string/t_mc_btn_text" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
 
                 <ToggleButton
-                    android:id="@+id/q_type_tf"
+                    android:id="@+id/t_q_type_tf"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
                     android:textAlignment="center"
-                    android:textOff="T/F"
-                    android:textOn="T/F" />
+                    android:textOff="@string/t_tf_btn_text"
+                    android:textOn="@string/t_tf_btn_text" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -124,29 +126,43 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/t_diff_easy_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/easy" />
+                    android:src="@drawable/easy"
+                    android:contentDescription="@string/t_easy_diff_content_desc"/>
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/t_diff_med_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/t_med_diff_content_desc"
                     android:src="@drawable/med" />
 
                 <Space
                     android:layout_width="20dp"
                     android:layout_height="wrap_content" />
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/t_diff_hard_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/t_hard_diff_content_desc"
                     android:src="@drawable/hard" />
+
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="@string/t_begin_game_btn_text" />
 </LinearLayout>
