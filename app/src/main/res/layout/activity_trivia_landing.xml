@@ -10,7 +10,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@color/purple_500"
         card_view:cardCornerRadius="10dp">
@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/numQ_text"
+                android:text="@string/t_numQ_text"
                 android:textColor="@color/white" />
 
             <EditText
@@ -43,7 +43,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         card_view:cardBackgroundColor="@color/purple_500"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/q_type_text"
+                android:text="@string/t_q_type_text"
                 android:textColor="@color/white" />
 
             <LinearLayout
@@ -97,7 +97,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         card_view:cardBackgroundColor="@color/purple_500"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginBottom="20dp"
-                android:text="@string/difficulty_text"
+                android:text="@string/t_difficulty_text"
                 android:textColor="@color/white" />
 
             <LinearLayout
