@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Final Project</string>
+    <string name="songster_Heading">Songster Search</string>
+    <string name="songster_artistName">Enter Artist or band Name:</string>
+    <string name="songster_enter_artist_hint">Enter Artist or band</string>
+    <string name="songster_search_button">Search</string>
+    <string name="songster_FavouriteList">Favourite SongList</string>
+    <string name="songster_SongList">SongList Results</string>
+    <string name="BackButton">Go Back</string>
 </resources>

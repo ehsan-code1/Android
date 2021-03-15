@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/songster_SongList"
+        android:textSize="30sp"
+        android:id="@+id/SongListTitle"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"/>
+
+    <ListView
+        android:id="@+id/SongView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/SongListTitle"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/GoBackButton"
+        android:text="@string/BackButton"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/pink"
+        android:layout_marginStart="10dp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/GoBackButton"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/favouriteSongListButton"
+        android:backgroundTint="@color/pink"
+        android:text="@string/songster_FavouriteList"
+        android:layout_marginStart="60dp"
+
+
+        />
+
+
+
+</RelativeLayout>

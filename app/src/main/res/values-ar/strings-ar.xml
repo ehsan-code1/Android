@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Final Project</string>
+    <string name="songster_Heading">ابحث عن مطرب</string>
+    <string name="songster_artistName">أدخل اسم المطرب أو الفرقه:</string>
+    <string name="songster_enter_artist_hint">أدخل هنا</string>
+    <string name="songster_search_button">ابحث</string>
+    <string name="songster_FavouriteList">المفضله</string>
+    <string name="songster_SongList">نتائج البحث</string>
+    <string name="BackButton">الرجوع</string>
+</resources>
