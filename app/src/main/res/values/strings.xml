@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Car Database</string>
+    <string name="logo">logo</string>
+    <string name="description">Canada\'s Largest Car Database</string>
+    <string name="hint">Search</string>
+    <string name="go">Go</string>
 </resources>
