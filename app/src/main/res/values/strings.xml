@@ -18,4 +18,5 @@
     <string name="t_easy_diff_content_desc">Easy Mode Button: Swaddled Baby</string>
     <string name="t_med_diff_content_desc">Medium Mode Button: Happy Face</string>
     <string name="t_hard_diff_content_desc">Hard Mode Button: Skull and Crossbones</string>
+    <string name="title_activity_trivia_quiz">TriviaQuizActivity</string>
 </resources>

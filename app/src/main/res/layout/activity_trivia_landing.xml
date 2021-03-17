@@ -160,6 +160,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/t_begin_game_btn"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
