@@ -1,15 +1,23 @@
 package com.example.myapplication;
 public class Artist {
     protected String artistName;
-    protected long artistId;
-    protected long songId;
+    protected String artistId;
+    protected String songId;
+    protected String songTitle;
     protected String favouriteSong;
+    protected Long id;
 
-    public Artist(String artistName,long artistId,long songId,String favouriteSong){
+    public Artist() {
+
+    }
+
+    public Artist(String artistName, String artistId, String songId, String favouriteSong, String songTitle,Long id){
         this.artistName=artistName;
         this.artistId=artistId;
         this.songId=songId;
         this.favouriteSong=favouriteSong;
+        this.songTitle=songTitle;
+        this.id=id;
 
     }
 
@@ -18,35 +26,53 @@ public class Artist {
         return artistName;
     }
 
-    public long getId() {
-        return artistId;
-    }
+
 
     public void setArtistName(String artistName) {
         this.artistName = artistName;
     }
 
-    public long getArtistId() {
+    public String getArtistId() {
         return artistId;
     }
 
-    public void setArtistId(long artistId) {
+    public void setArtistId(String artistId) {
+
         this.artistId = artistId;
     }
 
-    public long getSongId() {
+    public String getSongId() {
+
         return songId;
     }
 
-    public void setSongId(long songId) {
+    public void setSongId(String songId) {
+
         this.songId = songId;
     }
 
     public String getFavouriteSong() {
+
         return favouriteSong;
     }
 
     public void setFavouriteSong(String favouriteSong) {
         this.favouriteSong = favouriteSong;
+    }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

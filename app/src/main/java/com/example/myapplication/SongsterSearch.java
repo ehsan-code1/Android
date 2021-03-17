@@ -35,16 +35,17 @@ public class SongsterSearch extends AppCompatActivity {
 
 
 
+
        //click search uplaod List of songs
         //if user input is blank through a toast message to inform the user
          searchButton.setOnClickListener(e->
 
         {
-            progressBar.setVisibility(View.VISIBLE);
+
             if(userInput.getText().toString().equals("")) {
                 Toast.makeText(getApplicationContext(), "Must Enter Artist or band Name", Toast.LENGTH_LONG).show();
             }else {
-
+                //progressBar.setVisibility(View.VISIBLE);
                 Intent ListViewPage = new Intent(this, SongsterList.class);
                 ListViewPage.putExtra(ARTIST_KEYWORD, userInput.getText().toString());
 
@@ -57,35 +58,35 @@ public class SongsterSearch extends AppCompatActivity {
         });
 
     }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.e(ACTIVITY_NAME,"in the function onStart");
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.e(ACTIVITY_NAME,"in the function onStop");
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Log.e(ACTIVITY_NAME,"in the function onDestory");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Log.e(ACTIVITY_NAME,"in the function onPause");
+//    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e(ACTIVITY_NAME,"in the function onStart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(ACTIVITY_NAME,"in the function onStop");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(ACTIVITY_NAME,"in the function onDestory");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(ACTIVITY_NAME,"in the function onPause");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        progressBar.setVisibility(View.INVISIBLE);
-        Log.e(ACTIVITY_NAME,"in the function onResume");
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        progressBar.setVisibility(View.INVISIBLE);
+//        Log.e(ACTIVITY_NAME,"in the function onResume");
+//    }
 }
