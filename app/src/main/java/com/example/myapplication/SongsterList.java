@@ -127,22 +127,31 @@ public class SongsterList extends AppCompatActivity {
 
             int counter=0;
                while (eventType != XmlPullParser.END_DOCUMENT) {
-                   //Artist artist = new Artist();
+                   Log.e("whileLoop", "inside while loop");
+
+                   Artist artist = new Artist();
                    if (eventType == XmlPullParser.START_TAG) {
+                       Log.e("ifCondition", "inside ifCondition");
                        if(xpp.getName().equals("Song")){
                            artist.setSongId(xpp.getAttributeValue(null,"id"));
+                           Log.e("song attribute", xpp.getAttributeValue(null,"id"));
                           counter++;
                           Log.i("counter",counter+"");
-                       }else if(xpp.getName().equals("title")){
+                       }else
+                       if(xpp.getName().equals("title")){
                            artist.setSongTitle(xpp.nextText());
                            counter++;
                            Log.i("counter",counter+"");
-                       }else if(xpp.getName().equals("artist")){
+                       }else
+                       if(xpp.getName().equals("artist")){
                            artist.setArtistId(xpp.getAttributeValue(null,"id"));
                            counter++;
                            Log.i("counter",counter+"");
+                       }else
+                       if(xpp.getName().equals("name")) {
+                           artist.setArtistName(xpp.nextText());
+                           //artist.setFavouriteSong("false");
                        }
-                       artist.setFavouriteSong("false");
                        artistList.add(artist);
                    }
                    eventType = xpp.next();
@@ -150,7 +159,8 @@ public class SongsterList extends AppCompatActivity {
 
 
                } catch(Exception e){
-
+                       Log.e("Exceptions",e.getMessage());
+                       e.printStackTrace();
                }
 
 
@@ -163,6 +173,7 @@ public class SongsterList extends AppCompatActivity {
            @Override
        protected void onPostExecute(String s) {
               super.onPostExecute(s);
+              artistAdapter.notifyDataSetChanged();
           // progressBar.setVisibility(View.INVISIBLE);
 
        }
@@ -218,8 +229,16 @@ public class SongsterList extends AppCompatActivity {
             Artist artist= (Artist) getItem(position);
 
             View artistView=inflater.inflate(R.layout.artist_row,parent,false);
-            TextView artistText=artistView.findViewById(R.id.artistRow);
-            artistText.setText(artist.getArtistName());
+            TextView songId=artistView.findViewById(R.id.SongIdRow);
+            TextView title=artistView.findViewById(R.id.artistTitleRow);
+            TextView artistId=artistView.findViewById(R.id.artistIdRow);
+            TextView artistName=artistView.findViewById(R.id.artistName);
+            songId.setText(artist.getSongId());
+            title.setText(artist.getSongTitle());
+            artistId.setText(artist.getArtistId());
+            artistId.setText(artist.getArtistName());
+
+
             return artistView;
         }
     }

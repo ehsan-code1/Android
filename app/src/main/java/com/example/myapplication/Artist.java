@@ -11,11 +11,11 @@ public class Artist {
 
     }
 
-    public Artist(String artistName, String artistId, String songId, String favouriteSong, String songTitle,Long id){
+    public Artist(String artistName, String artistId, String songId, String songTitle){
         this.artistName=artistName;
         this.artistId=artistId;
         this.songId=songId;
-        this.favouriteSong=favouriteSong;
+        //this.favouriteSong=favouriteSong;
         this.songTitle=songTitle;
         this.id=id;
 
