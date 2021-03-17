@@ -46,7 +46,7 @@ public class SongsterList extends AppCompatActivity {
     MySongListAdapter artistAdapter;
     ListView artistListView;
     ProgressBar progressBar;
-    private static final String SONG_URL="http://www.songsterr.com/a/ra/songs.json?pattern=";
+    private static final String SONG_URL="http://www.songsterr.com/a/ra/songs.xml?pattern=";
 
     @Override
     @SuppressWarnings( "deprecation" )
@@ -68,7 +68,7 @@ public class SongsterList extends AppCompatActivity {
 
 
         //execute the url by using the artistName from searchpage
-        String artistURL = "https://www.songsterr.com/a/ra/songs.json?pattern="+artistName;
+        String artistURL = "https://www.songsterr.com/a/ra/songs.xml?pattern="+artistName;
         ArtistQuery qs = new ArtistQuery(this);
         qs.execute(artistURL);
 
@@ -107,63 +107,46 @@ public class SongsterList extends AppCompatActivity {
                //create a URL object of what server to contact:
                URL url = new URL(params[0]);
                Log.e("url", String.valueOf(url));
-               Log.e("url", params[0]);
+               Log.e("url2", params[0]);
                //open the connection
                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-               Log.e("url", urlConnection.getResponseMessage());
-              InputStream response = urlConnection.getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
+
+               Log.e("response", String.valueOf(urlConnection.getResponseCode()));
+
+               InputStream response = urlConnection.getInputStream();
+             //BufferedReader reader = new BufferedReader(new InputStreamReader(response, "UTF-8"), 8);
 
 
        //wait for data:
 
-//               XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-//               factory.setNamespaceAware(false);
-//               XmlPullParser xpp = factory.newPullParser();
-//               xpp.setInput(response, "UTF-8");
+               XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+               factory.setNamespaceAware(false);
+               XmlPullParser xpp = factory.newPullParser();
+               xpp.setInput(response, "UTF-8");
+               int eventType = xpp.getEventType();
 
-
-
-           StringBuilder sb = new StringBuilder();
-           String line = null;
-           while ((line = reader.readLine()) != null) {
-               sb.append(line + "\n");
-           }
-           String result = sb.toString(); //result is the whole string
-           JSONArray jsonArray = new JSONArray(result);
-
-           for (int i = 0; i < jsonArray.length(); i++) {
-               JSONObject jObject = jsonArray.getJSONObject(i);
-               Artist artist = new Artist();
-               artist.setSongId(jObject.getString("id"));
-               artist.setSongTitle(jObject.getString("title"));
-               artist.setArtistId(jObject.getString("id"));
-               artist.setArtistName(artistName);
-               artist.setFavouriteSong("false");
-               artistList.add(artist);
-           }
-
-//            int counter=0;
-//               while (xpp.next() != XmlPullParser.END_DOCUMENT) {
-//                   //Artist artist = new Artist();
-//                   if (xpp.getEventType() == XmlPullParser.START_TAG) {
-//                       if(xpp.getName().equals("Song")){
-//                           artist.setSongId(xpp.getAttributeValue(null,"id"));
-//                          counter++;
-//                          Log.i("counter",counter+"");
-//                       }else if(xpp.getName().equals("title")){
-//                           artist.setSongTitle(xpp.nextText());
-//                           counter++;
-//                           Log.i("counter",counter+"");
-//                       }else if(xpp.getName().equals("artist")){
-//                           artist.setArtistId(xpp.getAttributeValue(null,"id"));
-//                           counter++;
-//                           Log.i("counter",counter+"");
-//                       }
-//                       artist.setFavouriteSong("false");
-//                       artistList.add(artist);
-//                   }
-//               }
+            int counter=0;
+               while (eventType != XmlPullParser.END_DOCUMENT) {
+                   //Artist artist = new Artist();
+                   if (eventType == XmlPullParser.START_TAG) {
+                       if(xpp.getName().equals("Song")){
+                           artist.setSongId(xpp.getAttributeValue(null,"id"));
+                          counter++;
+                          Log.i("counter",counter+"");
+                       }else if(xpp.getName().equals("title")){
+                           artist.setSongTitle(xpp.nextText());
+                           counter++;
+                           Log.i("counter",counter+"");
+                       }else if(xpp.getName().equals("artist")){
+                           artist.setArtistId(xpp.getAttributeValue(null,"id"));
+                           counter++;
+                           Log.i("counter",counter+"");
+                       }
+                       artist.setFavouriteSong("false");
+                       artistList.add(artist);
+                   }
+                   eventType = xpp.next();
+               }
 
 
                } catch(Exception e){
