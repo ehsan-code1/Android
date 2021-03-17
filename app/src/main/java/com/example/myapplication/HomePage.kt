@@ -17,9 +17,6 @@ class HomePage : AppCompatActivity() {
 
         val eText: EditText = findViewById(R.id.search)
         val searchB: Button = findViewById(R.id.searchb)
-        val pb : ProgressBar = findViewById(R.id.progressBar)
-
-        pb.visibility = View.INVISIBLE
 
         searchB.setOnClickListener {
             val searchText :String = eText.text.toString()
@@ -27,9 +24,6 @@ class HomePage : AppCompatActivity() {
             if (searchText!= "") {
                 val intent = Intent(this, CarsList::class.java)
                 intent.putExtra("search",searchText)
-                pb.visibility = View.VISIBLE
-                Thread.sleep(500)
-                pb.progress = Random.nextInt(100)
                 startActivity(intent)
             }
             else {
@@ -41,10 +35,4 @@ class HomePage : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-        val pb : ProgressBar = findViewById(R.id.progressBar)
-        pb.visibility = View.INVISIBLE
-
-    }
 }
