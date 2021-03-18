@@ -83,14 +83,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
+        android:layout_marginEnd="52dp"
         android:backgroundTint="#38C256"
         android:fontFamily="sans-serif-black"
         android:text="@string/buy"
         android:textColor="#000000"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.538"
-        app:layout_constraintStart_toEndOf="@+id/saveB"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button

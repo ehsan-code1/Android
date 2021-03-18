@@ -12,11 +12,32 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
-
+/**
+ *  CarOptions Class extends Fragment to inflate fragment fragment_cars.xml
+ *  Takes arguments in form of bundle from CarsList or SavedCars Activities and populates the Fragment
+ *  Has 3 buttons, Buy,View Details and Save. First two having intents that open Browser with url based on
+ *  Information on the Fragment. Save Button saves Make,MakeID,Model and ModelID in a Database
+ */
 class CarOptions : Fragment() {
+
+    /**
+     * onCreateView Function which receives data from either CarsList, or SavedCars in form of Bundle
+     * Bundle containing make,makeid,model,modelID and a Boolean which is used to determine whether previous activity
+     * was CarsList or SavedCars.
+     * If CarsList, then Save Button will be shown, else Remove Button will be shown
+     * Instnace of DB to either insert into Database if Save Button is pressed, or Remove From database if Remove Button is Pressed
+     * ViewDetails button will launch Default Browser, and parse a custom google URL based on model and make name to show car details
+     * Buy Button will prompt an alert Dialog, upon pressing yes, an autotrader page for the specific car model will be opened
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return View?
+     */
+    private var parentActivity: AppCompatActivity? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +47,7 @@ class CarOptions : Fragment() {
         val data: Bundle? = arguments;
 
         val isSaved: Boolean? = data?.getBoolean("Saved")
+
         val result: View = inflater.inflate(R.layout.fragment_cars, container, false)
 
         val db = Database(result.context);
@@ -73,10 +95,12 @@ class CarOptions : Fragment() {
                 db.deleteData(data?.getString("ModelID"))
                 val snackbar = Snackbar.make(it, "Car Removed From Database",
                     Snackbar.LENGTH_LONG)
-                snackbar.setAction("Go Back to Favorites"
+                snackbar.setAction("Refresh Favourites"
                 ) {
                     val intent = Intent(it.context, SavedCars::class.java)
                     startActivity(intent)
+                    parentActivity = context as AppCompatActivity
+                    parentActivity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
                 }
                 snackbar.show()
             }
@@ -107,6 +131,13 @@ class CarOptions : Fragment() {
         return result
     }
 
+    /**
+     * Helper Method that runs query on database and returns already saved cars in an ArrayList
+     * runs query on writableDatabase having just the ModelID,
+     * Can be used to avoid double entries or verify if a car is in database
+     * @param context
+     * @return ArrayList<String>
+     */
     private fun getModels (context: Context) : ArrayList<String> {
         val db = Database(context);
 
