@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomePage">
@@ -72,5 +74,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search"
         app:layout_constraintVertical_bias="0.138" />
+
+    <Button
+        android:id="@+id/favB"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:width="150dp"
+        android:background="@drawable/rounded_logo"
+        android:backgroundTint="#8FE9F4"
+        android:padding="10dp"
+        android:text="@string/view_your_saved_cars"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="0.443" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

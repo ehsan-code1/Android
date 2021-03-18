@@ -1,12 +1,12 @@
 package com.example.myapplication
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import org.xmlpull.v1.XmlPullParser
@@ -14,14 +14,15 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import kotlin.random.Random
+
 
 class CarsList : AppCompatActivity() {
 
     val elements = ArrayList<Cars?>()
+
+    private var isTabl : Boolean? = null;
     private var carModels:String? = "https://vpic.nhtsa.dot.gov/api/vehicles/GetModelsForMake/"
-   // private var googleModel:String? = "http://www.google.com/search?q="
-    //private var autoTraderbuy : String? = "https://www.autotrader.ca/cars/?"
+
    @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,51 +33,9 @@ class CarsList : AppCompatActivity() {
         progressB.visibility = View.VISIBLE
         s.execute(carModels)
 
-        val list : ListView = findViewById(R.id.carList)
-
-
-
-        list.setOnItemLongClickListener { _, _, position, id ->
-            val alertDialog: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-            alertDialog.setTitle("Do you want to delete this?").setMessage("the selected row is $position")
-                    .setNeutralButton("Yes") { _, _ ->
-                    }
-                    .setNegativeButton("No") { _, _ -> }
-                    .create().show()
-            true
-        }
 
     }
 
-    inner class Cars() {
-
-        private var makeName: String? = null
-        private var modelName: String? = null
-        private var modelID: String? = null
-        private var makeID: String? = null
-
-
-        constructor(makeID: String?, makeName: String?, modelId: String?, modelName: String?) : this() {
-            this.makeID = makeID;
-            this.makeName = makeName;
-            this.modelID = modelId;
-            this.modelName = modelName
-        }
-
-        fun returnMake(): String? {
-            return this.makeName
-        }
-
-        fun returnModel(): String? {
-            return this.modelName
-        }
-        fun returnModelID(): String? {
-            return modelID
-        }
-        fun returnMakeID(): String? {
-            return makeID
-        }
-    }
     @Suppress("DEPRECATION")
 
     inner class carsQuery(context: Context) : AsyncTask<String, Int, String>() {
@@ -90,9 +49,6 @@ class CarsList : AppCompatActivity() {
 
                 val modelSeach: HttpURLConnection =
                     URL(params[0] + intent.getStringExtra("search")).openConnection() as HttpURLConnection
-
-                Log.i("response",modelSeach.responseCode.toString())
-
                 val modelTemp: InputStream = modelSeach.inputStream
                 val factory: XmlPullParserFactory = XmlPullParserFactory.newInstance()
                 factory.isNamespaceAware = false
@@ -149,6 +105,28 @@ class CarsList : AppCompatActivity() {
 
         }
     }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.helpmenu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.help -> {
+                val intent = Intent(this, MenuItems::class.java)
+                intent.putExtra("help",true)
+                startActivity(intent)
+                true
+            }
+            R.id.about ->{
+                val intent = Intent(this, MenuItems::class.java)
+                intent.putExtra("help",false)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 
     inner class MyAdapter(context: Context) : BaseAdapter() {
 
@@ -174,6 +152,21 @@ class CarsList : AppCompatActivity() {
                 val make : TextView = view.findViewById(R.id.companyName)
                 val modelID : TextView = view.findViewById(R.id.modelID)
                 val makeID : TextView = view.findViewById(R.id.makeID)
+
+                modelID.setOnClickListener{
+                    val dataToPass = Bundle()
+                    dataToPass.putString("MakeID", elements[position]?.returnMakeID())
+                    dataToPass.putString("ModelID", elements[position]?.returnModelID())
+                    dataToPass.putString("MakeName", elements[position]?.returnMake())
+                    dataToPass.putString("ModelName", elements[position]?.returnModel())
+                    dataToPass.putBoolean("Saved",false)
+                    val phoneIntent = Intent(it.context, EmptyActivity::class.java)
+                    phoneIntent.putExtras(dataToPass)
+                    startActivity(phoneIntent)
+                }
+
+
+
                 make.text = elements[position]?.returnMake()
                 model.text = elements[position]?.returnModel()
                 modelID.text = elements[position]?.returnModelID()
