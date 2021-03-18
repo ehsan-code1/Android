@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_activity_trivia">TriviaActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="t_header_text">Trivia!</string>
+    <string name="t_numQ_text">Number of Questions:</string>
+    <string name="t_q_type_text">Type of Questions (choose one or both):</string>
+    <string name="t_difficulty_text">Difficulty:</string>
+    <string name="t_qtype_toast">"%s questions"</string>
+    <string name="t_start_button">Start Trivia</string>
+    <string name="t_begin_game_btn_text">Begin</string>
+    <string name="t_tf_btn_text">T/F</string>
+    <string name="t_mc_btn_text">MC</string>
+    <string name="t_easy_diff_content_desc">Easy Mode Button: Swaddled Baby</string>
+    <string name="t_med_diff_content_desc">Medium Mode Button: Happy Face</string>
+    <string name="t_hard_diff_content_desc">Hard Mode Button: Skull and Crossbones</string>
+    <string name="title_activity_trivia_quiz">TriviaQuizActivity</string>
 </resources>
