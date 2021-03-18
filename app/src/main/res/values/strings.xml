@@ -7,4 +7,13 @@
     <string name="songster_FavouriteList">Favourite SongList</string>
     <string name="songster_SongList">SongList Results</string>
     <string name="BackButton">Go Back</string>
+    <string name="songster">Songster</string>
+    <string name="SongId">Song id:</string>
+    <string name="ArtistId">Artist Id:</string>
+    <string name="ArtistName">Artist Name:</string>
+    <string name="SongTitle">Song Title:</string>
+    <string name="Songster_Save">Save</string>
+    <string name="Songster_Search">Search Song</string>
+    <string name="Songster_Search_Artist">Search Artist</string>
+    <string name="Songster_Delete">Delete</string>
 </resources>

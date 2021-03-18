@@ -7,17 +7,22 @@ public class Artist {
     protected String favouriteSong;
     protected Long id;
 
-    public Artist() {
+    public Artist(){
+        this("","","","");
+    }
+
+    public Artist(String artistName, String artistId, String songId, String songTitle) {
+        this(0L,artistName,artistId,songId,songTitle);
 
     }
 
-    public Artist(String artistName, String artistId, String songId, String songTitle){
+    public Artist(Long id,String artistName, String artistId, String songId, String songTitle){
+        this.id=id;
         this.artistName=artistName;
         this.artistId=artistId;
         this.songId=songId;
-        //this.favouriteSong=favouriteSong;
         this.songTitle=songTitle;
-        this.id=id;
+
 
     }
 

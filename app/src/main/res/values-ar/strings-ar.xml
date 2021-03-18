@@ -8,4 +8,13 @@
     <string name="songster_FavouriteList">المفضله</string>
     <string name="songster_SongList">نتائج البحث</string>
     <string name="BackButton">الرجوع</string>
+    <string name="songster">تطبيق الاغاني</string>
+    <string name="SongId">معرف الاغنيه</string>
+    <string name="ArtistId">معرف المغني</string>
+    <string name="ArtistName">اسم المفني:</string>
+    <string name="SongTitle">اسم الاغنيه</string>
+    <string name="Songster_Save">حفظ:</string>
+    <string name="Songster_Search">بحث عن الاغنيه:</string>
+    <string name="Songster_Search_Artist">البحث عن المغني</string>
+    <string name="Songster_Delete">حذف:</string>
 </resources>

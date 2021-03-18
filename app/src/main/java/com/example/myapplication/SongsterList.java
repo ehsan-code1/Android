@@ -1,9 +1,12 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -17,6 +20,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,7 +51,8 @@ public class SongsterList extends AppCompatActivity {
     MySongListAdapter artistAdapter;
     ListView artistListView;
     ProgressBar progressBar;
-    private static final String SONG_URL="http://www.songsterr.com/a/ra/songs.xml?pattern=";
+    static SQLiteDatabase db;
+    private static final String SONG_URL="https://www.songsterr.com/a/ra/songs.xml?pattern=";
 
     @Override
     @SuppressWarnings( "deprecation" )
@@ -56,10 +62,11 @@ public class SongsterList extends AppCompatActivity {
         setContentView(R.layout.activity_songster_list);
         //extract the id from xml
         backButton = findViewById(R.id.GoBackButton);
-       // progressBar = findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         artistListView = findViewById(R.id.SongView);
         artistAdapter = new MySongListAdapter();
         artistListView.setAdapter(artistAdapter);
+
 
         //get Intent from searchpage
         Bundle searchPage = getIntent().getExtras();
@@ -68,17 +75,93 @@ public class SongsterList extends AppCompatActivity {
 
 
         //execute the url by using the artistName from searchpage
-        String artistURL = "https://www.songsterr.com/a/ra/songs.xml?pattern="+artistName;
+        String artistURL = SONG_URL+artistName;
         ArtistQuery qs = new ArtistQuery(this);
         qs.execute(artistURL);
 
+        View view = findViewById(R.id.main_layout_id);
 
-        backButton.setOnClickListener(this::onClick);
-    }
-    private void onClick(View e) {
 
-        finish();
+        //dismiss going back to main page
+       // final boolean[] isClicked = {false};
+
+        backButton.setOnClickListener((e)->
+        {
+//            snackbar.setAction("DISMISS",b->{
+//
+//                onResume();
+//                Log.e("reached resume","resume");
+//                if(snackbar.)
+//
+//            }).show();
+
+                finish();
+
+        });
+
+        //long
+        artistListView.setOnItemLongClickListener((parent, view1, position, id) -> {
+            Bundle dataTopass=new Bundle();
+           Artist selectedArtist=artistList.get(position);
+            AlertDialog.Builder alert= new AlertDialog.Builder(this);
+            alert.setTitle("Would Like to know more about this Artist?").
+                    setMessage("you selected: "+selectedArtist.getSongTitle()).
+                    setPositiveButton("yes",(click,arg)->
+                    {
+                        dataTopass.putString("id",String.valueOf(selectedArtist.getId()));
+                        dataTopass.putString("ArtistName",selectedArtist.getArtistName());
+                        dataTopass.putString("ArtistId",selectedArtist.getArtistId());
+                        dataTopass.putString("SongId",selectedArtist.getSongId());
+                        dataTopass.putString("SongTitle",selectedArtist.getSongTitle());
+                        //dataTopass.putString("SongFav",selectedArtist.getFavouriteSong());
+
+                        Intent nextActivity= new Intent(this,FragmentPhoneActivity.class);
+                        nextActivity.putExtras(dataTopass);
+                        startActivity(nextActivity);
+
+                    }).setNegativeButton("No",(click,arg)->{
+                        Snackbar.make(view,"Nothing changed",Snackbar.LENGTH_LONG).show();
+
+            }).create().show();
+            return true;
+
+        });
     }
+
+
+
+
+
+    private void loadDataFromDB(){
+        //clear current arraylist
+        artistList=new ArrayList<>();
+        SongOpener songDB=new SongOpener(this);
+        db=songDB.getWritableDatabase();
+        String [] columns={ SongOpener.COL_ID, SongOpener.COL_ARTISTNAME, SongOpener.COL_ARTISTID, SongOpener.COL_SONGID, SongOpener.COL_SONGTITLE};
+        Cursor results = db.query(false, SongOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+
+
+        int idColIndex = results.getColumnIndex( SongOpener.COL_ID);
+        int artistNameColIndex = results.getColumnIndex( SongOpener.COL_ARTISTNAME);
+        int artistIdColIndex = results.getColumnIndex(SongOpener.COL_ARTISTID);
+        int songIdColIndex = results.getColumnIndex(SongOpener.COL_SONGID);
+        int songTitleIndex = results.getColumnIndex(SongOpener.COL_SONGTITLE);
+       // int isFavouriteColIndex = results.getColumnIndex(SongOpener.COL_IsFavorite);
+        while(results.moveToNext()){
+            long id=results.getLong(idColIndex);
+            String artistNameDB=results.getString(artistNameColIndex);
+            String artistId=results.getString(artistIdColIndex);
+            String songId=results.getString(songIdColIndex);
+            String songTitle=results.getString(songTitleIndex);
+            //String isFavourite=results.getString(isFavouriteColIndex);
+            artistList.add(new Artist(id,artistName,artistId,songId,songTitle));
+
+        }
+
+    }
+
+
+
 
 
    /**
@@ -88,10 +171,7 @@ public class SongsterList extends AppCompatActivity {
    @SuppressWarnings( "deprecation" )
    public class ArtistQuery extends AsyncTask<String, Integer, String> {
 
-//         Long artistId;
-//         Long songId;
-//         String title;
-//         String name;
+
 
 
        public ArtistQuery(Context context){
@@ -126,35 +206,29 @@ public class SongsterList extends AppCompatActivity {
                int eventType = xpp.getEventType();
 
             int counter=0;
-               while (eventType != XmlPullParser.END_DOCUMENT) {
-                   Log.e("whileLoop", "inside while loop");
+               while (xpp.next() != XmlPullParser.END_DOCUMENT) {
+
 
                    Artist artist = new Artist();
-                   if (eventType == XmlPullParser.START_TAG) {
-                       Log.e("ifCondition", "inside ifCondition");
-                       if(xpp.getName().equals("Song")){
-                           artist.setSongId(xpp.getAttributeValue(null,"id"));
-                           Log.e("song attribute", xpp.getAttributeValue(null,"id"));
-                          counter++;
-                          Log.i("counter",counter+"");
-                       }else
-                       if(xpp.getName().equals("title")){
+                   if ( xpp.getEventType() == XmlPullParser.START_TAG) {
+
+                       if(xpp.getName().equals("Song")) {
+                            artist.setSongId(xpp.getAttributeValue(null, "id"));
+                            String songId=xpp.getAttributeValue(null, "id");
+                           xpp.nextTag();
                            artist.setSongTitle(xpp.nextText());
-                           counter++;
-                           Log.i("counter",counter+"");
-                       }else
-                       if(xpp.getName().equals("artist")){
-                           artist.setArtistId(xpp.getAttributeValue(null,"id"));
-                           counter++;
-                           Log.i("counter",counter+"");
-                       }else
-                       if(xpp.getName().equals("name")) {
+                           xpp.nextTag();
+                           artist.setArtistId(xpp.getAttributeValue(null, "id"));
+
+                           xpp.nextTag();
                            artist.setArtistName(xpp.nextText());
-                           //artist.setFavouriteSong("false");
+                           artistList.add(artist);
                        }
-                       artistList.add(artist);
+
+
+
                    }
-                   eventType = xpp.next();
+
                }
 
 
@@ -170,11 +244,11 @@ public class SongsterList extends AppCompatActivity {
 
 
 
-           @Override
+       @Override
        protected void onPostExecute(String s) {
               super.onPostExecute(s);
               artistAdapter.notifyDataSetChanged();
-          // progressBar.setVisibility(View.INVISIBLE);
+           progressBar.setVisibility(View.INVISIBLE);
 
        }
 
@@ -182,13 +256,13 @@ public class SongsterList extends AppCompatActivity {
        protected void onPreExecute() {
 
            super.onPreExecute();
-           //progressBar.setVisibility(View.VISIBLE);
+           progressBar.setVisibility(View.VISIBLE);
        }
 
        @Override
        protected void onProgressUpdate(Integer... values) {
 
-          // progressBar.setProgress(values[0]);
+           progressBar.setProgress(values[0]);
            artistAdapter.notifyDataSetChanged();
 
        }
@@ -213,13 +287,13 @@ public class SongsterList extends AppCompatActivity {
 
         //get item at specific position
         @Override
-        public Object getItem(int position) {
+        public Artist getItem(int position) {
             return artistList.get(position);
         }
 
         @Override
         public long getItemId(int position) {
-            return artistList.get(position).getId();
+            return getItem(position).getId();
         }
 
         @Override
@@ -233,16 +307,25 @@ public class SongsterList extends AppCompatActivity {
             TextView title=artistView.findViewById(R.id.artistTitleRow);
             TextView artistId=artistView.findViewById(R.id.artistIdRow);
             TextView artistName=artistView.findViewById(R.id.artistName);
-            songId.setText(artist.getSongId());
+            songId.setText(artist.getSongId()+"");
             title.setText(artist.getSongTitle());
-            artistId.setText(artist.getArtistId());
-            artistId.setText(artist.getArtistName());
+            artistId.setText(artist.getArtistId()+"");
+            artistName.setText(artist.getArtistName());
 
 
             return artistView;
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == resultCode) {
+            loadDataFromDB();
+            artistAdapter.notifyDataSetChanged();
+        }
+    }
 
 
 
