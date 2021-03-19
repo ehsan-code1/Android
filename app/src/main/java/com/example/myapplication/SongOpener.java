@@ -48,5 +48,10 @@ public  class SongOpener extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    protected void deleteFromDB(String SongId){
+        SQLiteDatabase write=getWritableDatabase();
+        write.delete(SongOpener.TABLE_NAME,SongOpener.COL_SONGID+ "= ?",new String[]{SongId});
+    }
+
 
 }

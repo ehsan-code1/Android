@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".FragmentPhoneActivity"></activity>
+        <activity android:name=".FavouriteList" />
+        <activity android:name=".FragmentPhoneActivity" />
         <activity android:name=".SongsterList" />
         <activity android:name=".SongsterSearch">
             <intent-filter>

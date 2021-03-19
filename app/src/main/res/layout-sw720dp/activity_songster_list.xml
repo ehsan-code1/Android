@@ -5,20 +5,31 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/SongView"
+        android:layout_marginLeft="-2dp"
+        android:id="@+id/frameLayout"
+        android:background="@color/rose"
+
+        />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/songster_SongList"
-        android:textSize="30sp"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
         android:id="@+id/SongListTitle"
         android:textColor="@color/black"
-        android:layout_centerHorizontal="true"/>
+        />
 
     <ListView
         android:id="@+id/SongView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/SongListTitle"
         />
@@ -31,9 +42,8 @@
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/pink"
         android:layout_marginStart="10dp"
-        android:layout_centerHorizontal="true"
-        />
 
+        />
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,13 +51,14 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_below="@+id/SongView"/>
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/toastText"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"></TextView>
+
+
 
 
 

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/rose"
    >
 <TextView
     android:id="@+id/SongHeader"
@@ -59,7 +59,8 @@
         android:layout_height="wrap_content"
         android:text="@string/Songster_Save"
         android:layout_above="@id/searchButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pink"/>
 
     <Button
         android:id="@+id/searchButton"
@@ -67,14 +68,16 @@
         android:layout_height="wrap_content"
         android:text="@string/Songster_Search"
         android:layout_above="@id/ArtistIdbtn"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pink"/>
     <Button
         android:id="@+id/ArtistIdbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Songster_Search_Artist"
         android:layout_above="@id/Delete"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/pink"/>
 
     <Button
         android:id="@+id/Delete"
@@ -82,6 +85,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Songster_Delete"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/pink"/>
 
 </RelativeLayout>

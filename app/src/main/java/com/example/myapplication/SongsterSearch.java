@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,6 +10,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +28,7 @@ public class SongsterSearch extends AppCompatActivity {
     public static final String ACTIVITY_NAME = "SEARCH_ACTIVITY";
     public SharedPreferences prefs=null;
     private  String savedArtistName;
+    private Button favButton;
 
 
     @Override
@@ -36,6 +42,7 @@ public class SongsterSearch extends AppCompatActivity {
         searchButton=findViewById(R.id.searchButton);
 
         progressBar=findViewById(R.id.progressSearch);
+        favButton=findViewById(R.id.favouriteSongListButton);
 
        //initialize SharedPreferences to private mode
         prefs=getSharedPreferences("SavedPref",MODE_PRIVATE);
@@ -46,7 +53,10 @@ public class SongsterSearch extends AppCompatActivity {
 
 
 
-
+     favButton.setOnClickListener(s->{
+         Intent listFav=new Intent(this,FavouriteList.class);
+         startActivity(listFav);
+     });
 
 
        //click search uplaod List of songs
@@ -70,6 +80,36 @@ public class SongsterSearch extends AppCompatActivity {
 
 
         });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        //Inflate the menu items for the action bar
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.toolbar_menu_songster,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       String song=null;
+       switch(item.getItemId()){
+           case R.id.about:
+               AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+                       alertDialog.setTitle("Songster app created by Nouran Nouh  V1.0").setMessage("search your favorite Artist Songs to know more about the app click help icon")
+                       .setPositiveButton("Ok",null).create().show();
+                       break;
+           case R.id.help:
+               AlertDialog.Builder alertHelp=new AlertDialog.Builder(this);
+               alertHelp.setMessage("Enter Artist or band name that you want to search for Artist Name\nClick Search button or view your favourite Artist List")
+                .setNeutralButton("ok",null).create().show();
+               break;
+
+       }
+
+       return true;
 
     }
 

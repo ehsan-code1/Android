@@ -3,6 +3,7 @@ package com.example.myapplication;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -31,7 +32,7 @@ public class SongDetail extends Fragment {
     public SQLiteDatabase db;
     Bundle prevData;
     private AppCompatActivity parentApp;
-    Long id;
+    int id;
     String artistName;
     String artistId;
     String songId;
@@ -91,12 +92,31 @@ public class SongDetail extends Fragment {
                         ContentValues cv= new ContentValues();
                         SongOpener songDB=new SongOpener(getActivity());
                         db=songDB.getWritableDatabase();
-                        cv.put(SongOpener.COL_ARTISTNAME,artistName);
-                        cv.put(SongOpener.COL_ARTISTID,artistId);
-                        cv.put(SongOpener.COL_SONGID,songId);
-                        cv.put(SongOpener.COL_SONGTITLE,songTitle);
-                        db.insert(SongOpener.TABLE_NAME,null,cv);
-                        Toast.makeText(getActivity(),"Your Favourite Song is saved",Toast.LENGTH_LONG).show();
+                        //check for duplicates, dont add duplicate row
+                        boolean isSaved=false;
+                        String [] columns={ SongOpener.COL_ID, SongOpener.COL_ARTISTNAME, SongOpener.COL_ARTISTID, SongOpener.COL_SONGID, SongOpener.COL_SONGTITLE};
+                        Cursor results = db.query(false, SongOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+                       //check by songId
+                        int songIdColIndex = results.getColumnIndex(SongOpener.COL_SONGID);
+                        while(results.moveToNext()){
+                            String songIdOld=results.getString(songIdColIndex);
+                            if(songIdOld.equals(songId)){
+                                Toast.makeText(getActivity(),"this Song is already saved",Toast.LENGTH_LONG).show();
+                                isSaved=true;
+                                break;
+                            }
+
+
+                        }
+                        if(!isSaved) {
+                            cv.put(SongOpener.COL_ARTISTNAME, artistName);
+                            cv.put(SongOpener.COL_ARTISTID, artistId);
+                            cv.put(SongOpener.COL_SONGID, songId);
+                            cv.put(SongOpener.COL_SONGTITLE, songTitle);
+                            db.insert(SongOpener.TABLE_NAME, null, cv);
+                            Toast.makeText(getActivity(),"Your Favourite Song is saved",Toast.LENGTH_LONG).show();
+                        }
+
                     }).
                     setNegativeButton("No",(click,args)->{
                         Toast.makeText(getActivity(),"Nothing saved",Toast.LENGTH_LONG).show();
@@ -109,8 +129,8 @@ public class SongDetail extends Fragment {
             alert.setTitle("Are you sure you want to delete this song?").
                     setPositiveButton("Yes",(Click,args)->{
                         SongOpener songDB=new SongOpener(getActivity());
-                        db=songDB.getWritableDatabase();
-                        deleteFromDB((long) id);
+                        //db=songDB.getWritableDatabase();
+                        songDB.deleteFromDB(songId);
                         Toast.makeText(getActivity(),"has been removed from favourite",Toast.LENGTH_LONG).show();
                         parentApp.getSupportFragmentManager().beginTransaction().remove(this).commit();
                     }).
@@ -138,8 +158,8 @@ public class SongDetail extends Fragment {
         parentApp = (AppCompatActivity)context;
     }
 
-    protected void deleteFromDB(Long id){
-        db.delete(SongOpener.TABLE_NAME,SongOpener.COL_ID+ "= ?",new String[]{Long.toString(id)});
-    }
+//    protected void deleteFromDB(Long id){
+//        db.delete(SongOpener.TABLE_NAME,SongOpener.COL_ID+ "= ?",new String[]{Long.toString(id)});
+//    }
 
 }

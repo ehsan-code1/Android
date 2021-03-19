@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Final Project</string>
+    <string name="app_name">Songster               Nouran Nouh           V1.0</string>
     <string name="songster_Heading">ابحث عن مطرب</string>
     <string name="songster_artistName">أدخل اسم المطرب أو الفرقه:</string>
     <string name="songster_enter_artist_hint">أدخل هنا</string>
@@ -17,4 +17,12 @@
     <string name="Songster_Search">بحث عن الاغنيه:</string>
     <string name="Songster_Search_Artist">البحث عن المغني</string>
     <string name="Songster_Delete">حذف:</string>
+    <string name="favouriteList">المفضله</string>
+    <string name="Songster_menu_about">عن التطبيق</string>
+    <string name="Songster_menu_help">اكتشف التطبيق</string>
+    <string name="Songster_moreInfoAboutSong">هل تريد ان تعرف المزيد عن هذه الاغنيه؟</string>
+    <string name="youSelected">لقد اخترت:</string>
+    <string name="confirm">نعم</string>
+    <string name="decline">لا</string>
+    <string name="nothingChanged">لا يوجد اي تغير</string>
 </resources>
