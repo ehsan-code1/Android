@@ -12,4 +12,6 @@
     <string name="save_to_database" >ڈیٹا بیس میں محفوظ کریں</string>
     <string name="buy">خریدنے</string>
     <string name="view_details" >تفصیلات دیکھیں</string>
+    <string name="model_id">Model ID:</string>
+    <string name="make_id">Make ID:</string>
 </resources>

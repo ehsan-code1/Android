@@ -11,4 +11,6 @@
     <string name="save_to_database">Save to Database</string>
     <string name="buy">Buy</string>
     <string name="view_details">View Details</string>
+    <string name="model_id">Model ID:</string>
+    <string name="make_id">Make ID:</string>
 </resources>

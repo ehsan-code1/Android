@@ -3,10 +3,12 @@ package com.example.myapplication
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
 
 /**
  * SavedCars class that loads all the cars which were saved from the database, and loads them in the listView
@@ -25,6 +27,7 @@ class SavedCars : AppCompatActivity() {
      * Determines if device being used is a tablet using isTabl
      * Sets adapter to ListView
      * If the array elements is empty, shows a toast with text that no cars are saved
+     * pullToRefresh will empty the elements array, load data again and notify the adapter for Data Change
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +41,15 @@ class SavedCars : AppCompatActivity() {
         if (elements.isEmpty()) {
             Toast.makeText(applicationContext, "No Favourites Added", Toast.LENGTH_LONG).show()
         }
+            val pullToRefresh = findViewById<SwipeRefreshLayout>(R.id.swiperefresh)
+            pullToRefresh.setOnRefreshListener {
+                elements.clear()
+                loadDataFromDatabase()
+                adapter?.notifyDataSetChanged()
+                pullToRefresh.isRefreshing = false
+            }
+
+
     }
 
 
@@ -51,9 +63,24 @@ class SavedCars : AppCompatActivity() {
      */
     private fun loadDataFromDatabase() {
 
-        val columns = arrayOf(Database.COL_MAKEID, Database.COL_MAKE, Database.COL_MODELID,Database.COL_MODEL)
+        val columns = arrayOf(
+            Database.COL_MAKEID,
+            Database.COL_MAKE,
+            Database.COL_MODELID,
+            Database.COL_MODEL
+        )
 
-        val results: Cursor = db.writableDatabase.query(false, Database.TABLENAME, columns, null, null, null, null, null, null)
+        val results: Cursor = db.writableDatabase.query(
+            false,
+            Database.TABLENAME,
+            columns,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+        )
 
         val makeID: Int = results.getColumnIndex(Database.COL_MAKEID)
         val make: Int = results.getColumnIndex(Database.COL_MAKE)
@@ -68,12 +95,13 @@ class SavedCars : AppCompatActivity() {
             val modelID: String = results.getString(modelID)
             val model: String = results.getString(model)
 
-            val cars = Cars(makeID,make,modelID,model)
+            val cars = Cars(makeID, make, modelID, model)
             elements.add((cars))
         }
     }
     /**
      * Adds helpmenu menu item to the optionsMenu if its present
+     * @param menu
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -85,26 +113,32 @@ class SavedCars : AppCompatActivity() {
      * if help is clicked, an alertdialog with help is shown, and instructions on to click more to get extra help
      * which launches activity and puts a boolean variable which is used to change text of the activity user is sent to
      * if its true, help will be shown, otherwise about will be shown
+     * @param item
      */
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.help -> {
-                val alertDialog: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
-                alertDialog.setTitle("Enter Car Manufacturer's Name and click go "
-                ).setMessage("To view your saved cars, click on View Saved Cars. \nFor More help click More")
-                        .setPositiveButton("More") { _, _ ->
-                            val intent = Intent(this, MenuItems::class.java)
-                            intent.putExtra("help",true)
-                            startActivity(intent)
-                        }.setNeutralButton("Close Help") {_,_ ->
+                val alertDialog: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(
+                    this
+                )
+                alertDialog.setTitle(
+                    "Enter Car Manufacturer's Name and click go "
+                )
+                    .setMessage("To view your saved cars, click on View Saved Cars. \nFor More help click More")
+                    .setPositiveButton("More") { _, _ ->
+                        val intent = Intent(this, MenuItems::class.java)
+                        intent.putExtra("help", true)
+                        startActivity(intent)
+                    }.setNeutralButton("Close Help") { _, _ ->
 
-                        }
+                    }
                 alertDialog.show()
                 true
             }
-            R.id.about ->{
+            R.id.about -> {
                 val intent = Intent(this, MenuItems::class.java)
-                intent.putExtra("help",false)
+                intent.putExtra("help", false)
                 startActivity(intent)
                 true
             }
@@ -168,7 +202,7 @@ class SavedCars : AppCompatActivity() {
                     dataToPass.putString("ModelID", elements[position]?.returnModelID())
                     dataToPass.putString("MakeName", elements[position]?.returnMake())
                     dataToPass.putString("ModelName", elements[position]?.returnModel())
-                    dataToPass.putBoolean("Saved",true)
+                    dataToPass.putBoolean("Saved", true)
                     if (isTabl == true) {
                         dFrag = CarOptions()
                         dFrag.arguments = dataToPass
@@ -203,6 +237,8 @@ class SavedCars : AppCompatActivity() {
         elements.clear()
         loadDataFromDatabase()
         adapter?.notifyDataSetChanged()
-
+        if (elements.isEmpty()) {
+            Toast.makeText(applicationContext, "No Favourites Added", Toast.LENGTH_LONG).show()
+        }
     }
 }

@@ -10,13 +10,13 @@
         android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="80dp"
         android:text="@string/hello_world"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,28 +24,53 @@
         android:id="@+id/modelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="156dp"
         android:text="@string/hello_world"
         android:textColor="#000000"
         android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.019"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/model_id"
+        app:layout_constraintBottom_toTopOf="@+id/modelID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/make_id"
+        app:layout_constraintBottom_toTopOf="@+id/makeID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/modelID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/hello_world"
+        android:text="@string/buy"
         android:textColor="#FC0303"
         android:textColorLink="#FFF8F8"
         android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/detailsB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.834"
+        app:layout_constraintHorizontal_bias="0.861"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165" />
 
     <TextView
         android:id="@+id/makeID"
@@ -55,19 +80,19 @@
         android:shadowColor="#F7D0D0"
         android:text="@string/hello_world"
         android:textColor="#FF0000"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/companyName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.036"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintVertical_bias="0.465" />
 
     <Button
         android:id="@+id/saveB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
+        android:layout_marginTop="224dp"
         android:backgroundTint="#8FE9F4"
         android:fontFamily="sans-serif-black"
         android:text="@string/save_to_database"
@@ -82,8 +107,8 @@
         android:id="@+id/buyB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="176dp"
-        android:layout_marginEnd="52dp"
+        android:layout_marginTop="224dp"
+        android:width="135dp"
         android:backgroundTint="#38C256"
         android:fontFamily="sans-serif-black"
         android:text="@string/buy"
@@ -96,14 +121,14 @@
         android:id="@+id/detailsB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="148dp"
         android:backgroundTint="#8FE9F4"
         android:fontFamily="sans-serif-black"
         android:text="@string/view_details"
         android:textColor="#000000"
         app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/companyName"
         app:layout_constraintTop_toTopOf="parent" />
 

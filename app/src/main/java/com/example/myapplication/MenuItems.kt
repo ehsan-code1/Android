@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +8,16 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.TextView
 
+/**
+ * MenuItems extending AppCompatActivity which will load an activity and set the text of textviews based on the option item clicked
+ * on Previous Activity using a Boolean Variable type, which is passed in Intent Extras.
+ */
 class MenuItems : AppCompatActivity() {
+    /**
+     * onCreate Function sets text of Both Textviews based on the boolean passed in the intent
+     * @param savedInstanceState
+     */
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.menu_options)
@@ -16,9 +26,9 @@ class MenuItems : AppCompatActivity() {
         val t2 : TextView = findViewById(R.id.description)
 
 
-        val type : Boolean? = intent.getBooleanExtra("help",true)
+        val type : Boolean = intent.getBooleanExtra("help",true)
 
-        if (type == true){
+        if (type){
             t1.text = "Help"
             t2.text = "Enter Name of Manufacturer in Search Field." +
                     " Press Go to Load All Models from That Manufacturer." +
@@ -39,11 +49,22 @@ class MenuItems : AppCompatActivity() {
 
 
     }
+    /**
+     * Adds helpmenu menu item to the optionsMenu if its present
+     * @param menu
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.helpmenu, menu)
         return true
     }
+    /**
+     * onOptionsItemSelected using Switch to execute certain Event based on item of menu clicked
+     * if help is clicked, an alertdialog with help is shown, and instructions on to click more to get extra help
+     * which launches activity and puts a boolean variable which is used to change text of the activity user is sent to
+     * if its true, help will be shown, otherwise about will be shown
+     * @param item
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.help -> {

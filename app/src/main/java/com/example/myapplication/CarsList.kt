@@ -153,18 +153,19 @@ class CarsList : AppCompatActivity() {
 
     /**
      * Adds helpmenu menu item to the optionsMenu if its present
+     * @param menu
      */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.helpmenu, menu)
         return true
     }
-
     /**
      * onOptionsItemSelected using Switch to execute certain Event based on item of menu clicked
      * if help is clicked, an alertdialog with help is shown, and instructions on to click more to get extra help
      * which launches activity and puts a boolean variable which is used to change text of the activity user is sent to
      * if its true, help will be shown, otherwise about will be shown
+     * @param item
      */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {

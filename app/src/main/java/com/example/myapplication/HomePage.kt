@@ -15,9 +15,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.android.material.snackbar.Snackbar
 
-
+/**
+ * class HomePage extending AppCompatActivity, this will be our starting activity. Having an edit text for search functionality
+ * A button that takes you to SavedCars Activity, and optionsBar to load optionbar with help and about
+ */
 class HomePage : AppCompatActivity() {
-
+    /**
+     * onCreate function which sets text into searchbar from shared preferences, and launches CarsList activity when search button is
+     * clicked, sending the text input as intent extras. Shows snackbar if searchtext is empty, prompting user to enter something
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -51,11 +57,22 @@ class HomePage : AppCompatActivity() {
         }
 
     }
+    /**
+     * Adds helpmenu menu item to the optionsMenu if its present
+     * @param menu
+     */
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.helpmenu, menu)
         return true
     }
+    /**
+     * onOptionsItemSelected using Switch to execute certain Event based on item of menu clicked
+     * if help is clicked, an alertdialog with help is shown, and instructions on to click more to get extra help
+     * which launches activity and puts a boolean variable which is used to change text of the activity user is sent to
+     * if its true, help will be shown, otherwise about will be shown
+     * @param item
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.help -> {
@@ -81,6 +98,10 @@ class HomePage : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    /**
+     * During onPause, Saves the text input in the search bar into SharedPreferences
+     */
     override fun onPause() {
         super.onPause()
         val searchT:EditText = findViewById(R.id.search);
@@ -89,6 +110,9 @@ class HomePage : AppCompatActivity() {
         editor.putString("SEARCH", searchT.text.toString()).apply();
     }
 
+    /**
+     * onResume retrieves the text from sharedPreferences and sets the text of searchbar to previoulsy entered query
+     */
     override fun onResume() {
         super.onResume()
         val spref: SharedPreferences = getSharedPreferences("MY_PREFS", Context.MODE_PRIVATE);
