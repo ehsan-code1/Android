@@ -2,7 +2,6 @@ package com.example.myapplication.trivia
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -12,11 +11,19 @@ import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
 import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS
 
+/**
+ * The first activity launched for the trivia section. This activity accepts the parameters to be used
+ * for the trivia quiz. This includes the number of questions, the type of questions (multiple choice and/or boolean),
+ * and the difficulty of the questions. These three parameters are to be used to create the api url.
+ */
 class TriviaActivityLanding : AppCompatActivity() {
-    private lateinit var currentToast: Toast
-    private lateinit var qDifficulty : QuestionDifficulty
-    private lateinit var qType : QuestionType
+    private lateinit var currentToast: Toast // The current toast object. This is replaced if it exists already
+    private lateinit var qDifficulty : QuestionDifficulty // The current choice of Question Difficulty
+    private lateinit var qType : QuestionType // The current choice of Question Type
 
+    /**
+     * Simply set all the listeners for UI components
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trivia_landing)
@@ -34,7 +41,7 @@ class TriviaActivityLanding : AppCompatActivity() {
     }
 
     /**
-     * A class to handle all click listeners on the TriviaActivityLanding activity
+     * A class to handle all click listeners on theTriviaActivityLanding activity
      */
     inner class LandingClickListener : View.OnClickListener {
         /**
@@ -59,52 +66,51 @@ class TriviaActivityLanding : AppCompatActivity() {
          * Sets the click listeners for the Question Type (Multiple Choice and/or True/False)
          */
         private fun qTypeListener() {
-            /* Sets the toast message for the Question Type buttons */
-            val toastMessage = setQTypeMessage()
+            // Set the qType variable with the selected choice, and then pass the appropriate toast message to checkSetShowToast
+            val toastMessage =
+                    if (findViewById<ToggleButton>(R.id.t_q_type_mc).isChecked
+                        && findViewById<ToggleButton>(R.id.t_q_type_tf).isChecked) {
+                        qType = QuestionType.BOTH
+                        "Multiple Choice & True/False"
+                    }
+                    else if (findViewById<ToggleButton>(R.id.t_q_type_mc).isChecked) {
+                        qType = QuestionType.MC
+                        "Multiple Choice"
+                    }
+                    else if (findViewById<ToggleButton>(R.id.t_q_type_tf).isChecked) {
+                        qType = QuestionType.TF
+                        "True/False"
+                    }
+                    else {
+                        qType = QuestionType.NONE
+                        ""
+                    }
+            checkSetShowToast(toastMessage)
+        }
 
-            // Check if a toast already exists, if it does, cancel it
+        /**
+         * Checks if a toast already exists, if it does, cancel it, and set the new message, if not empty
+         * @param toastMessage the message to display. If blank, it just cancels the current message
+         */
+        private fun checkSetShowToast(toastMessage: String) {
             // @ symbol is a "qualified this", used to denote specific scopes being used
             if (this@TriviaActivityLanding::currentToast.isInitialized) {
                 currentToast.cancel()
-                if (toastMessage == "") {
-                    return
-                }
+                // If we unselect the qType, we don't need to handle the event
+                if (toastMessage == "") { return }
             }
             currentToast = Toast.makeText(
-                    this@TriviaActivityLanding,
-                    getString(R.string.t_qtype_toast, toastMessage),
-                    Toast.LENGTH_SHORT
+                this@TriviaActivityLanding,
+                getString(R.string.t_qtype_toast, toastMessage),
+                Toast.LENGTH_SHORT
             )
             currentToast.show()
         }
 
         /**
-         * Checks if the MC and/or TF question type buttons are selected. Sets the qType enum
-         * of specified choice
-         * @return a string stating which buttons are selected, or an empty string if none are
-         */
-        private fun setQTypeMessage(): String {
-            if (findViewById<ToggleButton>(R.id.t_q_type_mc).isChecked
-                && findViewById<ToggleButton>(R.id.t_q_type_tf).isChecked) {
-                    qType = QuestionType.BOTH
-                    return "Multiple Choice & True/False"
-            }
-            else if (findViewById<ToggleButton>(R.id.t_q_type_mc).isChecked) {
-                qType = QuestionType.MC
-                return "Multiple Choice"
-            }
-            else if (findViewById<ToggleButton>(R.id.t_q_type_tf).isChecked) {
-                qType = QuestionType.TF
-                return "True/False"
-            }
-            else {
-                qType = QuestionType.NONE
-                return ""
-            }
-        }
-
-        /**
-         * Sets the click listeners for the Question Difficulty Buttons
+         * Handles the Question Difficulty Button selections, setting the qDifficulty variable according to selection,
+         * and highlighting the choice made by user
+         * @param id the layout id of the button clicked
          */
         private fun qDifficultyListener(id: Int) {
             // Set all Difficulty mode buttons to half-alpha
@@ -115,39 +121,31 @@ class TriviaActivityLanding : AppCompatActivity() {
             // Set clicked button alpha to original level, so as to highlight the choice
             findViewById<ImageButton>(id).alpha = 1.0F
 
-            val toastMessage : String
-            when (id) {
-                R.id.t_diff_easy_btn -> {
-                    toastMessage = "Easy Mode"
-                    qDifficulty = QuestionDifficulty.EASY
-                }
-                R.id.t_diff_med_btn -> {
-                    toastMessage = "Medium Mode"
-                    qDifficulty = QuestionDifficulty.MEDIUM
-                }
-                R.id.t_diff_hard_btn -> {
-                    toastMessage = "Hard Mode"
-                    qDifficulty = QuestionDifficulty.HARD
-                }
-                else -> toastMessage = ""
-            }
+            val toastMessage =
+                    when (id) {
+                        R.id.t_diff_easy_btn -> {
+                            qDifficulty = QuestionDifficulty.EASY
+                            "Easy Mode"
+                        }
+                        R.id.t_diff_med_btn -> {
+                            qDifficulty = QuestionDifficulty.MEDIUM
+                            "Medium Mode"
+                        }
+                        R.id.t_diff_hard_btn -> {
+                            qDifficulty = QuestionDifficulty.HARD
+                            "Hard Mode"
+                        }
+                        else -> ""
+                    }
 
-            // Check if a toast already exists, if it does, cancel it
-            if (this@TriviaActivityLanding::currentToast.isInitialized) {
-                currentToast.cancel()
-                if (toastMessage == "") {
-                    return
-                }
-            }
-
-            currentToast = Toast.makeText(
-                    this@TriviaActivityLanding,
-                    toastMessage,
-                    Toast.LENGTH_SHORT
-            )
-            currentToast.show()
+            checkSetShowToast(toastMessage)
         }
 
+        /**
+         * Handles the begin game click event. Retrieves values from the number of questions TextView,
+         * and the values of the qDifficulty and qType variables. If any of these are not set correctly,
+         * a snackbar is created to prompt user to input the values
+         */
         private fun beginGameListener() {
             // Ensure number of questions has been entered
             val numQs = findViewById<EditText>(R.id.t_num_qs).text.toString()
@@ -186,6 +184,7 @@ class TriviaActivityLanding : AppCompatActivity() {
                         }
                     }
 
+            // This may not show, and is just for debugging at the moment
             val snackText = "$numQs questions; $questionTypeText; $questionDifficultyText"
             Snackbar.make(
                     findViewById(R.id.t_begin_game_btn),

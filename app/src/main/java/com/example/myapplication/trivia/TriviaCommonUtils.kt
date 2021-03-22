@@ -1,5 +1,12 @@
 package com.example.myapplication.trivia
 
+/**
+ * A class to contain common utilities used by multiple pieces of the trivia application.
+ * Includes:
+ * [URLCOMPONENTS]: Companion object of string components to build the url
+ * [QuestionDifficulty]: an Enum for easy, medium, and hard difficulties
+ * [QuestionType]: an Enum for the question type, includes none, multiple choice, boolean (true/false), and both
+ */
 class TriviaCommonUtils {
     companion object URLCOMPONENTS {
         const val triviaURL = "https://opentdb.com"

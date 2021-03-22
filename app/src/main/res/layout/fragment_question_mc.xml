@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".trivia.TriviaQuestionItemFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@color/purple_500"
+        card_view:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/t_quiz_question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:text=""
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginVertical="50dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/t_quiz_answer_one"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_two"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_three"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_four"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
