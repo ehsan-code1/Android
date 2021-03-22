@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.JsonReader
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -17,15 +16,14 @@ import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.TYPE
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
 import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.triviaURL
-import com.google.android.material.snackbar.Snackbar
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.BufferedReader
 import java.io.IOException
-import java.io.InputStreamReader
-import java.lang.StringBuilder
-import java.net.URL
 
+/**
+ * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
+ * Currently uses dummy JSON data, with dummy async calls to populate the list.
+ */
 class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
     private val testJSON = "{\"response_code\":0,\"results\":[{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was the movie &#039;Con Air&#039; released?\",\"correct_answer\":\"1997\",\"incorrect_answers\":[\"1985\",\"1999\",\"1990\"]},{\"category\":\"Science & Nature\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What is the first element on the periodic table?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Oxygen\",\"Lithium\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"boolean\",\"difficulty\":\"easy\",\"question\":\"In &quot;Undertale&quot;, the main character of the game is Sans.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"The LS2 engine is how many cubic inches?\",\"correct_answer\":\"364\",\"incorrect_answers\":[\"346\",\"376\",\"402\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What country was the Trabant 601 manufactured in?\",\"correct_answer\":\"East Germany\",\"incorrect_answers\":[\"Soviet Union\",\"Hungary\",\"France\"]}]}"
     private val adapter = MyAdapter()
@@ -107,12 +105,23 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
         }
     }
 
+    /**
+     * Sets the selected answer for the question item, given the question and answer selected
+     * @param questionId the index of the question, to keep track of which question this activity belongs to
+     * @param pos the index of the answer button chosen
+     */
     override fun returnDataFromFragment(questionId: Int, pos: Int) {
         val item = adapter.getItem(questionId)
         item.setSelectedAnswer(pos)
         adapter.notifyDataSetChanged()
     }
 
+    /**
+     * Chains to the returnDataFromFragment implementation. If the data is null, back was pressed and so just ignore it
+     * @param requestCode the request code for the mobile intent
+     * @param resultCode the result code returning from the mobile intent for the question item
+     * @param data an Intent object that will hold the index of the answer chosen, and the questionId
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -127,25 +136,25 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
     /**
      * Builds the url using the given parameters: Amount of questions, Type of questions,
      * Difficulty of questions
-     * @param a a string representing the number of questions to retrieve
-     * @param t an enum of QuestionType representing if the url should ask for multiple choice,
+     * @param amount a string representing the number of questions to retrieve
+     * @param type an enum of QuestionType representing if the url should ask for multiple choice,
      * true/false, or both
-     * @param d an enum of QuestionDifficulty stating the difficulty of questions to retrieve
+     * @param difficulty an enum of QuestionDifficulty stating the difficulty of questions to retrieve
      */
-    private fun buildURL(a: String, t: QuestionType, d: QuestionDifficulty): String {
-        val type =
-                when (t) {
+    private fun buildURL(amount: String, type: QuestionType, difficulty: QuestionDifficulty): String {
+        val typeP =
+                when (type) {
                     QuestionType.MC -> "multiple"
                     QuestionType.TF -> "boolean"
                     else -> ""
                 }
-        val difficulty =
-                when (d) {
+        val difficultyP =
+                when (difficulty) {
                     QuestionDifficulty.EASY -> "easy"
                     QuestionDifficulty.MEDIUM -> "medium"
                     QuestionDifficulty.HARD -> "hard"
                 }
-        return "$triviaURL/api.php?amount=$a&type=$type&difficulty=$difficulty"
+        return "$triviaURL/api.php?amount=$amount&type=$typeP&difficulty=$difficultyP"
     }
 
     /**
@@ -203,6 +212,9 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
         }
     }
 
+    /**
+     * A private adapter class to handle the ListView of questions
+     */
     inner class MyAdapter : BaseAdapter() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val item = getItem(position)
@@ -223,8 +235,9 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
             return parsedQuestions[position]
         }
 
+
         override fun getItemId(position: Int): Long {
-            return position.toLong() // Hack. Should add ID to Question?
+            return position.toLong() // Hack. Should add ID to Question? Not sure if needed
         }
 
         override fun getCount(): Int {

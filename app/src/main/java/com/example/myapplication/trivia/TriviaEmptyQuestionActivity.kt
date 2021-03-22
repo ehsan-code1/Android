@@ -1,14 +1,14 @@
 package com.example.myapplication.trivia
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import androidx.fragment.app.FragmentManager
 import com.example.myapplication.R
 
+/**
+ * Empty activity for mobile version of QuestionItemFragment. Implements the [ReturnDataFromFragment]
+ * interface in order keep a smooth api between mobile and tablet implementations.
+ */
 class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +28,9 @@ class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromFragment 
             .commit()
     }
 
+    /**
+     * If back is pressed, just exit this activity and return null result bundle
+     */
     override fun onBackPressed() {
         super.onBackPressed()
         setResult(
@@ -37,6 +40,12 @@ class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromFragment 
         finish()
     }
 
+    /**
+     * Sets the result of the activity, and finished.
+     * Uses the questionId that was received when this activity was created, and the index of the button selection chosen
+     * @param questionId the index of the question, to keep track of which question this activity belongs to
+     * @param pos the index of the answer button chosen
+     */
     override fun returnDataFromFragment(questionId: Int, pos: Int) {
         setResult(
             RESULT_OK,

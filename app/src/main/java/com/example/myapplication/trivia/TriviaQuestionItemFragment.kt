@@ -1,22 +1,20 @@
 package com.example.myapplication.trivia
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] subclass for displaying and dealing with any particular question.
  * Use the [TriviaQuestionItemFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
+    // A mapping of the buttons as they appear in the layout file, to an index of their position
     private val buttonToPositionMap = mapOf(
         // True false mappings
         R.id.t_quiz_answer_true to 0,
@@ -28,27 +26,31 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
         R.id.t_quiz_answer_four to 3
     )
 
+    /**
+     * Decides which fragment layout to use, based on the question type. Then inflates the view,
+     * and sets the appropriate button mappings
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-
+        val isBoolean = requireArguments().getBoolean(IS_BOOL)
         val layoutToUse =
-            if (requireArguments().getBoolean(IS_BOOL))   R.layout.fragment_question_bool
-            else                                          R.layout.fragment_question_mc
+            if (isBoolean)   R.layout.fragment_question_bool
+            else             R.layout.fragment_question_mc
 
         val self = this
         // Inflate the layout for this fragment
         return inflater
                     .inflate(layoutToUse, container, false)
                     .apply {
-                        findViewById<TextView>(R.id.t_quiz_question).text =
-                                    requireArguments().getString(QUESTION)
+                        findViewById<TextView>(R.id.t_quiz_question).text = requireArguments().getString(QUESTION)
 
                         val answers =  requireArguments().getSerializable(ANSWERS) as ArrayList<*>
                         buttonToPositionMap
                             .forEach {
                                 findViewById<TextView>(it.key)?.apply {
                                         setOnClickListener(self)
-                                        text = answers[it.value].toString()
+                                        // If the question is boolean, we dont need to set the answer buttons
+                                        if (!isBoolean) text = answers[it.value].toString()
                                     }
                             }
                     }
@@ -56,7 +58,8 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
 
 
     /**
-     * Returns the index of the answer clicked
+     * Returns the index of the answer button clicked. Exits from the current fragment with result
+     * @param v the view (button) that was clicked
      */
     override fun onClick(v: View) {
         val parentActivity = requireActivity()
@@ -68,6 +71,9 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
         }
     }
 
+    /**
+     * Auto-generated companion object to allow for easier fragment creation and management
+     */
     companion object {
         const val QUESTION_ID = "questionId"
         const val QUESTION = "question"
