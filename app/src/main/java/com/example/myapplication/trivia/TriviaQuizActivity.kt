@@ -26,14 +26,11 @@ import java.io.InputStreamReader
 import java.lang.StringBuilder
 import java.net.URL
 
-class TriviaQuizActivity : AppCompatActivity() {
+class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
     private val testJSON = "{\"response_code\":0,\"results\":[{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was the movie &#039;Con Air&#039; released?\",\"correct_answer\":\"1997\",\"incorrect_answers\":[\"1985\",\"1999\",\"1990\"]},{\"category\":\"Science & Nature\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What is the first element on the periodic table?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Oxygen\",\"Lithium\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"boolean\",\"difficulty\":\"easy\",\"question\":\"In &quot;Undertale&quot;, the main character of the game is Sans.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"The LS2 engine is how many cubic inches?\",\"correct_answer\":\"364\",\"incorrect_answers\":[\"346\",\"376\",\"402\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What country was the Trabant 601 manufactured in?\",\"correct_answer\":\"East Germany\",\"incorrect_answers\":[\"Soviet Union\",\"Hungary\",\"France\"]}]}"
     private val adapter = MyAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
-    private lateinit var difficulty: QuestionDifficulty
-
-    // TODO: Add fragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +44,7 @@ class TriviaQuizActivity : AppCompatActivity() {
         /* Get passed data and initialize class members */
         val data = intent.extras!!
         totalQuestions = data.getString(AMOUNT)!!.toInt()
-        difficulty = QuestionDifficulty.getValue(data.getInt(DIFFICULTY))!!
+        val difficulty = QuestionDifficulty.getValue(data.getInt(DIFFICULTY))!!
 
         val fetchedJSON = FetchTriviaQuestions().execute(
                 buildURL(data.getString(AMOUNT)!!,
@@ -61,20 +58,33 @@ class TriviaQuizActivity : AppCompatActivity() {
         /* Set Click Listener for List View. Currently holds Dialog logic, will eventually
          * hold Fragment logic
          */
-        listView.setOnItemClickListener{ _, _, i: Int, _ ->
+        listView.setOnItemClickListener { _, _, i: Int, _ ->
             val item = adapter.getItem(i)
-            val frameToUse =
-                if (isTablet)   { R.id.t_quiz_frame }
-                else            { R.id.t_quiz_mobile_frame }
 
-            val fragment =
-                if (item.getType() == "boolean") QuestionFragmentBool
-                else                             QuestionFragmentBool
-            val dFragment = fragment.newInstance(item.getQuestion())
-            supportFragmentManager
-                .beginTransaction()
-                .replace(frameToUse, dFragment)
-                .commit()
+            // If already answered, disallow viewing of question
+            if (item.getIsAnswered()) return@setOnItemClickListener
+
+            val isBoolean = item.getType() == "boolean"
+
+            if (isTablet) {
+                val dFragment =
+                        TriviaQuestionItemFragment.newInstance(i, item.getQuestion(), item.getAnswers(), isBoolean)
+
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.t_quiz_frame, dFragment)
+                    .commit()
+            } else {
+
+                val goToEmptyTriviaQuestion = Intent(this, TriviaEmptyQuestionActivity::class.java)
+                // Put bundle info
+                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.QUESTION_ID, i)
+                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.IS_BOOL, isBoolean)
+                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.QUESTION, item.getQuestion())
+                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.ANSWERS, item.getAnswers())
+
+                startActivityForResult(goToEmptyTriviaQuestion, 0)
+            }
         }
 
         /* Set Dialog for submit button if not all questions have been answered */
@@ -95,6 +105,23 @@ class TriviaQuizActivity : AppCompatActivity() {
         for (q in parsedQuestions) {
             Log.i(this.localClassName, q.toString())
         }
+    }
+
+    override fun returnDataFromFragment(questionId: Int, pos: Int) {
+        val item = adapter.getItem(questionId)
+        item.setSelectedAnswer(pos)
+        adapter.notifyDataSetChanged()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (data == null) return
+
+        val answerIndex = data.extras?.getInt("answerIndex")!!
+        val questionId = data.extras?.getInt("questionId")!!
+        Log.i(this.localClassName, "Question: ${adapter.getItem(questionId).getQuestion()}, a: $answerIndex")
+        returnDataFromFragment(questionId, answerIndex)
     }
 
     /**

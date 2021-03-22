@@ -1,6 +1,7 @@
 package com.example.myapplication.trivia
 
 import org.json.JSONArray
+import kotlin.properties.Delegates
 
 class TriviaQuestion(
         category: String,
@@ -9,19 +10,28 @@ class TriviaQuestion(
         correctAnswer: String,
         incorrectAnswers: JSONArray
 ) {
-
-    // TODO: Does difficulty need to be set, per question? Or per quiz?
     private val questionObj = Question(category, type, question, correctAnswer)
     private var isAnswered = false
     private val allAnswers = ArrayList<String>()
+    private var correctAnswerIndex = -1
     private var selectedAnswerIndex: Int = -1
 
     init {
         allAnswers.apply {
-            add(correctAnswer) // The correct answer index will always be 0
-            for (i in (0 until incorrectAnswers.length())) {
-                val answer = incorrectAnswers.getString(i)
-                add(answer)
+            val rand = Math.random()
+            // Add 1 to incorrect answer length to get total number of answers
+            val correctIndex = (rand * (incorrectAnswers.length() + 1)).toInt()
+
+            for (i in (0 until incorrectAnswers.length() + 1)) {
+                if (i == correctIndex) {
+                    add(correctAnswer)
+                    correctAnswerIndex = i
+                }
+
+                if (i < incorrectAnswers.length()) {
+                    val answer = incorrectAnswers.getString(i)
+                    add(answer)
+                }
             }
         }
     }
@@ -29,9 +39,10 @@ class TriviaQuestion(
     fun getCategory(): String           { return questionObj.category }
     fun getType(): String               { return questionObj.type }
     fun getQuestion(): String           { return questionObj.question }
+    fun getAnswers(): ArrayList<String> { return allAnswers }
     fun numberOfAnswers(): Int          { return allAnswers.size }
     fun getIsAnswered(): Boolean        { return isAnswered }
-    fun checkCorrectAnswer(): Boolean   { return selectedAnswerIndex == 0 }
+    fun checkCorrectAnswer(): Boolean   { return selectedAnswerIndex == correctAnswerIndex }
 
     fun setSelectedAnswer(position: Int) {
         selectedAnswerIndex = position

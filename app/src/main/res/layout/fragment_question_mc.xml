@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="400dp"
-        android:layout_height="250dp"
+        android:layout_height="400dp"
         android:layout_gravity="center"
         card_view:cardBackgroundColor="@color/purple_500"
         card_view:cardCornerRadius="10dp">
@@ -37,20 +37,36 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/t_quiz_answer_true"
+                    android:id="@+id/t_quiz_answer_one"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/purple_700"
-                    android:text="True"
+                    android:text=""
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
                 <Button
-                    android:id="@+id/t_quiz_answer_false"
+                    android:id="@+id/t_quiz_answer_two"
                     android:layout_width="200dp"
                     android:layout_height="40dp"
                     android:backgroundTint="@color/purple_700"
-                    android:text="False"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_three"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_four"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text=""
                     android:textColor="@color/white" />
             </LinearLayout>
         </LinearLayout>
