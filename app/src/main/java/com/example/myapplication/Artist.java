@@ -1,12 +1,17 @@
 package com.example.myapplication;
+/**
+ * Artist Class Hold the Artist Information Like artistName
+ * ArtistId, songId and SongTitle
+ * alog with getter and setter
+ */
 public class Artist {
-    protected String artistName;
-    protected String artistId;
-    protected String songId;
-    protected String songTitle;
-    protected String favouriteSong;
-    protected Long id;
+    private String artistName;
+    private String artistId;
+    private String songId;
+    private String songTitle;
+    private  Long id;
 
+    //chaining constructor
     public Artist(){
         this("","","","");
     }
@@ -24,7 +29,13 @@ public class Artist {
         this.songTitle=songTitle;
 
 
+
+
     }
+
+    /*
+     *getter and setter
+     */
 
     public String getArtistName() {
 
@@ -56,14 +67,6 @@ public class Artist {
         this.songId = songId;
     }
 
-    public String getFavouriteSong() {
-
-        return favouriteSong;
-    }
-
-    public void setFavouriteSong(String favouriteSong) {
-        this.favouriteSong = favouriteSong;
-    }
 
     public String getSongTitle() {
         return songTitle;

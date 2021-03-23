@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,17 +11,27 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * SongsterSearch is main page of the application where user can input artist name and click search
+ * in the Input box or go to Favorite page List
+ * also it has a menu of help icon and About overflow menu items
+ * it then send data to next activity
+ */
+
 public class SongsterSearch extends AppCompatActivity {
+    //define variables
     static final String ARTIST_KEYWORD="ARTISTNAME";
     private Button searchButton;
     private EditText userInput;
@@ -44,6 +55,8 @@ public class SongsterSearch extends AppCompatActivity {
         progressBar=findViewById(R.id.progressSearch);
         favButton=findViewById(R.id.favouriteSongListButton);
 
+
+
        //initialize SharedPreferences to private mode
         prefs=getSharedPreferences("SavedPref",MODE_PRIVATE);
         //save artist name
@@ -51,8 +64,7 @@ public class SongsterSearch extends AppCompatActivity {
         userInput.setText(savedArtistName);
 
 
-
-
+     //when FavouriteList Button is clicked start Activity which load FavouriteList Activity
      favButton.setOnClickListener(s->{
          Intent listFav=new Intent(this,FavouriteList.class);
          startActivity(listFav);
@@ -66,7 +78,7 @@ public class SongsterSearch extends AppCompatActivity {
         {
 
             if(userInput.getText().toString().equals("")) {
-                Toast.makeText(getApplicationContext(), "Must Enter Artist or band Name", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), R.string.SongsterSearch_EnterValidName, Toast.LENGTH_LONG).show();
             }else {
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -83,6 +95,12 @@ public class SongsterSearch extends AppCompatActivity {
 
     }
 
+    /**
+     *
+     * @param menu
+     * @return boolean
+     * create ann optionMenu and inflate the menu Layout
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -92,19 +110,25 @@ public class SongsterSearch extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * select an item from a menu and display alertDialog for the user
+     * @param item
+     * @return boolean
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
        String song=null;
+        AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
        switch(item.getItemId()){
            case R.id.about:
-               AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
-                       alertDialog.setTitle("Songster app created by Nouran Nouh  V1.0").setMessage("search your favorite Artist Songs to know more about the app click help icon")
-                       .setPositiveButton("Ok",null).create().show();
+
+                       alertDialog.setTitle("Songster app by Nouran Nouh  V1.0").setMessage(R.string.SongsterSearch_AboutMenuItem)
+                       .setPositiveButton(R.string.agree,null).create().show();
                        break;
            case R.id.help:
-               AlertDialog.Builder alertHelp=new AlertDialog.Builder(this);
-               alertHelp.setMessage("Enter Artist or band name that you want to search for Artist Name\nClick Search button or view your favourite Artist List")
-                .setNeutralButton("ok",null).create().show();
+
+               alertDialog.setMessage(R.string.SongsterSearch_HelpMenuItem)
+                       .setPositiveButton(R.string.agree,null).create().show();
                break;
 
        }

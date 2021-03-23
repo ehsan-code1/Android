@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/rose"
+    android:supportsRtl="true"
    >
 <TextView
     android:id="@+id/SongHeader"
@@ -57,7 +58,7 @@
         android:id="@+id/SaveDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Songster_Save"
+        android:text=""
         android:layout_above="@id/searchButton"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/pink"/>
@@ -75,17 +76,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Songster_Search_Artist"
-        android:layout_above="@id/Delete"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/pink"/>
-
-    <Button
-        android:id="@+id/Delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Songster_Delete"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:backgroundTint="@color/pink"/>
+
+
 
 </RelativeLayout>

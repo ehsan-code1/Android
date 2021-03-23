@@ -69,6 +69,7 @@ public class SongsterList extends AppCompatActivity {
    private static SQLiteDatabase db;
     private static final String SONG_URL="https://www.songsterr.com/a/ra/songs.xml?pattern=";
 
+
    /*
     onCreate application start from onCreate that has some Logic setup
     like getting the objects id from xml layout as well as uploading the xml layout
@@ -93,14 +94,41 @@ public class SongsterList extends AppCompatActivity {
         Bundle searchPage = getIntent().getExtras();
         artistName = searchPage.getString(SongsterSearch.ARTIST_KEYWORD);
 
+        //check if artistName has whitespace
+        //if user enters Name that has space
+        String artistNameResult=null;
+        String [] artistNameTwo=new String[2];
+        for(int i=0;i<artistName.length();i++){
+            if(Character.isWhitespace(artistName.charAt(i))){
+                artistNameTwo= artistName.split("\\s+");
+
+                artistNameResult=artistNameTwo[0]+"+"+artistNameTwo[1];
+                Log.e("url",artistNameResult);
+                break;
+
+            }else{
+                artistNameResult=artistName;
+            }
+        }
+
+
+
+
+
         //execute the url by using the artistName from searchpage
-        String artistURL = SONG_URL+artistName;
+        String artistURL = SONG_URL+artistNameResult;
+
+
         //create new instance of ArtistQuery that extends the AsyncTask
         ArtistQuery qs = new ArtistQuery(this);
         //execute url
         qs.execute(artistURL);
         //create view that is used to set the view for snackbar
-        View view = findViewById(R.id.main_layout_id);
+        View view = findViewById(R.id.SongView);
+
+        //get String from R.string to be added in setMessage
+        //in alert dialog
+        String str=getString(R.string.youSelected);
 
         //clicking back button goes back to SongsterSearch class by calling finish() method
         //that finishes this activity
@@ -126,7 +154,7 @@ public class SongsterList extends AppCompatActivity {
             //set title for the alertDialog
             alert.setTitle(R.string.Songster_moreInfoAboutSong).
                     //set message to be displayed to user
-                    setMessage("You selected"+" "+selectedArtist.getSongTitle()).
+                    setMessage(str+" "+selectedArtist.getSongTitle()).
                     //set button for confirmation
                     setPositiveButton(R.string.confirm,(click,arg)->
                     {
@@ -136,6 +164,7 @@ public class SongsterList extends AppCompatActivity {
                         dataTopass.putString("ArtistId",selectedArtist.getArtistId());
                         dataTopass.putString("SongId",selectedArtist.getSongId());
                         dataTopass.putString("SongTitle",selectedArtist.getSongTitle());
+                        dataTopass.putBoolean("SaveButton",false);
 
                         //checks if it is tablet
                         if(isTablet){
@@ -159,14 +188,16 @@ public class SongsterList extends AppCompatActivity {
                         }
                     //if it is no button just remain in this page
                         //by displaying a snackbar to the user
-                    }).setNegativeButton("No",(click,arg)->{
+                    }).setNegativeButton(R.string.decline,(click,arg)->{
                         //create snackbar and style it
                         Snackbar snackbar=Snackbar.make(view,R.string.nothingChanged,Snackbar.LENGTH_LONG);
                         View snackbarView=snackbar.getView();
-                                snackbarView.setBackgroundColor(getResources().getColor(R.color.pink));
-                                TextView textView= snackbarView.findViewById(R.id.toastText);
-                                textView.setTextSize(20);
-                                snackbar.show();
+                        snackbarView.setBackgroundColor(getResources().getColor(R.color.black));
+
+                             TextView textView= (TextView) snackbarView.findViewById(com.google.android.material.R.id.snackbar_text);
+                             textView.setTextSize(20);
+                             textView.setTextColor(getResources().getColor(R.color.white));
+                             snackbar.show();
              //show alert dialog
             }).create().show();
             return true;
@@ -177,34 +208,6 @@ public class SongsterList extends AppCompatActivity {
 
 
 
-
-//    private void loadDataFromDB(){
-//        //clear current arraylist
-//        artistList=new ArrayList<>();
-//        SongOpener songDB=new SongOpener(this);
-//        db=songDB.getWritableDatabase();
-//        String [] columns={ SongOpener.COL_ID, SongOpener.COL_ARTISTNAME, SongOpener.COL_ARTISTID, SongOpener.COL_SONGID, SongOpener.COL_SONGTITLE};
-//        Cursor results = db.query(false, SongOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-//
-//
-//        int idColIndex = results.getColumnIndex( SongOpener.COL_ID);
-//        int artistNameColIndex = results.getColumnIndex( SongOpener.COL_ARTISTNAME);
-//        int artistIdColIndex = results.getColumnIndex(SongOpener.COL_ARTISTID);
-//        int songIdColIndex = results.getColumnIndex(SongOpener.COL_SONGID);
-//        int songTitleIndex = results.getColumnIndex(SongOpener.COL_SONGTITLE);
-//       // int isFavouriteColIndex = results.getColumnIndex(SongOpener.COL_IsFavorite);
-//        while(results.moveToNext()){
-//            long id=results.getLong(idColIndex);
-//            String artistNameDB=results.getString(artistNameColIndex);
-//            String artistId=results.getString(artistIdColIndex);
-//            String songId=results.getString(songIdColIndex);
-//            String songTitle=results.getString(songTitleIndex);
-//            //String isFavourite=results.getString(isFavouriteColIndex);
-//            artistList.add(new Artist(id,artistName,artistId,songId,songTitle));
-//
-//        }
-//
-//    }
 
 
 
@@ -390,14 +393,6 @@ public class SongsterList extends AppCompatActivity {
     }
 
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == resultCode) {
-//            loadDataFromDB();
-//            artistAdapter.notifyDataSetChanged();
-//        }
-//    }
 
 
    //called when this activity start
