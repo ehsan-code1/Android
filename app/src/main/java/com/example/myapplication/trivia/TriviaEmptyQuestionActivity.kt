@@ -6,10 +6,10 @@ import android.os.Bundle
 import com.example.myapplication.R
 
 /**
- * Empty activity for mobile version of QuestionItemFragment. Implements the [ReturnDataFromFragment]
+ * Empty activity for mobile version of QuestionItemFragment. Implements the [ReturnDataFromQuizFragment]
  * interface in order keep a smooth api between mobile and tablet implementations.
  */
-class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromFragment {
+class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trivia_empty_question)
@@ -46,7 +46,7 @@ class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromFragment 
      * @param questionId the index of the question, to keep track of which question this activity belongs to
      * @param pos the index of the answer button chosen
      */
-    override fun returnDataFromFragment(questionId: Int, pos: Int) {
+    override fun returnDataFromQuizFragment(questionId: Int, pos: Int) {
         setResult(
             RESULT_OK,
             Intent().apply{

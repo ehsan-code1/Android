@@ -10,12 +10,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.myapplication.R
-import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.AMOUNT
-import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.DIFFICULTY
-import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.TYPE
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
-import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS.triviaURL
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.triviaURL
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
@@ -24,17 +25,19 @@ import java.io.IOException
  * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
  * Currently uses dummy JSON data, with dummy async calls to populate the list.
  */
-class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
+class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
     private val testJSON = "{\"response_code\":0,\"results\":[{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was the movie &#039;Con Air&#039; released?\",\"correct_answer\":\"1997\",\"incorrect_answers\":[\"1985\",\"1999\",\"1990\"]},{\"category\":\"Science & Nature\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What is the first element on the periodic table?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Oxygen\",\"Lithium\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"boolean\",\"difficulty\":\"easy\",\"question\":\"In &quot;Undertale&quot;, the main character of the game is Sans.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"The LS2 engine is how many cubic inches?\",\"correct_answer\":\"364\",\"incorrect_answers\":[\"346\",\"376\",\"402\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What country was the Trabant 601 manufactured in?\",\"correct_answer\":\"East Germany\",\"incorrect_answers\":[\"Soviet Union\",\"Hungary\",\"France\"]}]}"
     private val adapter = MyAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
+    private var isTablet: Boolean = false
+    private lateinit var dFragment: TriviaQuestionItemFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_trivia_quiz)
 
-        val isTablet = findViewById<FrameLayout>(R.id.t_quiz_frame) != null
+        isTablet = findViewById<FrameLayout>(R.id.t_quiz_frame) != null
 
         val progressBar = findViewById<ProgressBar>(R.id.t_quiz_progress_bar)
         progressBar.visibility = View.VISIBLE
@@ -43,10 +46,11 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
         val data = intent.extras!!
         totalQuestions = data.getString(AMOUNT)!!.toInt()
         val difficulty = QuestionDifficulty.getValue(data.getInt(DIFFICULTY))!!
+        val type = QuestionType.getValue(data.getInt(TYPE))!!
 
         val fetchedJSON = FetchTriviaQuestions().execute(
                 buildURL(data.getString(AMOUNT)!!,
-                        QuestionType.getValue(data.getInt(TYPE))!!,
+                        type,
                         difficulty)
         )
 
@@ -65,7 +69,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
             val isBoolean = item.getType() == "boolean"
 
             if (isTablet) {
-                val dFragment =
+                dFragment =
                         TriviaQuestionItemFragment.newInstance(i, item.getQuestion(), item.getAnswers(), isBoolean)
 
                 supportFragmentManager
@@ -96,6 +100,18 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
                         .setMessage("You have not answered all of the questions.")
                         .create()
                         .show()
+            } else {
+                // If all questions answered, return the result with the final score
+                setResult(
+                    1,
+                    Intent().apply{
+                        putExtra(SCORE, calculatePreScore())
+                        putExtra(AMOUNT, totalQuestions)
+                        putExtra(DIFFICULTY, difficulty.value)
+                        putExtra(TYPE, type.value)
+                    }
+                )
+                finish()
             }
         }
 
@@ -106,14 +122,32 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
     }
 
     /**
+     * Calculates the total number of questions answered correctly, known as the "prescore" (ie., before any multipliers)
+     */
+    private fun calculatePreScore(): Int {
+        // Create a 1 || 0 mapping of each answer, then sum across the map
+        return parsedQuestions
+            .map { if (it.checkCorrectAnswer()) 1 else 0 }
+            .sum()
+    }
+
+
+    /**
      * Sets the selected answer for the question item, given the question and answer selected
      * @param questionId the index of the question, to keep track of which question this activity belongs to
      * @param pos the index of the answer button chosen
      */
-    override fun returnDataFromFragment(questionId: Int, pos: Int) {
+    override fun returnDataFromQuizFragment(questionId: Int, pos: Int) {
         val item = adapter.getItem(questionId)
         item.setSelectedAnswer(pos)
         adapter.notifyDataSetChanged()
+
+        if (isTablet) {
+            supportFragmentManager
+                .beginTransaction()
+                .remove(dFragment)
+                .commit()
+        }
     }
 
     /**
@@ -130,7 +164,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromFragment {
         val answerIndex = data.extras?.getInt("answerIndex")!!
         val questionId = data.extras?.getInt("questionId")!!
         Log.i(this.localClassName, "Question: ${adapter.getItem(questionId).getQuestion()}, a: $answerIndex")
-        returnDataFromFragment(questionId, answerIndex)
+        returnDataFromQuizFragment(questionId, answerIndex)
     }
 
     /**

@@ -8,11 +8,12 @@ package com.example.myapplication.trivia
  * [QuestionType]: an Enum for the question type, includes none, multiple choice, boolean (true/false), and both
  */
 class TriviaCommonUtils {
-    companion object URLCOMPONENTS {
+    companion object {
         const val triviaURL = "https://opentdb.com"
         const val AMOUNT = "amount"
         const val TYPE = "type"
         const val DIFFICULTY = "difficulty"
+        const val SCORE = "score"
     }
 
     enum class QuestionDifficulty(val value: Int) {
@@ -22,7 +23,7 @@ class TriviaCommonUtils {
 
         companion object {
             fun getValue(value: Int): QuestionDifficulty? {
-                return values().find{ it.value == value }
+                return values().find { it.value == value }
             }
         }
     }
