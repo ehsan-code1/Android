@@ -66,7 +66,11 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
         // If mobile
         if (parentActivity is TriviaEmptyQuestionActivity) {
             buttonToPositionMap[v.id]?.let {
-                parentActivity.returnDataFromFragment(requireArguments().getInt(QUESTION_ID), it)
+                parentActivity.returnDataFromQuizFragment(requireArguments().getInt(QUESTION_ID), it)
+            }
+        } else if (parentActivity is TriviaQuizActivity){
+            buttonToPositionMap[v.id]?.let {
+                parentActivity.returnDataFromQuizFragment(requireArguments().getInt(QUESTION_ID), it)
             }
         }
     }

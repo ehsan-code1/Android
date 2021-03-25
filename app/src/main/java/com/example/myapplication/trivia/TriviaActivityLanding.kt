@@ -2,14 +2,18 @@ package com.example.myapplication.trivia
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
 import com.google.android.material.snackbar.Snackbar
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
 import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
-import com.example.myapplication.trivia.TriviaCommonUtils.URLCOMPONENTS
 
 /**
  * The first activity launched for the trivia section. This activity accepts the parameters to be used
@@ -159,14 +163,14 @@ class TriviaActivityLanding : AppCompatActivity() {
             }
             // Ensure question type(s) has been selected
             val questionTypeText =
-                    if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
-                        Snackbar.make(
-                                findViewById(R.id.t_begin_game_btn),
-                                "Please select the Question Type(s)",
-                                Snackbar.LENGTH_SHORT
-                        ).show()
-                        return
-                    } else qType
+                if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
+                    Snackbar.make(
+                            findViewById(R.id.t_begin_game_btn),
+                            "Please select the Question Type(s)",
+                            Snackbar.LENGTH_SHORT
+                    ).show()
+                    return
+                } else qType
             // Ensure question difficulty has been selected
             val questionDifficultyText =
                     if (!this@TriviaActivityLanding::qDifficulty.isInitialized) {
@@ -184,23 +188,41 @@ class TriviaActivityLanding : AppCompatActivity() {
                         }
                     }
 
-            // This may not show, and is just for debugging at the moment
-            val snackText = "$numQs questions; $questionTypeText; $questionDifficultyText"
-            Snackbar.make(
-                    findViewById(R.id.t_begin_game_btn),
-                    snackText,
-                    Snackbar.LENGTH_SHORT
-            ).show()
-
             val goToTriviaQuiz = Intent(this@TriviaActivityLanding, TriviaQuizActivity::class.java)
             val dataToPass = Bundle()
                     .apply {
-                        putString(URLCOMPONENTS.AMOUNT, numQs)
-                        putInt(URLCOMPONENTS.TYPE, qType.value)
-                        putInt(URLCOMPONENTS.DIFFICULTY, qDifficulty.value)
+                        putString(AMOUNT, numQs)
+                        putInt(TYPE, qType.value)
+                        putInt(DIFFICULTY, qDifficulty.value)
                     }
             goToTriviaQuiz.putExtras(dataToPass)
-            startActivity(goToTriviaQuiz)
+            startActivityForResult(goToTriviaQuiz, 1)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // If data is null, we assume back button pressed
+        if (data == null) { return }
+
+        when (requestCode) {
+            // Returning from Quiz
+            1 -> {
+                val quizData = data.extras!!
+                Log.i(this.localClassName, "SCORE: ${quizData.getInt(SCORE)}/${quizData.getInt(AMOUNT)}")
+
+                val goToLeaderboards = Intent(this@TriviaActivityLanding, TriviaActivityLeaderboard::class.java)
+                val dataToPass = Bundle()
+                    .apply {
+                        putInt(SCORE, quizData.getInt(SCORE))
+                        putInt(AMOUNT, quizData.getInt(AMOUNT))
+                        putInt(DIFFICULTY, quizData.getInt(DIFFICULTY))
+                        putInt(TYPE, quizData.getInt(TYPE))
+                    }
+                goToLeaderboards.putExtras(dataToPass)
+                startActivityForResult(goToLeaderboards, 2)
+            }
         }
     }
 }
