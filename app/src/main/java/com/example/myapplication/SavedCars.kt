@@ -17,7 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 class SavedCars : AppCompatActivity() {
 
     val elements = ArrayList<Cars?>()
-    private val db = Database(this);
+    private val db = Database(this)
     private var adapter : MyAdapter? = null
     private var isTabl : Boolean? = null;
     private var dFrag = CarOptions()
