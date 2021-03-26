@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.songstar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 

@@ -1,8 +1,10 @@
-package com.example.myapplication;
+package com.example.myapplication.songstar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myapplication.R;
 /*
  ** creating fragment for the phone
  * create instance of fragment class

@@ -9,10 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-        <activity android:name=".FavouriteList" />
-        <activity android:name=".FragmentPhoneActivity" />
-        <activity android:name=".SongsterList" />
-        <activity android:name=".SongsterSearch"/>
+        <activity android:name=".songstar.FavouriteList" />
+        <activity android:name=".songstar.FragmentPhoneActivity" />
+        <activity android:name=".songstar.SongsterList" />
+        <activity android:name=".songstar.SongsterSearch"/>
         <activity android:name=".trivia.TriviaActivityLeaderboard" >
         </activity>
         <activity android:name=".trivia.TriviaEmptyQuestionActivity" />
@@ -20,13 +20,13 @@
         <activity
             android:name=".trivia.TriviaActivityLanding"
             android:label="@string/title_activity_trivia" />
-        <activity android:name=".MenuItems"></activity>
-        <activity android:name=".SavedCars" />
+        <activity android:name=".car_database.MenuItems"></activity>
+        <activity android:name=".car_database.SavedCars" />
         <activity
-            android:name=".EmptyActivity"
+            android:name=".car_database.EmptyActivity"
             android:label="@string/title_activity_empty" />
-        <activity android:name=".CarsList" />
-        <activity android:name=".HomePage"/>
+        <activity android:name=".car_database.CarsList" />
+        <activity android:name=".car_database.HomePage"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
