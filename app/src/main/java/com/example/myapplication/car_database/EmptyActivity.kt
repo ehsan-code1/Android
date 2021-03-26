@@ -1,10 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.car_database
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import com.example.myapplication.R
 
 /**
  * EmptyActivity extending AppCompatActivity which inflates the fragment CarOptions in the Frame and the data it received in intent

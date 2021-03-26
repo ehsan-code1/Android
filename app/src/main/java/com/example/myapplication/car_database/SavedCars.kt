@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.car_database
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.view.*
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.myapplication.R
 
 
 /**
@@ -64,15 +65,15 @@ class SavedCars : AppCompatActivity() {
     private fun loadDataFromDatabase() {
 
         val columns = arrayOf(
-            Database.COL_MAKEID,
-            Database.COL_MAKE,
-            Database.COL_MODELID,
-            Database.COL_MODEL
+                Database.COL_MAKEID,
+                Database.COL_MAKE,
+                Database.COL_MODELID,
+                Database.COL_MODEL
         )
 
         val results: Cursor = db.writableDatabase.query(
             false,
-            Database.TABLENAME,
+                Database.TABLENAME,
             columns,
             null,
             null,

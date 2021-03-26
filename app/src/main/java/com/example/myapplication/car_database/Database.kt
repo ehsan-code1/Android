@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.car_database
 
 import android.content.ContentValues
 import android.content.Context
@@ -65,10 +65,10 @@ class Database(var context: Context) : SQLiteOpenHelper(context, DATABASENAME, n
     fun insertData(model: String?, modelId: String?, make: String?, makeId: String?) : Long? {
         val database = this.writableDatabase
         val nm = ContentValues();
-        nm.put(Database.COL_MAKEID, makeId);
-        nm.put(Database.COL_MAKE, make);
-        nm.put(Database.COL_MODELID, modelId);
-        nm.put(Database.COL_MODEL, model);
+        nm.put(COL_MAKEID, makeId);
+        nm.put(COL_MAKE, make);
+        nm.put(COL_MODELID, modelId);
+        nm.put(COL_MODEL, model);
         return database.insert(TABLENAME, null, nm)
     }
 

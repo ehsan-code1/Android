@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.car_database
 
 import android.content.Context
 import android.content.Intent
@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.myapplication.R
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -138,7 +139,8 @@ class CarOptions : Fragment() {
 
         val columns = arrayOf(Database.COL_MODELID)
 
-        val results: Cursor = db.writableDatabase.query(false, Database.TABLENAME, columns, null, null, null, null, null, null)
+        val results: Cursor = db.writableDatabase.query(false,
+            Database.TABLENAME, columns, null, null, null, null, null, null)
 
         val modelIndex: Int = results.getColumnIndex(Database.COL_MODELID)
 

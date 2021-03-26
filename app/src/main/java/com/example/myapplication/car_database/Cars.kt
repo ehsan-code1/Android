@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.car_database
 
 /**
  * Custom Collection that Stores makeName,modelName,modelId and makeID
