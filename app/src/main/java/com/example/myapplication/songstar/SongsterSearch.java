@@ -1,8 +1,4 @@
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/SongsterSearch.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/SongsterSearch.java
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;

@@ -1,9 +1,5 @@
-
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/SongsterList.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/SongsterList.java
+
 /**
  * @Author: Nouran Nouh
  * Date:18/03/2021

@@ -11,17 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-<<<<<<< HEAD
-        <activity android:name=".SongsterSearch.FavouriteList" />
-        <activity android:name=".SongsterSearch.FragmentPhoneActivity" />
-        <activity android:name="com.example.myapplication.SongsterSearch.SongsterList" />
-        <activity android:name="com.example.myapplication.SongsterSearch.SongsterSearch"/>
-=======
+
         <activity android:name=".songstar.FavouriteList" />
         <activity android:name=".songstar.FragmentPhoneActivity" />
         <activity android:name=".songstar.SongsterList" />
         <activity android:name=".songstar.SongsterSearch"/>
->>>>>>> origin/master
         <activity android:name=".trivia.TriviaActivityLeaderboard" >
         </activity>
         <activity android:name=".trivia.TriviaEmptyQuestionActivity" />
@@ -36,7 +30,7 @@
             android:label="@string/title_activity_empty" />
         <activity android:name=".car_database.CarsList" />
         <activity android:name=".car_database.HomePage"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".trivia.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,8 +1,5 @@
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/Artist.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/Artist.java
+
 /**
  * Artist Class Hold the Artist Information Like artistName
  * ArtistId, songId and SongTitle

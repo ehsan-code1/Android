@@ -1,8 +1,5 @@
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/FavouriteList.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/FavouriteList.java
+
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,14 +19,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/FavouriteList.java
-=======
+
 import com.example.myapplication.R;
 
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/FavouriteList.java
 import java.util.ArrayList;
-
-import com.example.myapplication.R;
 
 /**
  * FavouritList Class holds a List View of Favourite songs

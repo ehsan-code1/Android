@@ -1,8 +1,5 @@
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/SongDetail.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/SongDetail.java
+
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -25,10 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.example.myapplication.R;
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/SongDetail.java
-import com.example.myapplication.SongsterSearch.SongsterSearch;
-=======
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/SongDetail.java
 
 /**
  * Class SongDetail create the fragment that shows

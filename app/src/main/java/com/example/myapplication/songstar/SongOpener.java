@@ -1,14 +1,10 @@
-<<<<<<< HEAD:app/src/main/java/com/example/myapplication/SongsterSearch/SongOpener.java
-package com.example.myapplication.SongsterSearch;
-=======
 package com.example.myapplication.songstar;
->>>>>>> origin/master:app/src/main/java/com/example/myapplication/songstar/SongOpener.java
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.myapplication.SongsterSearch.SongsterSearch;
+
 
 public  class SongOpener extends SQLiteOpenHelper {
 
