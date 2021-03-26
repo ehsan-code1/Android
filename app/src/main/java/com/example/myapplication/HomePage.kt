@@ -3,16 +3,13 @@ package com.example.myapplication
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.internal.ContextUtils.getActivity
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -26,7 +23,7 @@ class HomePage : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_homepage)
 
         val eText: EditText = findViewById(R.id.search)
         val searchB: Button = findViewById(R.id.searchb)
