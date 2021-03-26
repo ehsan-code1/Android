@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello_world">idk</string>
+    <string name="hello_blank_fragment">khali</string>
+    <string name="logo">idk</string>
+    <string name="description">idk</string>
+    <string name="hint">idk</string>
+    <string name="go">idk</string>
+    <string name="title_activity_empty">idk</string>
+    <string name="view_your_saved_cars">idk</string>
+    <string name="save_to_database">idk</string>
+    <string name="buy">idk</string>
+    <string name="view_details">idk</string>
+    <string name="model_id">idk</string>
+    <string name="make_id">idk</string>
+</resources>
