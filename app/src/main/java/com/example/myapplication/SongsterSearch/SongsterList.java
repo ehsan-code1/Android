@@ -1,5 +1,5 @@
 
-package com.example.myapplication;
+package com.example.myapplication.SongsterSearch;
 /**
  * @Author: Nouran Nouh
  * Date:18/03/2021
@@ -7,22 +7,18 @@ package com.example.myapplication;
  * be executing xml and display that in main UI
  * the second inner class is ArtistListAdpater which extend base adapter
  * which inflate ListView and display List view
- * Songlister class receive the user input from SongsterSearch class and then
+ * Songlister class receive the user input from com.example.myapplication.SongsterSearch class and then
  * display all the song from xml url sang by this artist like
  * song id, song title, and Artist Id.
- * this class also has back button which will go back to SongsterSearch page to perform another search
+ * this class also has back button which will go back to com.example.myapplication.SongsterSearch page to perform another search
  * of another Artist.
  */
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,25 +31,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.myapplication.R;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -130,7 +115,7 @@ public class SongsterList extends AppCompatActivity {
         //in alert dialog
         String str=getString(R.string.youSelected);
 
-        //clicking back button goes back to SongsterSearch class by calling finish() method
+        //clicking back button goes back to com.example.myapplication.SongsterSearch class by calling finish() method
         //that finishes this activity
         backButton.setOnClickListener((e)->
         {

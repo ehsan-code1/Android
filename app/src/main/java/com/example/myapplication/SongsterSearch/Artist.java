@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SongsterSearch;
 /**
  * Artist Class Hold the Artist Information Like artistName
  * ArtistId, songId and SongTitle

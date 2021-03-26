@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.SongsterSearch;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +18,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
+
+import com.example.myapplication.R;
 
 /**
  * FavouritList Class holds a List View of Favourite songs

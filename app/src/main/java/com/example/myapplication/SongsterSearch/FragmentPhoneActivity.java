@@ -1,8 +1,11 @@
-package com.example.myapplication;
+package com.example.myapplication.SongsterSearch;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.myapplication.R;
+import com.example.myapplication.SongsterSearch.SongDetail;
 /*
  ** creating fragment for the phone
  * create instance of fragment class
