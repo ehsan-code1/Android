@@ -116,7 +116,7 @@ public class SongsterSearch extends AppCompatActivity {
      * @return boolean
      */
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(MenuItem item) {
        String song=null;
         AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
        switch(item.getItemId()){
