@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fav_layout_id"
-<<<<<<< HEAD
-    tools:context=".SongsterSearch.FavouriteList"
-=======
-    tools:context=".songstar.FavouriteList"
->>>>>>> origin/master
     android:supportsRtl="true">
 
 
