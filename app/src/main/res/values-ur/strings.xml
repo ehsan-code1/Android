@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" >Car Database</string>
+    <string name="logo" >logo</string>
+    <string name="description" >کینیڈا کا سب سے بڑا کار ڈیٹا بیس</string>
+    <string name="hint" >تلاش کریں</string>
+    <string name="go" >جاؤ</string>
+    <string name="hello_blank_fragment" >ہیلو blank fragment</string>
+    <string name="title_activity_empty" >EmptyActivity</string>
+    <string name="hello_world" >Hello Square World!</string>
+    <string name="view_your_saved_cars">View Your Saved Cars</string>
+    <string name="save_to_database" >ڈیٹا بیس میں محفوظ کریں</string>
+    <string name="buy">خریدنے</string>
+    <string name="view_details" >تفصیلات دیکھیں</string>
+    <string name="model_id">Model ID:</string>
+    <string name="make_id">Make ID:</string>
+</resources>
