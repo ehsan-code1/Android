@@ -4,11 +4,15 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.HtmlCompat
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
@@ -31,7 +35,6 @@ import java.net.URL
  * Currently uses dummy JSON data, with dummy async calls to populate the list.
  */
 class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
-    private val testJSON = "{\"response_code\":0,\"results\":[{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was the movie &#039;Con Air&#039; released?\",\"correct_answer\":\"1997\",\"incorrect_answers\":[\"1985\",\"1999\",\"1990\"]},{\"category\":\"Science & Nature\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What is the first element on the periodic table?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Oxygen\",\"Lithium\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"boolean\",\"difficulty\":\"easy\",\"question\":\"In &quot;Undertale&quot;, the main character of the game is Sans.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"The LS2 engine is how many cubic inches?\",\"correct_answer\":\"364\",\"incorrect_answers\":[\"346\",\"376\",\"402\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What country was the Trabant 601 manufactured in?\",\"correct_answer\":\"East Germany\",\"incorrect_answers\":[\"Soviet Union\",\"Hungary\",\"France\"]}]}"
     private val adapter = MyAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
@@ -126,6 +129,29 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.t_help_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.t_menu_help_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Trivia Instructions")
+                        .setMessage("Select a question from the list, and choose an answer.\n" +
+                                "Once you have answered all questions, you may submit the quiz.\n"
+                        )
+                        .create()
+                        .show()
+            }
+        }
+        return true
+    }
+
     /**
      * Calculates the total number of questions answered correctly, known as the "prescore" (ie., before any multipliers)
      */
@@ -208,6 +234,8 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
      * Hardcoded (ie., Synchronous) "fetch" of test URI
      */
     inner class FetchTriviaQuestions: AsyncTask<String, Int, String>() {
+        val progressBar = findViewById<ProgressBar>(R.id.t_quiz_progress_bar)
+
         override fun doInBackground(vararg params: String?): String {
             Log.i(this.javaClass.simpleName, "Executing async fetch on ${params[0]}")
 
@@ -222,7 +250,11 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
                     it.forEach { s -> sb.append(s) }
                 }
 
-                val results = (JSONObject(sb.toString())).get("results") as JSONArray
+                val quoteReplacedJson =  sb.toString().replace("&quot;", "&lsquo;")
+                val deencodedJson = HtmlCompat.fromHtml(quoteReplacedJson,
+                                                        HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
+                val results = JSONObject(deencodedJson).get("results") as JSONArray
+
                 val size = results.length()
                 val progressChunk = size / 100;
                 Log.i(this.javaClass.simpleName, "Fetched $size results.")
@@ -246,7 +278,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
 
         override fun onProgressUpdate(vararg values: Int?) {
             super.onProgressUpdate(*values)
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).apply {
+            progressBar.apply {
                 visibility = View.VISIBLE
                 progress = values[0]!!
             }

@@ -2,6 +2,9 @@ package com.example.myapplication.trivia.leaderboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils
 
@@ -34,6 +37,29 @@ class TriviaActivityLeaderboard : AppCompatActivity(), ReturnDataFromLBFragment 
             .beginTransaction()
             .replace(R.id.t_leaderboard_frame, dFragment)
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.t_help_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.t_menu_help_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Trivia Instructions")
+                        .setMessage("Input your name and join the leaderboards!\n" +
+                                "Long click on any leaderboard entry to show a popup with more information.\n"
+                        )
+                        .create()
+                        .show()
+            }
+        }
+        return true
     }
 
     /**

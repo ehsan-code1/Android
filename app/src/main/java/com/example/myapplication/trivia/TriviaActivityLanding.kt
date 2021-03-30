@@ -3,8 +3,11 @@ package com.example.myapplication.trivia
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
@@ -44,6 +47,30 @@ class TriviaActivityLanding : AppCompatActivity() {
                 }
         /* Set Begin Button Click Listener */
         findViewById<Button>(R.id.t_begin_game_btn).setOnClickListener(LandingClickListener())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.t_help_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.t_menu_help_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Trivia Instructions")
+                        .setMessage("Enter the number of questions.\n" +
+                                "Choose the type of questions: Multiple Choice, True/False, or Both.\n" +
+                                "Choose the difficulty of the questions.\n"
+                        )
+                        .create()
+                        .show()
+            }
+        }
+        return true
     }
 
     /**
