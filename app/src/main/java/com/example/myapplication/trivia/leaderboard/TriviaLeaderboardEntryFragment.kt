@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.leaderboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.example.myapplication.R
+import com.example.myapplication.trivia.common.TriviaCommonUtils
 
 private const val PRESCORE = "score"
 private const val TOTALSCORE = "totalscore"
@@ -46,7 +47,7 @@ class TriviaLeaderboardEntryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater
-                    .inflate(R.layout.fragment_trivia_leaderboard_entry, container, false)
+                    .inflate(R.layout.t_fragment_trivia_leaderboard_entry, container, false)
                     .apply {
                         findViewById<TextView>(R.id.t_lb_score).text        = prescore.toString()
                         findViewById<TextView>(R.id.t_lb_totalscore).text   = totalscore.toString()

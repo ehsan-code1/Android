@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.quiz
 
 import android.content.Intent
 import android.os.AsyncTask
@@ -10,16 +10,21 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.example.myapplication.R
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.triviaURL
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.TYPE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.triviaURL
+import com.example.myapplication.trivia.common.TriviaQuestion
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStreamReader
+import java.lang.StringBuilder
+import java.net.URL
 
 /**
  * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
@@ -35,7 +40,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_quiz)
+        setContentView(R.layout.t_activity_trivia_quiz)
 
         isTablet = findViewById<FrameLayout>(R.id.t_quiz_frame) != null
 
@@ -48,7 +53,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
         val difficulty = QuestionDifficulty.getValue(data.getInt(DIFFICULTY))!!
         val type = QuestionType.getValue(data.getInt(TYPE))!!
 
-        val fetchedJSON = FetchTriviaQuestions().execute(
+        FetchTriviaQuestions().execute(
                 buildURL(data.getString(AMOUNT)!!,
                         type,
                         difficulty)
@@ -127,8 +132,8 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
     private fun calculatePreScore(): Int {
         // Create a 1 || 0 mapping of each answer, then sum across the map
         return parsedQuestions
-            .map { if (it.checkCorrectAnswer()) 1 else 0 }
-            .sum()
+                    .map { if (it.checkCorrectAnswer()) 1 else 0 }
+                    .sum()
     }
 
 
@@ -204,31 +209,24 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
      */
     inner class FetchTriviaQuestions: AsyncTask<String, Int, String>() {
         override fun doInBackground(vararg params: String?): String {
-            // Test call. Hardcoded json object + size
-            testParseJSON(testJSON, 5)
-            return "Done"
-        }
-
-        override fun onProgressUpdate(vararg values: Int?) {
-            super.onProgressUpdate(*values)
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.VISIBLE
-            // Update the progress bar as JSON is parsed
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).progress = values[0]!!
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.INVISIBLE
-        }
-
-        /**
-         * Hardcoded parsing of test JSON
-         */
-        private fun testParseJSON(jsonString: String, size: Int) {
-            val progressChunk = 100/size
+            Log.i(this.javaClass.simpleName, "Executing async fetch on ${params[0]}")
 
             try {
-                val results = (JSONObject(jsonString)).get("results") as JSONArray
+                val reader = BufferedReader(
+                        InputStreamReader(
+                                URL(params[0]).openConnection().getInputStream(),
+                                "UTF-8"
+                        ), 8)
+                val sb = StringBuilder()
+                reader.useLines {
+                    it.forEach { s -> sb.append(s) }
+                }
+
+                val results = (JSONObject(sb.toString())).get("results") as JSONArray
+                val size = results.length()
+                val progressChunk = size / 100;
+                Log.i(this.javaClass.simpleName, "Fetched $size results.")
+
                 for (i in (0 until size)) {
                     parsedQuestions.add(TriviaQuestion(
                             results.getJSONObject(i)["category"].toString(),
@@ -241,8 +239,23 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
                     publishProgress(progressChunk * i)
                 }
             } catch (e: IOException) {
-                print("ERROR: $e")
+                println("ERROR fetching: ${e.message}")
             }
+            return "Done"
+        }
+
+        override fun onProgressUpdate(vararg values: Int?) {
+            super.onProgressUpdate(*values)
+            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).apply {
+                visibility = View.VISIBLE
+                progress = values[0]!!
+            }
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            adapter.notifyDataSetChanged()
+            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.INVISIBLE
         }
     }
 
@@ -253,7 +266,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val item = getItem(position)
             return layoutInflater.inflate(
-                R.layout.trivia_layout_question, parent, false
+                R.layout.t_layout_question, parent, false
             ).apply {
                 findViewById<TextView>(R.id.t_quiz_question_number).text =
                             getString(R.string.t_quiz_question_number,  (position + 1).toString())

@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.quiz
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,15 +12,15 @@ import com.example.myapplication.R
 class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_empty_question)
+        setContentView(R.layout.t_activity_trivia_empty_question)
 
         val extras = intent.extras!!
         val dFragment = TriviaQuestionItemFragment.newInstance(
-                            extras.getInt(TriviaQuestionItemFragment.QUESTION_ID),
-                            extras.getString(TriviaQuestionItemFragment.QUESTION)!!,
-                            extras.getSerializable(TriviaQuestionItemFragment.ANSWERS) as ArrayList<String>,
-                            extras.getBoolean(TriviaQuestionItemFragment.IS_BOOL)
-                        )
+                extras.getInt(TriviaQuestionItemFragment.QUESTION_ID),
+                extras.getString(TriviaQuestionItemFragment.QUESTION)!!,
+                extras.getStringArrayList(TriviaQuestionItemFragment.ANSWERS)!!,
+                extras.getBoolean(TriviaQuestionItemFragment.IS_BOOL)
+        )
 
         supportFragmentManager
             .beginTransaction()

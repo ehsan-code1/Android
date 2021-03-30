@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.quiz
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -34,8 +34,8 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
                               savedInstanceState: Bundle?): View? {
         val isBoolean = requireArguments().getBoolean(IS_BOOL)
         val layoutToUse =
-            if (isBoolean)   R.layout.fragment_question_bool
-            else             R.layout.fragment_question_mc
+            if (isBoolean)   R.layout.t_fragment_question_bool
+            else             R.layout.t_fragment_question_mc
 
         val self = this
         // Inflate the layout for this fragment

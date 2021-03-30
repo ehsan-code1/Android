@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/dark_grey"
-    tools:context=".trivia.TriviaActivityLeaderboard">
+    tools:context=".trivia.leaderboard.TriviaActivityLeaderboard">
 
   <include layout="@layout/t_common_header" />
 

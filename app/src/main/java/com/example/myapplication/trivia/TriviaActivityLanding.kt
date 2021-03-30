@@ -7,13 +7,15 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.TYPE
 import com.google.android.material.snackbar.Snackbar
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.leaderboard.TriviaActivityLeaderboard
+import com.example.myapplication.trivia.quiz.TriviaQuizActivity
 
 /**
  * The first activity launched for the trivia section. This activity accepts the parameters to be used
@@ -30,7 +32,7 @@ class TriviaActivityLanding : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_landing)
+        setContentView(R.layout.t_activity_trivia_landing)
 
         /* Set Question Type Listeners */
         findViewById<ToggleButton>(R.id.t_q_type_mc).setOnClickListener(LandingClickListener())
@@ -162,31 +164,23 @@ class TriviaActivityLanding : AppCompatActivity() {
                 return
             }
             // Ensure question type(s) has been selected
-            val questionTypeText =
-                if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
-                    Snackbar.make(
-                            findViewById(R.id.t_begin_game_btn),
-                            "Please select the Question Type(s)",
-                            Snackbar.LENGTH_SHORT
-                    ).show()
-                    return
-                } else qType
+            if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
+                Snackbar.make(
+                        findViewById(R.id.t_begin_game_btn),
+                        "Please select the Question Type(s)",
+                        Snackbar.LENGTH_SHORT
+                ).show()
+                return
+            }
             // Ensure question difficulty has been selected
-            val questionDifficultyText =
-                    if (!this@TriviaActivityLanding::qDifficulty.isInitialized) {
-                        Snackbar.make(
-                                findViewById(R.id.t_begin_game_btn),
-                                "Please select the Question Difficulty",
-                                Snackbar.LENGTH_SHORT
-                        ).show()
-                        return
-                    } else {
-                        when (qDifficulty) {
-                            QuestionDifficulty.EASY -> "Easy Mode"
-                            QuestionDifficulty.MEDIUM -> "Medium Mode"
-                            QuestionDifficulty.HARD -> "Hard Mode"
-                        }
-                    }
+            if (!this@TriviaActivityLanding::qDifficulty.isInitialized) {
+                Snackbar.make(
+                        findViewById(R.id.t_begin_game_btn),
+                        "Please select the Question Difficulty",
+                        Snackbar.LENGTH_SHORT
+                ).show()
+                return
+            }
 
             val goToTriviaQuiz = Intent(this@TriviaActivityLanding, TriviaQuizActivity::class.java)
             val dataToPass = Bundle()

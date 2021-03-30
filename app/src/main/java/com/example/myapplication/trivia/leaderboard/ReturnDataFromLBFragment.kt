@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.leaderboard
 
 /**
  * A simple interface to allow for data to be returned from fragments and activities.

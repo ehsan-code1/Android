@@ -1,8 +1,9 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.leaderboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myapplication.R
+import com.example.myapplication.trivia.common.TriviaCommonUtils
 
 /**
  * Main activity for the post-quiz scorekeeping. Allows user to input a name and see a summary of their quiz results.
@@ -12,7 +13,7 @@ import com.example.myapplication.R
 class TriviaActivityLeaderboard : AppCompatActivity(), ReturnDataFromLBFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_leaderboard)
+        setContentView(R.layout.t_activity_trivia_leaderboard)
 
         val data = intent!!.extras!!
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
     android:orientation="vertical"
-    tools:context=".trivia.TriviaQuizActivity">
+    tools:context=".trivia.quiz.TriviaQuizActivity">
 
     <include layout="@layout/t_common_header" />
 
