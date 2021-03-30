@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:id="@+id/frameLayout"
     android:supportsRtl="true"
->
-
+    tools:context=".songstar.FragmentPhoneActivity">
 
 </FrameLayout>

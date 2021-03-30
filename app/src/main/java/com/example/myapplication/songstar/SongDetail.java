@@ -1,6 +1,5 @@
 package com.example.myapplication.songstar;
 
-
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;

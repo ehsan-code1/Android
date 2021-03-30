@@ -48,4 +48,5 @@
     <string name="AskingMessageToDelete">idk</string>
     <string name="SongDetail_FavouriteListConfirmation_Add">idk</string>
     <string name="ConfirmationMessage_Of_Deletion">idk</string>
+    <string name="about">About</string>
 </resources>

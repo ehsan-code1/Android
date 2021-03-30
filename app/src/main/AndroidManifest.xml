@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,7 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
         <activity android:name=".songstar.FavouriteList" />
         <activity android:name=".songstar.FragmentPhoneActivity" />
         <activity android:name=".songstar.SongsterList" />
@@ -30,7 +28,7 @@
             android:label="@string/title_activity_empty" />
         <activity android:name=".car_database.CarsList" />
         <activity android:name=".car_database.HomePage"/>
-        <activity android:name=".trivia.MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

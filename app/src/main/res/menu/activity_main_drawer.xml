@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item android:id="@+id/nav_item_one"
+            android:title="Go To Trivia"
+            android:icon="@drawable/trivia"/>
+        <item android:id="@+id/nav_item_two"
+            android:title="Go To Songstar"
+            android:icon="@drawable/song"/>
+        <item android:id="@+id/nav_item_three"
+            android:title="Go To Car Database"
+            android:icon="@drawable/car"/>
+    </group>
+</menu>

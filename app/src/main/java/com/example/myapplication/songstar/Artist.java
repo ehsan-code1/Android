@@ -1,5 +1,4 @@
 package com.example.myapplication.songstar;
-
 /**
  * Artist Class Hold the Artist Information Like artistName
  * ArtistId, songId and SongTitle
