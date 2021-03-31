@@ -16,11 +16,11 @@
     <string name="t_begin_game_btn_text">idk</string>
     <string name="t_numQ_text">idk</string>
     <string name="t_difficulty_text" translatable="false">idk</string>
-    <string name="t_qtype_toast">idk</string>
+    <string name="t_qtype_toast">%s</string>
     <string name="t_start_button">idk</string>
     <string name="t_tf_btn_text">idk</string>
     <string name="t_mc_btn_text" translatable="false">idk</string>
-    <string name="t_quiz_question_number">idk</string>
+    <string name="t_quiz_question_number">%s</string>
     <string name="t_lb_totalscore_text">idk</string>
     <string name="t_lb_results_text">idk</string>
     <string name="t_lb_score_text">idk</string>
@@ -31,4 +31,8 @@
     <string name="t_med_diff_content_desc">idk</string>
     <string name="t_hard_diff_content_desc">idk</string>
     <string name="t_lb_name_text">idk</string>
+    <string name="t_about">idk</string>
+    <string name="t_landing_help">idk</string>
+    <string name="t_quiz_help">idk</string>
+    <string name="t_lb_help">idk</string>
 </resources>

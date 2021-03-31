@@ -66,4 +66,8 @@
     <string name="t_med_diff_content_desc">Medelstora: glad ansikte</string>
     <string name="t_hard_diff_content_desc">Svår: dödskalle</string>
     <string name="t_lb_name_text">Skriva ditt namn:</string>
+    <string name="t_about">Om</string>
+    <string name="t_landing_help">Ange antalet frågor.\nVälj typ av frågor: Flera alternativ, sant/falskt eller båda.\nVälj hur svårt frågorna är.</string>
+    <string name="t_quiz_help">Välj en fråga i listan och välj ett svar.\nNär du har besvarat alla frågor kan du skicka frågeformuläret.</string>
+    <string name="t_lb_help">Ange ditt namn och gå med i resultatlistan!\nOm du vill visa en popup-meny med mer information klickar du länge på en post i resultatlistan.</string>
 </resources>

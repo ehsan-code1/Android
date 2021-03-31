@@ -62,10 +62,15 @@ class TriviaActivityLanding : AppCompatActivity() {
                 AlertDialog.Builder(this)
                         .setPositiveButton("Okay") { _, _ -> }
                         .setTitle("Trivia Instructions")
-                        .setMessage("Enter the number of questions.\n" +
-                                "Choose the type of questions: Multiple Choice, True/False, or Both.\n" +
-                                "Choose the difficulty of the questions.\n"
-                        )
+                        .setMessage(R.string.t_landing_help)
+                        .create()
+                        .show()
+            }
+            R.id.t_menu_about_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("CST2335 Project: Trivia")
+                        .setMessage("Matthew Ellero. V1.5.2")
                         .create()
                         .show()
             }

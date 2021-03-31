@@ -52,9 +52,15 @@ class TriviaActivityLeaderboard : AppCompatActivity(), ReturnDataFromLBFragment 
                 AlertDialog.Builder(this)
                         .setPositiveButton("Okay") { _, _ -> }
                         .setTitle("Trivia Instructions")
-                        .setMessage("Input your name and join the leaderboards!\n" +
-                                "Long click on any leaderboard entry to show a popup with more information.\n"
-                        )
+                        .setMessage(R.string.t_lb_help)
+                        .create()
+                        .show()
+            }
+            R.id.t_menu_about_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("CST2335 Project: Trivia")
+                        .setMessage("Matthew Ellero. V1.5.2")
                         .create()
                         .show()
             }

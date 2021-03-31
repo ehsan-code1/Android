@@ -7,4 +7,9 @@
         android:title=""
         android:orderInCategory="1"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/t_menu_about_item"
+        android:title="@string/t_about"
+        android:orderInCategory="1"
+        app:showAsAction="always"/>
 </menu>

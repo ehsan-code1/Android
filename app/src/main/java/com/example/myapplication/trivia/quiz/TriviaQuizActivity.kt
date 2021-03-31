@@ -142,9 +142,15 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
                 AlertDialog.Builder(this)
                         .setPositiveButton("Okay") { _, _ -> }
                         .setTitle("Trivia Instructions")
-                        .setMessage("Select a question from the list, and choose an answer.\n" +
-                                "Once you have answered all questions, you may submit the quiz.\n"
-                        )
+                        .setMessage(R.string.t_quiz_help)
+                        .create()
+                        .show()
+            }
+            R.id.t_menu_about_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("CST2335 Project: Trivia")
+                        .setMessage("Matthew Ellero. V1.5.2")
                         .create()
                         .show()
             }
