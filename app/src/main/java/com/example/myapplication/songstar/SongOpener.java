@@ -4,8 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-
-
 public  class SongOpener extends SQLiteOpenHelper {
 
     protected final static String DATABASE_NAME = "FavouriteSongsDB";

@@ -16,10 +16,10 @@
         <activity android:name=".songstar.FragmentPhoneActivity" />
         <activity android:name=".songstar.SongsterList" />
         <activity android:name=".songstar.SongsterSearch"/>
-        <activity android:name=".trivia.leaderboard.TriviaActivityLeaderboard" >
+        <activity android:name=".trivia.TriviaActivityLeaderboard" >
         </activity>
-        <activity android:name=".trivia.quiz.TriviaEmptyQuestionActivity" />
-        <activity android:name=".trivia.quiz.TriviaQuizActivity" />
+        <activity android:name=".trivia.TriviaEmptyQuestionActivity" />
+        <activity android:name=".trivia.TriviaQuizActivity" />
         <activity
             android:name=".trivia.TriviaActivityLanding"
             android:label="@string/title_activity_trivia" />
@@ -30,7 +30,7 @@
             android:label="@string/title_activity_empty" />
         <activity android:name=".car_database.CarsList" />
         <activity android:name=".car_database.HomePage"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

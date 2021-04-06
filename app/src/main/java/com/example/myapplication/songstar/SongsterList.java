@@ -1,5 +1,5 @@
-package com.example.myapplication.songstar;
 
+package com.example.myapplication.songstar;
 /**
  * @Author: Nouran Nouh
  * Date:18/03/2021
@@ -7,10 +7,10 @@ package com.example.myapplication.songstar;
  * be executing xml and display that in main UI
  * the second inner class is ArtistListAdpater which extend base adapter
  * which inflate ListView and display List view
- * Songlister class receive the user input from com.example.myapplication.SongsterSearch class and then
+ * Songlister class receive the user input from SongsterSearch class and then
  * display all the song from xml url sang by this artist like
  * song id, song title, and Artist Id.
- * this class also has back button which will go back to com.example.myapplication.SongsterSearch page to perform another search
+ * this class also has back button which will go back to SongsterSearch page to perform another search
  * of another Artist.
  */
 import androidx.appcompat.app.AlertDialog;
@@ -115,7 +115,7 @@ public class SongsterList extends AppCompatActivity {
         //in alert dialog
         String str=getString(R.string.youSelected);
 
-        //clicking back button goes back to com.example.myapplication.SongsterSearch class by calling finish() method
+        //clicking back button goes back to SongsterSearch class by calling finish() method
         //that finishes this activity
         backButton.setOnClickListener((e)->
         {

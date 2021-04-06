@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.example.myapplication.R;
 
 /**
- * com.example.myapplication.SongsterSearch is main page of the application where user can input artist name and click search
+ * SongsterSearch is main page of the application where user can input artist name and click search
  * in the Input box or go to Favorite page List
  * also it has a menu of help icon and About overflow menu items
  * it then send data to next activity
@@ -61,7 +61,7 @@ public class SongsterSearch extends AppCompatActivity {
 
      //when FavouriteList Button is clicked start Activity which load FavouriteList Activity
      favButton.setOnClickListener(s->{
-         Intent listFav=new Intent(this, FavouriteList.class);
+         Intent listFav=new Intent(this,FavouriteList.class);
          startActivity(listFav);
      });
 
