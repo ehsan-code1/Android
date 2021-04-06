@@ -13,6 +13,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils
 import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty.EASY
@@ -25,7 +26,7 @@ import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficu
  * Also displays the current leaderboards for the quiz, according to the database on the phone.
  * Uses a FrameLayout/fragment combination to show both the namecard (for user input) and the current leaderboards.
  */
-class TriviaActivityLeaderboard : AppCompatActivity(), ReturnDataFromLBFragment {
+class TriviaActivityLeaderboard : BaseActivityWithDrawer(), ReturnDataFromLBFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.t_activity_trivia_leaderboard)

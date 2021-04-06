@@ -3,13 +3,14 @@ package com.example.myapplication.trivia.quiz
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 
 /**
  * Empty activity for mobile version of QuestionItemFragment. Implements the [ReturnDataFromQuizFragment]
  * interface in order keep a smooth api between mobile and tablet implementations.
  */
-class TriviaEmptyQuestionActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
+class TriviaEmptyQuestionActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.t_activity_trivia_empty_question)

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
@@ -25,7 +26,7 @@ import com.example.myapplication.trivia.quiz.TriviaQuizActivity
  * for the trivia quiz. This includes the number of questions, the type of questions (multiple choice and/or boolean),
  * and the difficulty of the questions. These three parameters are to be used to create the api url.
  */
-class TriviaActivityLanding : AppCompatActivity() {
+class TriviaActivityLanding : BaseActivityWithDrawer() {
     private lateinit var currentToast: Toast // The current toast object. This is replaced if it exists already
     private lateinit var qDifficulty : QuestionDifficulty // The current choice of Question Difficulty
     private lateinit var qType : QuestionType // The current choice of Question Type

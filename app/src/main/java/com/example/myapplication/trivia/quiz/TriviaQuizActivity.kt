@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.text.HtmlCompat
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
@@ -33,7 +34,7 @@ import java.net.URL
  * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
  * Currently uses dummy JSON data, with dummy async calls to populate the list.
  */
-class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
+class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment {
     private val adapter = QuizAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
