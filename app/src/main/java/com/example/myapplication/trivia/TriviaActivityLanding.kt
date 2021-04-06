@@ -47,6 +47,7 @@ class TriviaActivityLanding : AppCompatActivity() {
                 }
         /* Set Begin Button Click Listener */
         findViewById<Button>(R.id.t_begin_game_btn).setOnClickListener(LandingClickListener())
+        findViewById<Button>(R.id.t_go_to_leaderboards_btn).setOnClickListener(LandingClickListener())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -97,6 +98,16 @@ class TriviaActivityLanding : AppCompatActivity() {
                 /* Begin Button Listener */
                 R.id.t_begin_game_btn ->
                     beginGameListener()
+                /* Leaderboard Button Listener */
+                R.id.t_go_to_leaderboards_btn -> {
+                    val goToLeaderboards = Intent(this@TriviaActivityLanding, TriviaActivityLeaderboard::class.java)
+                    val dataToPass = Bundle()
+                            .apply {
+                                putBoolean("fromLanding", true)
+                            }
+                    goToLeaderboards.putExtras(dataToPass)
+                    startActivity(goToLeaderboards)
+                }
             }
         }
 

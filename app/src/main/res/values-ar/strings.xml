@@ -35,4 +35,6 @@
     <string name="t_landing_help">idk</string>
     <string name="t_quiz_help">idk</string>
     <string name="t_lb_help">idk</string>
+    <string name="t_go_to_leaderboards">idk</string>
+    <string name="t_lb_hs_username">%s. %s</string>
 </resources>

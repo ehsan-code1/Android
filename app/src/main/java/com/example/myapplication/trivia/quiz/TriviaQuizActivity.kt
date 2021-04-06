@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -35,7 +34,7 @@ import java.net.URL
  * Currently uses dummy JSON data, with dummy async calls to populate the list.
  */
 class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
-    private val adapter = MyAdapter()
+    private val adapter = QuizAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
     private var isTablet: Boolean = false
@@ -240,7 +239,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
      * Hardcoded (ie., Synchronous) "fetch" of test URI
      */
     inner class FetchTriviaQuestions: AsyncTask<String, Int, String>() {
-        val progressBar = findViewById<ProgressBar>(R.id.t_quiz_progress_bar)
+        private val progressBar: ProgressBar = findViewById(R.id.t_quiz_progress_bar)
 
         override fun doInBackground(vararg params: String?): String {
             Log.i(this.javaClass.simpleName, "Executing async fetch on ${params[0]}")
@@ -300,7 +299,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
     /**
      * A private adapter class to handle the ListView of questions
      */
-    inner class MyAdapter : BaseAdapter() {
+    inner class QuizAdapter : BaseAdapter() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val item = getItem(position)
             return layoutInflater.inflate(
