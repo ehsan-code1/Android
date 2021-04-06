@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">CST2335 Project</string>
+    <string name="about" translatable="false">About</string>
     <string name="songster_Heading">Songster Search</string>
     <string name="songster_artistName">Enter Artist or band Name:</string>
     <string name="songster_enter_artist_hint">Enter Artist or band</string>
@@ -65,7 +66,8 @@
     <string name="logo">KoolKars</string>
     <string name="description">Canada\'s Largest Car Database</string>
     <string name="hint">idk</string>
-    <string name="go">idk</string>
+    <string name="go_to_chat" translatable="false">gotochat</string>
+    <string name="go">Go</string>
     <string name="title_activity_empty">idk</string>
     <string name="view_your_saved_cars">View Your Saved Cars</string>
     <string name="save_to_database">Save To Database</string>
@@ -79,5 +81,7 @@
     <string name="t_quiz_help">Select a question from the list, and choose an answer.\nOnce you have answered all questions, you may submit the quiz.</string>
     <string name="t_go_to_leaderboards">Highscores</string>
     <string name="t_lb_hs_username">"%s. %s"</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 
 </resources>
