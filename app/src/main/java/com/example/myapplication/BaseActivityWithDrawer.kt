@@ -13,14 +13,28 @@ import com.example.myapplication.songstar.SongsterSearch
 import com.example.myapplication.trivia.TriviaActivityLanding
 import com.google.android.material.navigation.NavigationView
 
+
+/**
+ * A base class that allows subclasses to inherit the same drawer and nav bar
+ */
 open class BaseActivityWithDrawer: AppCompatActivity() {
 
+    /**
+     * This is the setContentView method that all subclasses will call (in their respective onCreate methods).
+     * It first inflates its own layout, which holds a FrameLayout. Then it inflates the given [layoutResID] layout,
+     * inside of that frame. Then it sets the content view to be the entire, newly inflated base layout.
+     * This allows this class to act as a simple container, for all activities that inherit from it.
+     *
+     * @param layoutResID the subclass layout to inflate inside of the frame
+     */
     override fun setContentView(layoutResID: Int) {
-        val fullLayout = layoutInflater.inflate(R.layout.activity_base_with_drawer, null)
-        val frameLayout = fullLayout.findViewById<FrameLayout>(R.id.base_frame)
+        // Inflate the base layout, which holds an empty frame
+        val baseLayout = layoutInflater.inflate(R.layout.activity_base_with_drawer, null)
+        val subclassLayout = baseLayout.findViewById<FrameLayout>(R.id.base_frame)
 
-        layoutInflater.inflate(layoutResID, frameLayout, true)
-        super.setContentView(fullLayout)
+        // Inflate the subclass layout in place of the frame, and attach to baseLayout
+        layoutInflater.inflate(layoutResID, subclassLayout, true)
+        super.setContentView(baseLayout)
 
         val tb : Toolbar? = findViewById(R.id.toolbar)
         setSupportActionBar(tb)
@@ -33,28 +47,22 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
 
         findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_item_one -> goToTrivia()
-                R.id.nav_item_two -> goToSongster()
-                R.id.nav_item_three -> goToCarDatabase()
+                R.id.nav_item_one -> {
+                    val goToTrivia = Intent(this, TriviaActivityLanding::class.java)
+                    startActivity(goToTrivia)
+                }
+                R.id.nav_item_two -> {
+                    val goToSongster = Intent(this, SongsterSearch::class.java)
+                    startActivity(goToSongster)
+                }
+                R.id.nav_item_three -> {
+                    val goToCarDatabase = Intent(this, HomePage::class.java)
+                    startActivity(goToCarDatabase)
+                }
             }
 
             drawer.closeDrawer(GravityCompat.START)
             return@setNavigationItemSelectedListener true
         }
-    }
-
-    private fun goToTrivia() {
-        val goToTrivia = Intent(this, TriviaActivityLanding::class.java)
-        startActivity(goToTrivia)
-    }
-
-    private fun goToSongster() {
-        val goToSongster = Intent(this, SongsterSearch::class.java)
-        startActivity(goToSongster)
-    }
-
-    private fun goToCarDatabase() {
-        val goToCarDatabase = Intent(this, HomePage::class.java)
-        startActivity(goToCarDatabase)
     }
 }
