@@ -67,9 +67,9 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
-            R.id.trivia_menu_item -> goToTrivia()
-            R.id.songster_menu_item -> goToSongster()
-            R.id.car_db_menu_item -> goToCarDatabase()
+            R.id.nav_item_trivia-> goToTrivia()
+            R.id.nav_item_songster -> goToSongster()
+            R.id.nav_item_database -> goToCarDatabase()
         }
         return true
     }
