@@ -99,8 +99,8 @@
                 android:text="@string/t_q_type_text"
                 android:textColor="@color/white"
                 android:textSize="25sp"
-                card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
                 card_view:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
@@ -226,22 +226,25 @@
 
     <Button
         android:id="@+id/t_begin_game_btn"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text="@string/t_begin_game_btn_text"
+        android:textSize="30sp"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/t_guideline" />
 
     <Button
         android:id="@+id/t_go_to_leaderboards_btn"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:layout_height="80dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:padding="5dp"
         android:text="@string/t_go_to_leaderboards"
+        android:textSize="30sp"
         card_view:layout_constraintEnd_toEndOf="parent"
         card_view:layout_constraintStart_toStartOf="parent"
         card_view:layout_constraintTop_toBottomOf="@+id/t_begin_game_btn" />
