@@ -76,5 +76,25 @@
     <string name="view_details">View Details</string>
     <string name="model_id">Model ID: </string>
     <string name="make_id">Make ID: </string>
+    <string name="t_about" translatable="false">idk</string>
+    <string name="t_landing_help" translatable="false">idk</string>
+    <string name="t_quiz_help" translatable="false">idk</string>
+    <string name="t_lb_help" translatable="false">idk</string>
+    <string name="t_go_to_leaderboards" translatable="false">idk</string>
+    <string name="t_lb_hs_username" translatable="false">%s. %s</string>
+    <string name="open" translatable="false" />
+    <string name="close" translatable="false" />
+    <string name="help" translatable="false">Enter Name of Manufacturer in Search Field.
+                     Press Go to Load All Models from That Manufacturer.
+                     Click on Model Id Of Car, Bottom Right, to View Options for Car.
+                     Click Save to Add Car To Database.
+                     On HomePage, Click On Favourite Cars to see your cars you have Saved
+                     Click On Buy to open Auto trader Link for that Model.
+                     Click on Details to Google Search that model. </string>
+    <string name="about" translatable="false">Architect:
+                    Muhammad Ehsan Khan.
+                    Version 1.0, Final Stable Release.
+                    Project initiated on March 15th 2021.
+                    Project Finalized on March 17th 2021.</string>
 
 </resources>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+
 <resources>
     <string name="app_name" >Car Database</string>
     <string name="logo" >logo</string>
@@ -8,7 +8,8 @@
     <string name="hello_blank_fragment" >ہیلو blank fragment</string>
     <string name="title_activity_empty" >EmptyActivity</string>
     <string name="hello_world" >Hello Square World!</string>
-    <string name="view_your_saved_cars">View Your Saved Cars</string>
+    <string name="view_your_saved_cars">اپنی محفوظ شدہ کاریں دیکھیں
+</string>
     <string name="save_to_database" >ڈیٹا بیس میں محفوظ کریں</string>
     <string name="buy">خریدنے</string>
     <string name="view_details" >تفصیلات دیکھیں</string>
@@ -48,5 +49,17 @@
     <string name="AskingMessageToDelete">idk</string>
     <string name="SongDetail_FavouriteListConfirmation_Add">idk</string>
     <string name="ConfirmationMessage_Of_Deletion">idk</string>
-    <string name="about">About</string>
+    <string name="about">معمار:
+                    محمد احسان خان۔
+                    ورژن 1.0 ، آخری مستحکم رہائی۔
+                    پروجیکٹ کا آغاز 15 مارچ 2021 کو ہوا تھا۔
+                    پروجیکٹ کو 17 مارچ 2021 کو حتمی شکل دی گئی۔</string>
+    <string name="help">سرچ فیلڈ میں ڈویلپر کا نام درج کریں۔
+                     اس ڈویلپر سے تمام ماڈلز لوڈ کرنے کے لئے گو دبائیں۔
+                     کار کے اختیارات دیکھنے کے لئے نیچے دائیں ، ماڈل کے کار پر کلک کریں۔
+                     کار کو ڈیٹا بیس میں شامل کرنے کے لئے محفوظ کریں پر کلک کریں۔
+                     ہوم پیج پر ، اپنی کاروں کو بچانے کے لئے پسندیدہ کاروں پر کلیک کریں
+                     اس ماڈل کے لئے آٹو ٹریڈر لنک کھولنے کے لئے خریدیں پر کلک کریں۔
+                     اس ماڈل پر گوگل سرچ پر تفصیلات پر کلک کریں۔ </string>
+
 </resources>
