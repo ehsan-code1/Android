@@ -61,5 +61,29 @@
                      ہوم پیج پر ، اپنی کاروں کو بچانے کے لئے پسندیدہ کاروں پر کلیک کریں
                      اس ماڈل کے لئے آٹو ٹریڈر لنک کھولنے کے لئے خریدیں پر کلک کریں۔
                      اس ماڈل پر گوگل سرچ پر تفصیلات پر کلک کریں۔ </string>
+    <string name="title_activity_trivia">idk</string>
+    <string name="t_numQ_text">idk</string>
+    <string name="t_q_type_text">idk</string>
+    <string name="t_difficulty_text">idk</string>
+    <string name="t_qtype_toast">idk</string>
+    <string name="t_start_button">idk</string>
+    <string name="t_begin_game_btn_text">idk</string>
+    <string name="t_tf_btn_text">idk</string>
+    <string name="t_mc_btn_text">idk</string>
+    <string name="t_easy_diff_content_desc">idk</string>
+    <string name="t_med_diff_content_desc">idk</string>
+    <string name="t_hard_diff_content_desc">idk</string>
+    <string name="t_quiz_question_number">idk</string>
+    <string name="t_lb_name_text">idk</string>
+    <string name="t_lb_score_text">idk</string>
+    <string name="t_lb_type_text">idk</string>
+    <string name="t_lb_results_text">idk</string>
+    <string name="t_lb_totalscore_text">idk</string>
+    <string name="t_about">idk</string>
+    <string name="t_landing_help">idk</string>
+    <string name="t_quiz_help">idk</string>
+    <string name="t_lb_help">idk</string>
+    <string name="t_go_to_leaderboards">idk</string>
+    <string name="t_lb_hs_username">%s. %s</string>
 
 </resources>

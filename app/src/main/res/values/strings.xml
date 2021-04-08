@@ -36,34 +36,32 @@
     <string name="SongDetail_FavouriteListConfirmation_Add">Do you want to save this to your favourite List?</string>
     <string name="ConfirmationMessage_Of_Deletion">has been removed from favourite</string>
 
-    <string name="title_activity_trivia" translatable="false">TriviaActivity</string>
+    <string name="title_activity_trivia">TriviaActivity</string>
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
     <string name="t_header_text" translatable="false">Trivia!</string>
-    <string name="t_numQ_text" translatable="false">Number of Questions:</string>
-    <string name="t_q_type_text" translatable="false">Type of Questions (choose one or both):</string>
-    <string name="t_difficulty_text" translatable="false">Difficulty:</string>
-    <string name="t_qtype_toast" translatable="false">"%s questions"</string>
-    <string name="t_start_button" translatable="false">Start Trivia</string>
-    <string name="t_begin_game_btn_text" translatable="false">Begin</string>
-    <string name="t_tf_btn_text" translatable="false">T/F</string>
-    <string name="t_mc_btn_text" translatable="false">MC</string>
-    <string name="t_easy_diff_content_desc" translatable="false">Easy Mode Button: Swaddled Baby</string>
-    <string name="t_med_diff_content_desc" translatable="false">Medium Mode Button: Happy Face</string>
-    <string name="t_hard_diff_content_desc" translatable="false">Hard Mode Button: Skull and Crossbones</string>
+    <string name="t_numQ_text">Number of Questions:</string>
+    <string name="t_q_type_text">Type of Questions (choose one or both):</string>
+    <string name="t_difficulty_text">Difficulty:</string>
+    <string name="t_qtype_toast">"%s questions"</string>
+    <string name="t_start_button">Start Trivia</string>
+    <string name="t_begin_game_btn_text">Begin</string>
+    <string name="t_tf_btn_text">T/F</string>
+    <string name="t_mc_btn_text">MC</string>
+    <string name="t_easy_diff_content_desc">Easy Mode Button: Swaddled Baby</string>
+    <string name="t_med_diff_content_desc">Medium Mode Button: Happy Face</string>
+    <string name="t_hard_diff_content_desc">Hard Mode Button: Skull and Crossbones</string>
     <string name="title_activity_trivia_quiz" translatable="false">TriviaQuizActivity</string>
-    <string name="t_quiz_question_number" translatable="false">"Question %s"</string>
+    <string name="t_quiz_question_number">"Question %s"</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="t_lb_name_text" translatable="false">Please enter your name:</string>
-    <string name="t_lb_score_text" translatable="false">Score:</string>
-    <string name="t_lb_difficulty_text" translatable="false">Difficulty</string>
-    <string name="t_lb_amount_text" translatable="false">Number of Questions:</string>
-    <string name="t_lb_type_text" translatable="false">Types of Questions:</string>
-    <string name="t_lb_totalscore_text" translatable="false">Total Score:</string>
-    <string name="t_lb_results_text" translatable="false">Results:</string>
+    <string name="t_lb_name_text">Please enter your name:</string>
+    <string name="t_lb_score_text">Score:</string>
+    <string name="t_lb_type_text">Types of Questions:</string>
+    <string name="t_lb_totalscore_text">Total Score:</string>
+    <string name="t_lb_results_text">Results:</string>
     <string name="logo">KoolKars</string>
     <string name="description">Canada\'s Largest Car Database</string>
     <string name="hint">idk</string>
@@ -76,15 +74,15 @@
     <string name="view_details">View Details</string>
     <string name="model_id">Model ID: </string>
     <string name="make_id">Make ID: </string>
-    <string name="t_about" translatable="false">idk</string>
-    <string name="t_landing_help" translatable="false">idk</string>
-    <string name="t_quiz_help" translatable="false">idk</string>
-    <string name="t_lb_help" translatable="false">idk</string>
-    <string name="t_go_to_leaderboards" translatable="false">idk</string>
-    <string name="t_lb_hs_username" translatable="false">%s. %s</string>
+    <string name="t_about">idk</string>
+    <string name="t_landing_help">idk</string>
+    <string name="t_quiz_help">idk</string>
+    <string name="t_lb_help">idk</string>
+    <string name="t_go_to_leaderboards">idk</string>
+    <string name="t_lb_hs_username">%s. %s</string>
     <string name="open" translatable="false" />
     <string name="close" translatable="false" />
-    <string name="help" translatable="false">Enter Name of Manufacturer in Search Field.
+    <string name="help">Enter Name of Manufacturer in Search Field.
                      Press Go to Load All Models from That Manufacturer.
                      Click on Model Id Of Car, Bottom Right, to View Options for Car.
                      Click Save to Add Car To Database.
