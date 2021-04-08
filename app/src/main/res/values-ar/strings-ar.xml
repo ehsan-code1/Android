@@ -35,5 +35,6 @@
     <string name="ConfirmationMessageofSave">لقد تم حفظ اغنيتك المفضله في المفضله</string>
     <string name="AskingMessageToDelete">هل تريد حذف هذه الاغنيه؟ </string>
     <string name="ConfirmationMessage_Of_Deletion">تم محواغنيه</string>
+    <string name="help">Make ID: </string>
 
 </resources>

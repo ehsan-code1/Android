@@ -76,7 +76,14 @@ class HomePage : AppCompatActivity() {
             R.id.help -> {
                 val alertDialog: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
                 alertDialog.setTitle("Enter Car Manufacturer's Name and click go "
-                ).setMessage("To view your saved cars, click on View Saved Cars. ")
+                ).setMessage("To view your saved cars, click on View Saved Cars. \nFor More help click More")
+                        .setPositiveButton("More") { _, _ ->
+                            val intent = Intent(this, MenuItems::class.java)
+                            intent.putExtra("help",true)
+                            startActivity(intent)
+                        }.setNeutralButton("Close Help") {_,_ ->
+
+                        }
                 alertDialog.show()
                 true
             }
