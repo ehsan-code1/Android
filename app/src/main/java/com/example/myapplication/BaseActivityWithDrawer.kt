@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +28,7 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
      *
      * @param layoutResID the subclass layout to inflate inside of the frame
      */
+
     override fun setContentView(layoutResID: Int) {
         // Inflate the base layout, which holds an empty frame
         val baseLayout = layoutInflater.inflate(R.layout.activity_base_with_drawer, null)
@@ -55,6 +57,11 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
             drawer.closeDrawer(GravityCompat.START)
             return@setNavigationItemSelectedListener true
         }
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.activity_main_drawer, menu)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

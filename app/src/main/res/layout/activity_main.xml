@@ -1,48 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/LightGreen">
 
-    <Button
-        android:id="@+id/car"
-        android:layout_width="wrap_content"
+    <ImageView
+
+        android:id="@+id/carImage"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:text="Go to CarDatabase"
-        app:layout_constraintBottom_toTopOf="@+id/trivia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@id/ss"
+        android:background="@drawable/custome_image_button"
+        android:src="@drawable/car_imagebutton"/>
+       <Button
+           android:id="@+id/car"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:layout_below="@+id/carImage"
+           android:backgroundTint="@color/babySHowerGreen"
+           android:text="Go to CarDatabase"
+           android:textColor="@color/black"/>
+
+    <ImageView
+        android:id="@+id/ssImage"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@+id/sstarImage"
+        android:layout_marginTop="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/custome_image_button"
+        android:src="@drawable/soccer_imagebutton"/>
 
     <Button
+        android:layout_marginBottom="10dp"
         android:id="@+id/ss"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="416dp"
         android:text="Go To Soccer Scores"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@+id/ssImage"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/babySHowerGreen"
+        />
+
+    <ImageView
+        android:id="@+id/sstarImage"
+        android:padding="10dp"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/custome_image_button"
+        android:src="@drawable/music_imagebutton"
+        />
 
     <Button
         android:id="@+id/sstar"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:text="Go To Songstar"
-        app:layout_constraintBottom_toTopOf="@+id/ss"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@+id/sstarImage"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        android:backgroundTint="@color/babySHowerGreen"
+        />
+
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:id="@+id/triviaImage"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_below="@id/car"
+        android:layout_centerInParent="true"
+        android:background="@drawable/custome_image_button"
+        android:src="@drawable/trivia_imagebutton"
+        />
 
     <Button
         android:id="@+id/trivia"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/triviaImage"
         android:text="Go To Trivia"
-        app:layout_constraintBottom_toTopOf="@+id/sstar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:backgroundTint="@color/babySHowerGreen"
+        android:textColor="@color/black"/>
+</RelativeLayout>

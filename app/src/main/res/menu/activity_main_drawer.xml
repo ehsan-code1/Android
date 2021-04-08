@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <group>
         <item android:id="@+id/nav_item_trivia"
             android:title="Go To Trivia"
-            android:icon="@drawable/trivia"/>
+            android:orderInCategory="100"
+            app:showAsAction="always"
+            android:icon="@drawable/trivia_imagebutton"/>
         <item android:id="@+id/nav_item_songster"
             android:title="Go To Songster"
-            android:icon="@drawable/song"/>
+            android:icon="@drawable/music_imagebutton"
+            android:orderInCategory="200"
+            app:showAsAction="always"/>
         <item android:id="@+id/nav_item_database"
             android:title="Go To Car Database"
-            android:icon="@drawable/car"/>
+            android:icon="@drawable/car_imagebutton"
+            android:orderInCategory="50"
+            app:showAsAction="always"/>
     </group>
 </menu>
