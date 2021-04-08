@@ -74,11 +74,11 @@
     <string name="view_details">View Details</string>
     <string name="model_id">Model ID: </string>
     <string name="make_id">Make ID: </string>
-    <string name="t_about">idk</string>
-    <string name="t_landing_help">idk</string>
-    <string name="t_quiz_help">idk</string>
-    <string name="t_lb_help">idk</string>
-    <string name="t_go_to_leaderboards">idk</string>
+    <string name="t_about">About</string>
+    <string name="t_landing_help">Enter the number of questions\nChoose the type of questions: Multiple Choice, True/False, or Both.\nChoose the difficulty of the questions.</string>
+    <string name="t_quiz_help">Select a question from the list, and choose an answer.\nOnce you have answered all questions, you may submit the quiz.</string>
+    <string name="t_lb_help">Input your name and join the leaderboards!\nLong click on any leaderboard entry to show a popup with more information.</string>
+    <string name="t_go_to_leaderboards">Highscores</string>
     <string name="t_lb_hs_username">%s. %s</string>
     <string name="open" translatable="false" />
     <string name="close" translatable="false" />
