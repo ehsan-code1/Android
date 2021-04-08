@@ -1,7 +1,7 @@
 package com.example.myapplication
 
 import android.content.Intent
-import android.widget.Button
+import android.view.MenuItem
 import android.widget.FrameLayout
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -47,22 +47,38 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
 
         findViewById<NavigationView>(R.id.nav_view).setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.nav_item_one -> {
-                    val goToTrivia = Intent(this, TriviaActivityLanding::class.java)
-                    startActivity(goToTrivia)
-                }
-                R.id.nav_item_two -> {
-                    val goToSongster = Intent(this, SongsterSearch::class.java)
-                    startActivity(goToSongster)
-                }
-                R.id.nav_item_three -> {
-                    val goToCarDatabase = Intent(this, HomePage::class.java)
-                    startActivity(goToCarDatabase)
-                }
+                R.id.nav_item_trivia -> goToTrivia()
+                R.id.nav_item_songster -> goToSongster()
+                R.id.nav_item_database -> goToCarDatabase()
             }
 
             drawer.closeDrawer(GravityCompat.START)
             return@setNavigationItemSelectedListener true
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.trivia_menu_item -> goToTrivia()
+            R.id.songster_menu_item -> goToSongster()
+            R.id.car_db_menu_item -> goToCarDatabase()
+        }
+        return true
+    }
+
+    private fun goToTrivia() {
+        val goToTrivia = Intent(this, TriviaActivityLanding::class.java)
+        startActivity(goToTrivia)
+    }
+
+    private fun goToSongster() {
+        val goToSongster = Intent(this, SongsterSearch::class.java)
+        startActivity(goToSongster)
+    }
+
+    private fun goToCarDatabase() {
+        val goToCarDatabase = Intent(this, HomePage::class.java)
+        startActivity(goToCarDatabase)
     }
 }

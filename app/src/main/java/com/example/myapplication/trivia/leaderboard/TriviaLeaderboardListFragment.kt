@@ -39,7 +39,7 @@ class TriviaLeaderboardListFragment : Fragment() {
 
                 loadDataFromDatabase()
 
-                listView.setOnItemClickListener { _, _, position, id ->
+                listView.setOnItemLongClickListener { _, _, position, id ->
                     AlertDialog.Builder(context)
                             .setTitle("Do you want to delete this?")
                             .setPositiveButton("Yes") { _, _ ->
@@ -52,6 +52,7 @@ class TriviaLeaderboardListFragment : Fragment() {
                                     "\nThe database id is: $id")
                             .create()
                             .show()
+                    true
                 }
             }
     }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group>
-        <item android:id="@+id/nav_item_one"
+        <item android:id="@+id/nav_item_trivia"
             android:title="Go To Trivia"
             android:icon="@drawable/trivia"/>
-        <item android:id="@+id/nav_item_two"
-            android:title="Go To Songstar"
+        <item android:id="@+id/nav_item_songster"
+            android:title="Go To Songster"
             android:icon="@drawable/song"/>
-        <item android:id="@+id/nav_item_three"
+        <item android:id="@+id/nav_item_database"
             android:title="Go To Car Database"
             android:icon="@drawable/car"/>
     </group>

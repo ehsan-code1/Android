@@ -7,7 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:layout_margin="10dp"
         app:cardCornerRadius="10dp">
 
@@ -15,26 +15,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
+            android:layout_marginHorizontal="15dp"
             android:gravity="center">
 
             <TextView
                 android:id="@+id/t_lb_highscore_username"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:layout_alignParentStart="true"
                 android:layout_marginHorizontal="10dp"
                 android:gravity="center_vertical"
-                android:textSize="20sp"
+                android:textSize="55sp"
                 android:text="@string/t_lb_hs_username"
                 android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/t_lb_highscore_score"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:layout_toStartOf="@id/t_lb_highscore_difficulty"
                 android:layout_marginHorizontal="10dp"
-                android:textSize="25sp"
+                android:textSize="55sp"
                 android:gravity="center_vertical"
                 android:text=""
                 android:textColor="@color/red" />
@@ -42,7 +43,7 @@
             <ImageView
                 android:id="@+id/t_lb_highscore_difficulty"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_height="70dp"
                 android:gravity="center_vertical"
                 android:layout_alignParentEnd="true"
                 android:layout_marginHorizontal="10dp" />
