@@ -1,4 +1,4 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.common
 
 import org.json.JSONArray
 
@@ -49,11 +49,9 @@ class TriviaQuestion(
 
 
     // Simple getters
-    fun getCategory(): String           { return questionObj.category }
     fun getType(): String               { return questionObj.type }
     fun getQuestion(): String           { return questionObj.question }
     fun getAnswers(): ArrayList<String> { return allAnswers }
-    fun numberOfAnswers(): Int          { return allAnswers.size }
     fun getIsAnswered(): Boolean        { return isAnswered }
     fun checkCorrectAnswer(): Boolean   { return selectedAnswerIndex == correctAnswerIndex }
 

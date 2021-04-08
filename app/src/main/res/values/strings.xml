@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="app_name">Mobile Project</string>
+    <string name="app_name">CST2335 Project</string>
+    <string name="about" translatable="false">About</string>
     <string name="songster_Heading">Songster Search</string>
     <string name="songster_artistName">Enter Artist or band Name:</string>
     <string name="songster_enter_artist_hint">Enter Artist or band</string>
@@ -30,7 +31,7 @@
     <string name="SongsterSearch_HelpMenuItem">Enter Artist or band name that you want to search for Artist Name then Click Search button or view your favourite Artist List</string>
     <string name="agree">OK</string>
     <string name="SongterSearch_AboutApp">Songster app created by Nouran Nouh  V1.0</string>
-   <string name="duplicateMessage">this Song is already saved</string>
+    <string name="duplicateMessage">this Song is already saved</string>
     <string name="ConfirmationMessageofSave">Your Favourite Song is saved</string>
     <string name="AskingMessageToDelete">Are you sure you want to delete this song?</string>
     <string name="SongDetail_FavouriteListConfirmation_Add">Do you want to save this to your favourite List?</string>
@@ -57,13 +58,11 @@
     <string name="title_activity_trivia_quiz" translatable="false">TriviaQuizActivity</string>
     <string name="t_quiz_question_number" translatable="false">"Question %s"</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="t_lb_name_text" translatable="false">Please enter your name:</string>
-    <string name="t_lb_score_text" translatable="false">Score:</string>
-    <string name="t_lb_difficulty_text" translatable="false">Difficulty</string>
-    <string name="t_lb_amount_text" translatable="false">Number of Questions:</string>
-    <string name="t_lb_type_text" translatable="false">Types of Questions:</string>
-    <string name="t_lb_totalscore_text" translatable="false">Total Score:</string>
-    <string name="t_lb_results_text" translatable="false">Results:</string>
+    <string name="t_lb_name_text">Please enter your name:</string>
+    <string name="t_lb_score_text">Score:</string>
+    <string name="t_lb_type_text">Types of Questions:</string>
+    <string name="t_lb_totalscore_text">Total Score:</string>
+    <string name="t_lb_results_text">Results:</string>
     <string name="logo">KoolKars</string>
     <string name="description">Canada\'s Largest Car Database</string>
     <string name="hint">idk</string>
@@ -76,5 +75,13 @@
     <string name="view_details">View Details</string>
     <string name="model_id">Model ID: </string>
     <string name="make_id">Make ID: </string>
+    <string name="t_about">About</string>
+    <string name="t_landing_help">Enter the number of questions\nChoose the type of questions: Multiple Choice, True/False, or Both.\nChoose the difficulty of the questions.</string>
+    <string name="t_lb_help">Input your name and join the leaderboards!\nLong click on any leaderboard entry to show a popup with more information.</string>
+    <string name="t_quiz_help">Select a question from the list, and choose an answer.\nOnce you have answered all questions, you may submit the quiz.</string>
+    <string name="t_go_to_leaderboards">Highscores</string>
+    <string name="t_lb_hs_username">"%s. %s"</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 
 </resources>
