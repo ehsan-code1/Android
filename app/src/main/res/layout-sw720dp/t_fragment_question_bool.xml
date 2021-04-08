@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".trivia.quiz.TriviaQuestionItemFragment">
+
+    <androidx.cardview.widget.CardView
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:layout_constraintBottom_toBottomOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="450dp"
+        android:minHeight="250dp"
+        android:layout_height="500dp"
+        card_view:cardBackgroundColor="@color/purple_500"
+        card_view:cardCornerRadius="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                card_view:layout_constraintTop_toTopOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/t_quiz_question"
+                android:layout_width="match_parent"
+                android:minHeight="50dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginHorizontal="50dp"
+                android:textSize="25sp"
+                android:text=""
+                android:textColor="@color/white" />
+
+            <LinearLayout
+                card_view:layout_constraintTop_toBottomOf="@id/t_quiz_question"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginVertical="50dp"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/t_quiz_answer_true"
+                    android:layout_width="250dp"
+                    android:layout_height="80dp"
+                    android:textSize="35sp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text="True"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/t_quiz_answer_false"
+                    android:layout_marginTop="10dp"
+                    android:textSize="35sp"
+                    android:layout_width="250dp"
+                    android:layout_height="80dp"
+                    android:backgroundTint="@color/purple_700"
+                    android:text="False"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

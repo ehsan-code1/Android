@@ -1,9 +1,9 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.common
 
 /**
  * A class to contain common utilities used by multiple pieces of the trivia application.
  * Includes:
- * [URLCOMPONENTS]: Companion object of string components to build the url
+ * [Companion]: a companion object for constants used in url building, and in object keys
  * [QuestionDifficulty]: an Enum for easy, medium, and hard difficulties
  * [QuestionType]: an Enum for the question type, includes none, multiple choice, boolean (true/false), and both
  */

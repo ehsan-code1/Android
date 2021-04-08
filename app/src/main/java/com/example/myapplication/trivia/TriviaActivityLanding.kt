@@ -3,24 +3,30 @@ package com.example.myapplication.trivia
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.TYPE
 import com.google.android.material.snackbar.Snackbar
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.leaderboard.TriviaActivityLeaderboard
+import com.example.myapplication.trivia.quiz.TriviaQuizActivity
 
 /**
  * The first activity launched for the trivia section. This activity accepts the parameters to be used
  * for the trivia quiz. This includes the number of questions, the type of questions (multiple choice and/or boolean),
  * and the difficulty of the questions. These three parameters are to be used to create the api url.
  */
-class TriviaActivityLanding : AppCompatActivity() {
+class TriviaActivityLanding : BaseActivityWithDrawer() {
     private lateinit var currentToast: Toast // The current toast object. This is replaced if it exists already
     private lateinit var qDifficulty : QuestionDifficulty // The current choice of Question Difficulty
     private lateinit var qType : QuestionType // The current choice of Question Type
@@ -30,7 +36,7 @@ class TriviaActivityLanding : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_landing)
+        setContentView(R.layout.t_activity_trivia_landing)
 
         /* Set Question Type Listeners */
         findViewById<ToggleButton>(R.id.t_q_type_mc).setOnClickListener(LandingClickListener())
@@ -42,6 +48,36 @@ class TriviaActivityLanding : AppCompatActivity() {
                 }
         /* Set Begin Button Click Listener */
         findViewById<Button>(R.id.t_begin_game_btn).setOnClickListener(LandingClickListener())
+        findViewById<Button>(R.id.t_go_to_leaderboards_btn).setOnClickListener(LandingClickListener())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.t_help_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.t_menu_help_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Trivia Instructions")
+                        .setMessage(R.string.t_landing_help)
+                        .create()
+                        .show()
+            }
+            R.id.t_menu_about_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("CST2335 Project: Trivia")
+                        .setMessage("Matthew Ellero. V1.5.2")
+                        .create()
+                        .show()
+            }
+        }
+        return true
     }
 
     /**
@@ -63,6 +99,16 @@ class TriviaActivityLanding : AppCompatActivity() {
                 /* Begin Button Listener */
                 R.id.t_begin_game_btn ->
                     beginGameListener()
+                /* Leaderboard Button Listener */
+                R.id.t_go_to_leaderboards_btn -> {
+                    val goToLeaderboards = Intent(this@TriviaActivityLanding, TriviaActivityLeaderboard::class.java)
+                    val dataToPass = Bundle()
+                            .apply {
+                                putBoolean("fromLanding", true)
+                            }
+                    goToLeaderboards.putExtras(dataToPass)
+                    startActivity(goToLeaderboards)
+                }
             }
         }
 
@@ -162,31 +208,23 @@ class TriviaActivityLanding : AppCompatActivity() {
                 return
             }
             // Ensure question type(s) has been selected
-            val questionTypeText =
-                if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
-                    Snackbar.make(
-                            findViewById(R.id.t_begin_game_btn),
-                            "Please select the Question Type(s)",
-                            Snackbar.LENGTH_SHORT
-                    ).show()
-                    return
-                } else qType
+            if (!this@TriviaActivityLanding::qType.isInitialized || qType == QuestionType.NONE) {
+                Snackbar.make(
+                        findViewById(R.id.t_begin_game_btn),
+                        "Please select the Question Type(s)",
+                        Snackbar.LENGTH_SHORT
+                ).show()
+                return
+            }
             // Ensure question difficulty has been selected
-            val questionDifficultyText =
-                    if (!this@TriviaActivityLanding::qDifficulty.isInitialized) {
-                        Snackbar.make(
-                                findViewById(R.id.t_begin_game_btn),
-                                "Please select the Question Difficulty",
-                                Snackbar.LENGTH_SHORT
-                        ).show()
-                        return
-                    } else {
-                        when (qDifficulty) {
-                            QuestionDifficulty.EASY -> "Easy Mode"
-                            QuestionDifficulty.MEDIUM -> "Medium Mode"
-                            QuestionDifficulty.HARD -> "Hard Mode"
-                        }
-                    }
+            if (!this@TriviaActivityLanding::qDifficulty.isInitialized) {
+                Snackbar.make(
+                        findViewById(R.id.t_begin_game_btn),
+                        "Please select the Question Difficulty",
+                        Snackbar.LENGTH_SHORT
+                ).show()
+                return
+            }
 
             val goToTriviaQuiz = Intent(this@TriviaActivityLanding, TriviaQuizActivity::class.java)
             val dataToPass = Bundle()

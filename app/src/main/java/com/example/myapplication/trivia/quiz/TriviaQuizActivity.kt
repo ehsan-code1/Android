@@ -1,33 +1,41 @@
-package com.example.myapplication.trivia
+package com.example.myapplication.trivia.quiz
 
 import android.content.Intent
 import android.os.AsyncTask
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.HtmlCompat
+import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.AMOUNT
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.SCORE
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.DIFFICULTY
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.TYPE
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionType
-import com.example.myapplication.trivia.TriviaCommonUtils.QuestionDifficulty
-import com.example.myapplication.trivia.TriviaCommonUtils.Companion.triviaURL
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.AMOUNT
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.DIFFICULTY
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.TYPE
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionType
+import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty
+import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.triviaURL
+import com.example.myapplication.trivia.common.TriviaQuestion
 import org.json.JSONArray
 import org.json.JSONObject
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStreamReader
+import java.lang.StringBuilder
+import java.net.URL
 
 /**
  * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
  * Currently uses dummy JSON data, with dummy async calls to populate the list.
  */
-class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
-    private val testJSON = "{\"response_code\":0,\"results\":[{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was the movie &#039;Con Air&#039; released?\",\"correct_answer\":\"1997\",\"incorrect_answers\":[\"1985\",\"1999\",\"1990\"]},{\"category\":\"Science & Nature\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What is the first element on the periodic table?\",\"correct_answer\":\"Hydrogen\",\"incorrect_answers\":[\"Helium\",\"Oxygen\",\"Lithium\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"boolean\",\"difficulty\":\"easy\",\"question\":\"In &quot;Undertale&quot;, the main character of the game is Sans.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"The LS2 engine is how many cubic inches?\",\"correct_answer\":\"364\",\"incorrect_answers\":[\"346\",\"376\",\"402\"]},{\"category\":\"Vehicles\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"What country was the Trabant 601 manufactured in?\",\"correct_answer\":\"East Germany\",\"incorrect_answers\":[\"Soviet Union\",\"Hungary\",\"France\"]}]}"
-    private val adapter = MyAdapter()
+class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment {
+    private val adapter = QuizAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
     private var isTablet: Boolean = false
@@ -35,7 +43,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_trivia_quiz)
+        setContentView(R.layout.t_activity_trivia_quiz)
 
         isTablet = findViewById<FrameLayout>(R.id.t_quiz_frame) != null
 
@@ -48,7 +56,7 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
         val difficulty = QuestionDifficulty.getValue(data.getInt(DIFFICULTY))!!
         val type = QuestionType.getValue(data.getInt(TYPE))!!
 
-        val fetchedJSON = FetchTriviaQuestions().execute(
+        FetchTriviaQuestions().execute(
                 buildURL(data.getString(AMOUNT)!!,
                         type,
                         difficulty)
@@ -121,14 +129,43 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.t_help_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+        when (item.itemId) {
+            R.id.t_menu_help_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Trivia Instructions")
+                        .setMessage(R.string.t_quiz_help)
+                        .create()
+                        .show()
+            }
+            R.id.t_menu_about_item -> {
+                AlertDialog.Builder(this)
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("CST2335 Project: Trivia")
+                        .setMessage("Matthew Ellero. V1.5.2")
+                        .create()
+                        .show()
+            }
+        }
+        return true
+    }
+
     /**
      * Calculates the total number of questions answered correctly, known as the "prescore" (ie., before any multipliers)
      */
     private fun calculatePreScore(): Int {
         // Create a 1 || 0 mapping of each answer, then sum across the map
         return parsedQuestions
-            .map { if (it.checkCorrectAnswer()) 1 else 0 }
-            .sum()
+                    .map { if (it.checkCorrectAnswer()) 1 else 0 }
+                    .sum()
     }
 
 
@@ -203,32 +240,31 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
      * Hardcoded (ie., Synchronous) "fetch" of test URI
      */
     inner class FetchTriviaQuestions: AsyncTask<String, Int, String>() {
+        private val progressBar: ProgressBar = findViewById(R.id.t_quiz_progress_bar)
+
         override fun doInBackground(vararg params: String?): String {
-            // Test call. Hardcoded json object + size
-            testParseJSON(testJSON, 5)
-            return "Done"
-        }
-
-        override fun onProgressUpdate(vararg values: Int?) {
-            super.onProgressUpdate(*values)
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.VISIBLE
-            // Update the progress bar as JSON is parsed
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).progress = values[0]!!
-        }
-
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.INVISIBLE
-        }
-
-        /**
-         * Hardcoded parsing of test JSON
-         */
-        private fun testParseJSON(jsonString: String, size: Int) {
-            val progressChunk = 100/size
+            Log.i(this.javaClass.simpleName, "Executing async fetch on ${params[0]}")
 
             try {
-                val results = (JSONObject(jsonString)).get("results") as JSONArray
+                val reader = BufferedReader(
+                        InputStreamReader(
+                                URL(params[0]).openConnection().getInputStream(),
+                                "UTF-8"
+                        ), 8)
+                val sb = StringBuilder()
+                reader.useLines {
+                    it.forEach { s -> sb.append(s) }
+                }
+
+                val quoteReplacedJson =  sb.toString().replace("&quot;", "&lsquo;")
+                val deencodedJson = HtmlCompat.fromHtml(quoteReplacedJson,
+                                                        HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
+                val results = JSONObject(deencodedJson).get("results") as JSONArray
+
+                val size = results.length()
+                val progressChunk = size / 100;
+                Log.i(this.javaClass.simpleName, "Fetched $size results.")
+
                 for (i in (0 until size)) {
                     parsedQuestions.add(TriviaQuestion(
                             results.getJSONObject(i)["category"].toString(),
@@ -241,19 +277,34 @@ class TriviaQuizActivity : AppCompatActivity(), ReturnDataFromQuizFragment {
                     publishProgress(progressChunk * i)
                 }
             } catch (e: IOException) {
-                print("ERROR: $e")
+                println("ERROR fetching: ${e.message}")
             }
+            return "Done"
+        }
+
+        override fun onProgressUpdate(vararg values: Int?) {
+            super.onProgressUpdate(*values)
+            progressBar.apply {
+                visibility = View.VISIBLE
+                progress = values[0]!!
+            }
+        }
+
+        override fun onPostExecute(result: String?) {
+            super.onPostExecute(result)
+            adapter.notifyDataSetChanged()
+            findViewById<ProgressBar>(R.id.t_quiz_progress_bar).visibility = View.INVISIBLE
         }
     }
 
     /**
      * A private adapter class to handle the ListView of questions
      */
-    inner class MyAdapter : BaseAdapter() {
+    inner class QuizAdapter : BaseAdapter() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val item = getItem(position)
             return layoutInflater.inflate(
-                R.layout.trivia_layout_question, parent, false
+                R.layout.t_layout_question, parent, false
             ).apply {
                 findViewById<TextView>(R.id.t_quiz_question_number).text =
                             getString(R.string.t_quiz_question_number,  (position + 1).toString())
