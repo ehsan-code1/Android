@@ -20,4 +20,9 @@
     <string name="t_hard_diff_content_desc">Hard Mode Button: Skull and Crossbones</string>
     <string name="title_activity_trivia_quiz">TriviaQuizActivity</string>
     <string name="t_quiz_question_number">"Question %s"</string>
+
+    <!-- Soccer Games API-->
+    <string name="soccer_button">Soccer Game News</string>
+
+
 </resources>
