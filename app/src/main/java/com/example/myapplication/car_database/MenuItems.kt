@@ -1,11 +1,8 @@
 package com.example.myapplication.car_database
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.TextView
 import com.example.myapplication.R
 
@@ -26,7 +23,18 @@ class MenuItems : AppCompatActivity() {
         val t1 : TextView = findViewById(R.id.titleoption)
         val t2 : TextView = findViewById(R.id.description)
 
+        val type : Boolean = intent.getBooleanExtra("help",true)
+
+        if (type){
+            t1.text = "Help"
+            t2.text = getString(R.string.help)
+        }
+        else {
+            t1.text = "About"
+            t2.text = getString(R.string.about)
+        }
+
 
     }
+    }
 
-}

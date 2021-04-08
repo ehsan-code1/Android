@@ -66,7 +66,7 @@
     <string name="t_lb_results_text" translatable="false">Results:</string>
     <string name="logo">KoolKars</string>
     <string name="description">Canada\'s Largest Car Database</string>
-    <string name="hint">idk</string>
+    <string name="hint">Enter Car Manufacturer Name</string>
     <string name="go_to_chat" translatable="false">gotochat</string>
     <string name="go">Go</string>
     <string name="title_activity_empty">idk</string>
@@ -76,5 +76,18 @@
     <string name="view_details">View Details</string>
     <string name="model_id">Model ID: </string>
     <string name="make_id">Make ID: </string>
+    <string name="help">Enter Name of Manufacturer in Search Field.
+                     Press Go to Load All Models from That Manufacturer.
+                     Click on Model Id Of Car, Bottom Right, to View Options for Car.
+                     Click Save to Add Car To Database.
+                     On HomePage, Click On Favourite Cars to see your cars you have Saved
+                     Click On Buy to open Auto trader Link for that Model.
+                     Click on Details to Google Search that model. </string>
+    <string name="about">Architect:
+                    Muhammad Ehsan Khan.
+                    Version 1.0, Final Stable Release.
+                    Project initiated on March 15th 2021.
+                    Project Finalized on March 17th 2021.</string>
+
 
 </resources>
