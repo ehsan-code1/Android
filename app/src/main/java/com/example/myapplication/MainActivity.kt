@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import com.example.myapplication.soccer.SoccerLanding
 import android.widget.ImageButton
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
@@ -25,6 +26,7 @@ class MainActivity : BaseActivityWithDrawer() {
         findViewById<Button>(R.id.car).setOnClickListener{ goToCarDatabase() }
         findViewById<Button>(R.id.trivia).setOnClickListener{ goToTrivia() }
         findViewById<Button>(R.id.sstar).setOnClickListener{ goToSongster() }
+        findViewById<Button>(R.id.ss).setOnClickListener{ goToSoccer() }
     }
 
     private fun goToTrivia() {
@@ -40,5 +42,10 @@ class MainActivity : BaseActivityWithDrawer() {
     private fun goToCarDatabase() {
         val goToCarDatabase = Intent(this, HomePage::class.java)
         startActivity(goToCarDatabase)
+    }
+  
+    private fun goToSoccer() {
+        val goToSoccerIntent = Intent(this, SoccerLanding::class.java)
+        startActivity(goToSoccerIntent)
     }
 }

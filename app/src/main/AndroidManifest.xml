@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
-
+      
+        <activity android:name=".soccer.FavouriteArticles"></activity>
+        <activity android:name=".soccer.SoccerLanding" />
         <activity android:name=".songstar.FavouriteList" />
         <activity android:name=".songstar.FragmentPhoneActivity" />
         <activity android:name=".songstar.SongsterList" />
