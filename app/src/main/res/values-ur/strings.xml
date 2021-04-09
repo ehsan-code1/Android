@@ -1,0 +1,89 @@
+
+<resources>
+    <string name="app_name" >Car Database</string>
+    <string name="logo" >logo</string>
+    <string name="description" >کینیڈا کا سب سے بڑا کار ڈیٹا بیس</string>
+    <string name="hint" >تلاش کریں</string>
+    <string name="go" >جاؤ</string>
+    <string name="hello_blank_fragment" >ہیلو blank fragment</string>
+    <string name="title_activity_empty" >EmptyActivity</string>
+    <string name="hello_world" >Hello Square World!</string>
+    <string name="view_your_saved_cars">اپنی محفوظ شدہ کاریں دیکھیں
+</string>
+    <string name="save_to_database" >ڈیٹا بیس میں محفوظ کریں</string>
+    <string name="buy">خریدنے</string>
+    <string name="view_details" >تفصیلات دیکھیں</string>
+    <string name="model_id">Model ID:</string>
+    <string name="make_id">Make ID:</string>
+    <string name="songster_Heading">idk</string>
+    <string name="songster_artistName">idk</string>
+    <string name="songster_enter_artist_hint">idk</string>
+    <string name="songster_search_button">idk</string>
+    <string name="songster_FavouriteList">idk</string>
+    <string name="songster_SongList">idk</string>
+    <string name="Songster_Search_Artist">idk</string>
+    <string name="Songster_Search">idk</string>
+    <string name="SongTitle">idk</string>
+    <string name="ArtistName">idk</string>
+    <string name="SongId">idk</string>
+    <string name="BackButton">idk</string>
+    <string name="songster">idk</string>
+    <string name="ArtistId">idk</string>
+    <string name="Songster_Save">idk</string>
+    <string name="Songster_Delete">idk</string>
+    <string name="favouriteList">idk</string>
+    <string name="Songster_menu_about">idk</string>
+    <string name="Songster_menu_help">idk</string>
+    <string name="youSelected">idk</string>
+    <string name="Songster_moreInfoAboutSong">idk</string>
+    <string name="confirm">idk</string>
+    <string name="decline">idk</string>
+    <string name="nothingChanged">idk</string>
+    <string name="SongsterSearch_EnterValidName">idk</string>
+    <string name="SongsterSearch_AboutMenuItem">idk</string>
+    <string name="SongsterSearch_HelpMenuItem">idk</string>
+    <string name="agree">idk</string>
+    <string name="SongterSearch_AboutApp">idk</string>
+    <string name="duplicateMessage">idk</string>
+    <string name="ConfirmationMessageofSave">idk</string>
+    <string name="AskingMessageToDelete">idk</string>
+    <string name="SongDetail_FavouriteListConfirmation_Add">idk</string>
+    <string name="ConfirmationMessage_Of_Deletion">idk</string>
+    <string name="about">معمار:
+                    محمد احسان خان۔
+                    ورژن 1.0 ، آخری مستحکم رہائی۔
+                    پروجیکٹ کا آغاز 15 مارچ 2021 کو ہوا تھا۔
+                    پروجیکٹ کو 17 مارچ 2021 کو حتمی شکل دی گئی۔</string>
+    <string name="help">سرچ فیلڈ میں ڈویلپر کا نام درج کریں۔
+                     اس ڈویلپر سے تمام ماڈلز لوڈ کرنے کے لئے گو دبائیں۔
+                     کار کے اختیارات دیکھنے کے لئے نیچے دائیں ، ماڈل کے کار پر کلک کریں۔
+                     کار کو ڈیٹا بیس میں شامل کرنے کے لئے محفوظ کریں پر کلک کریں۔
+                     ہوم پیج پر ، اپنی کاروں کو بچانے کے لئے پسندیدہ کاروں پر کلیک کریں
+                     اس ماڈل کے لئے آٹو ٹریڈر لنک کھولنے کے لئے خریدیں پر کلک کریں۔
+                     اس ماڈل پر گوگل سرچ پر تفصیلات پر کلک کریں۔ </string>
+    <string name="title_activity_trivia">idk</string>
+    <string name="t_numQ_text">idk</string>
+    <string name="t_q_type_text">idk</string>
+    <string name="t_difficulty_text">idk</string>
+    <string name="t_qtype_toast">idk</string>
+    <string name="t_start_button">idk</string>
+    <string name="t_begin_game_btn_text">idk</string>
+    <string name="t_tf_btn_text">idk</string>
+    <string name="t_mc_btn_text">idk</string>
+    <string name="t_easy_diff_content_desc">idk</string>
+    <string name="t_med_diff_content_desc">idk</string>
+    <string name="t_hard_diff_content_desc">idk</string>
+    <string name="t_quiz_question_number">idk</string>
+    <string name="t_lb_name_text">idk</string>
+    <string name="t_lb_score_text">idk</string>
+    <string name="t_lb_type_text">idk</string>
+    <string name="t_lb_results_text">idk</string>
+    <string name="t_lb_totalscore_text">idk</string>
+    <string name="t_about">idk</string>
+    <string name="t_landing_help">idk</string>
+    <string name="t_quiz_help">idk</string>
+    <string name="t_lb_help">idk</string>
+    <string name="t_go_to_leaderboards">idk</string>
+    <string name="t_lb_hs_username">%s. %s</string>
+
+</resources>

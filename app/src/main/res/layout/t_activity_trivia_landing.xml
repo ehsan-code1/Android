@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/t_header"
+        layout="@layout/t_common_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/t_numQ_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        card_view:cardBackgroundColor="@color/purple_500"
+        card_view:cardCornerRadius="10dp"
+        card_view:layout_constraintBottom_toTopOf="@+id/t_qType_card"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHeight_default="percent"
+        card_view:layout_constraintHeight_max="200dp"
+        card_view:layout_constraintHeight_percent="0.2"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/t_header"
+        card_view:layout_constraintWidth_default="percent"
+        card_view:layout_constraintWidth_max="400dp"
+        card_view:layout_constraintWidth_percent="0.7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/t_numQ_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="20dp"
+                android:labelFor="@+id/t_num_qs"
+                android:text="@string/t_numQ_text"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/t_num_qs"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:autofillHints=""
+                android:drawableBottom="@color/black"
+                android:inputType="number"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@+id/t_numQ_text" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/t_qType_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        card_view:cardBackgroundColor="@color/purple_500"
+        card_view:cardCornerRadius="10dp"
+        card_view:layout_constraintBottom_toTopOf="@id/t_difficulty_card"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHeight_default="percent"
+        card_view:layout_constraintHeight_max="200dp"
+        card_view:layout_constraintHeight_percent="0.2"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/t_numQ_card"
+        card_view:layout_constraintWidth_default="percent"
+        card_view:layout_constraintWidth_max="400dp"
+        card_view:layout_constraintWidth_percent="0.7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/t_q_type_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/t_q_type_text"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/t_q_type_text">
+
+                <ToggleButton
+                    android:id="@+id/t_q_type_mc"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textOff="@string/t_mc_btn_text"
+                    android:textOn="@string/t_mc_btn_text" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <ToggleButton
+                    android:id="@+id/t_q_type_tf"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textOff="@string/t_tf_btn_text"
+                    android:textOn="@string/t_tf_btn_text" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/t_difficulty_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        card_view:cardBackgroundColor="@color/purple_500"
+        card_view:cardCornerRadius="10dp"
+        card_view:layout_constraintBottom_toTopOf="@id/t_guideline"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintHeight_default="percent"
+        card_view:layout_constraintHeight_max="200dp"
+        card_view:layout_constraintHeight_percent="0.2"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@id/t_qType_card"
+        card_view:layout_constraintWidth_default="percent"
+        card_view:layout_constraintWidth_max="400dp"
+        card_view:layout_constraintWidth_percent="0.7">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/t_difficulty_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/t_difficulty_text"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="10dp"
+                android:orientation="horizontal"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toBottomOf="@id/t_difficulty_text">
+
+                <ImageButton
+                    android:id="@+id/t_diff_easy_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/t_easy_diff_content_desc"
+                    android:src="@drawable/easy" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/t_diff_med_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/t_med_diff_content_desc"
+                    android:src="@drawable/med" />
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content" />
+
+                <ImageButton
+                    android:id="@+id/t_diff_hard_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/t_hard_diff_content_desc"
+                    android:src="@drawable/hard" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/t_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        card_view:layout_constraintGuide_percent="0.8" />
+
+    <Button
+        android:id="@+id/t_begin_game_btn"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="@string/t_begin_game_btn_text"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/t_guideline" />
+
+    <Button
+        android:id="@+id/t_go_to_leaderboards_btn"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/t_go_to_leaderboards"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toBottomOf="@+id/t_begin_game_btn" />
+</androidx.constraintlayout.widget.ConstraintLayout>

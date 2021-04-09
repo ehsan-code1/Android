@@ -10,16 +10,35 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.MyApplication">
+      
         <activity android:name=".soccer.FavouriteArticles"></activity>
         <activity android:name=".soccer.SoccerLanding" />
-        <activity android:name=".trivia.TriviaEmptyQuestionActivity" />
-        <activity android:name=".trivia.TriviaQuizActivity" />
+        <activity android:name=".songstar.FavouriteList" />
+        <activity android:name=".songstar.FragmentPhoneActivity" />
+        <activity android:name=".songstar.SongsterList" />
+        <activity android:name=".songstar.SongsterSearch"/>
+        <activity
+            android:name=".trivia.leaderboard.TriviaActivityLeaderboard"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
+            android:name=".trivia.quiz.TriviaEmptyQuestionActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+        <activity
+            android:name=".trivia.quiz.TriviaQuizActivity"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
         <activity
             android:name=".trivia.TriviaActivityLanding"
-            android:label="@string/title_activity_trivia" />
-        <activity android:name=".MainActivity">
+            android:label="@string/title_activity_trivia"
+            android:theme="@style/Theme.MyApplication.NoActionBar"/>
+        <activity android:name=".car_database.MenuItems"></activity>
+        <activity android:name=".car_database.SavedCars" />
+        <activity
+            android:name=".car_database.EmptyActivity"
+            android:label="@string/title_activity_empty" />
+        <activity android:name=".car_database.CarsList" />
+        <activity android:name=".car_database.HomePage"/>
+        <activity android:name=".MainActivity" android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
