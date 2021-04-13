@@ -98,5 +98,6 @@
                     Project initiated on March 15th 2021.
                     Project Finalized on March 17th 2021.</string>
     <string name="t_menu_help_text">Help</string>
+    <string name="t_submit_dialog">Please answer all of the questions before submitting.</string>
 
 </resources>
