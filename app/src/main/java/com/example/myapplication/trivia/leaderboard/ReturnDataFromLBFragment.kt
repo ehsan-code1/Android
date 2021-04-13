@@ -7,7 +7,7 @@ import android.os.Bundle
  */
 interface ReturnDataFromLBFragment {
     /**
-     * @param username the name of the user, to be returned from the fragment
+     * @param dataToReturn a bundle of information to be returned from the fragment
      */
     fun returnDataFromLBFragment(dataToReturn: Bundle)
 }

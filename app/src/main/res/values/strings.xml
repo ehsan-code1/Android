@@ -97,5 +97,6 @@
                     Version 1.0, Final Stable Release.
                     Project initiated on March 15th 2021.
                     Project Finalized on March 17th 2021.</string>
+    <string name="t_menu_help_text">Help</string>
 
 </resources>

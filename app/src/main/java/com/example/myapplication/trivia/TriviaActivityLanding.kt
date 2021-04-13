@@ -8,7 +8,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils.Companion.SCORE
@@ -57,6 +56,9 @@ class TriviaActivityLanding : BaseActivityWithDrawer() {
         return true
     }
 
+    /**
+     * Set alert dialogs for help and about menu items
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
@@ -238,6 +240,10 @@ class TriviaActivityLanding : BaseActivityWithDrawer() {
         }
     }
 
+    /**
+     * This function is called when the quiz back button is pressed, in which case we do nothing;
+     * Or when we are returning from the quiz with quiz results, in which case we launch the highscore entry screen
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
