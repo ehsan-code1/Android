@@ -102,4 +102,6 @@
     <string name="favourite_Articles_Title">Your Favourited Articles!</string>
     <string name="saveButton">Save</string>
     <string name="openButton">Open</string>
+    <string name="t_menu_help_text">Help</string>
+    <string name="t_submit_dialog">Please answer all of the questions before submitting.</string>
 </resources>
