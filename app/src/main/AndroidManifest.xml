@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".soccer.FavouriteArticles"></activity>
+        <activity android:name=".soccer.EmptyActivity"></activity>
+        <activity android:name=".soccer.FavouriteArticles" />
         <activity android:name=".soccer.SoccerLanding" />
         <activity android:name=".trivia.TriviaEmptyQuestionActivity" />
         <activity android:name=".trivia.TriviaQuizActivity" />

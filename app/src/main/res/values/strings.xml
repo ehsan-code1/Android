@@ -23,6 +23,11 @@
 
     <!-- Soccer Games API-->
     <string name="soccer_button">Soccer Game News</string>
+    <string name="soccer_Landing_Title">Soccer Articles!</string>
+    <string name="favourite_Articles_Title">Your Favourited Articles!</string>
+    <string name="saveButton">Save</string>
+    <string name="openButton">Open</string>
+
 
 
 </resources>
