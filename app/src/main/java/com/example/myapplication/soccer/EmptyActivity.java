@@ -46,9 +46,9 @@ public class EmptyActivity extends AppCompatActivity {
         String strImage = String.valueOf(intent.getStringExtra("imageURL"));
 
         Log.d("LOG_TAG", strImage);
-//        Picasso.with(this)
-//                .load(strImage)
-//                .into(articleImg);
+        Picasso.get()
+                .load(strImage)
+                .into(articleImg);
 
         Button finishButton = (Button) findViewById(R.id.saveButton);
         finishButton.setOnClickListener( clk -> {

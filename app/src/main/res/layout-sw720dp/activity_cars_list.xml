@@ -28,8 +28,13 @@
         android:minHeight="50dp" />
 
     <FrameLayout
-        android:id="@+id/frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toEndOf="@id/carList"></FrameLayout>
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+
+    </FrameLayout>
 </RelativeLayout>

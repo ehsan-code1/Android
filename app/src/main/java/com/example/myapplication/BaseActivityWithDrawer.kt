@@ -53,6 +53,7 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
                 R.id.nav_item_trivia -> goToTrivia()
                 R.id.nav_item_songster -> goToSongster()
                 R.id.nav_item_database -> goToCarDatabase()
+                R.id.nav_item_Soccer -> goToSoccer()
             }
 
             drawer.closeDrawer(GravityCompat.START)
@@ -71,6 +72,8 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
             R.id.nav_item_trivia-> goToTrivia()
             R.id.nav_item_songster -> goToSongster()
             R.id.nav_item_database -> goToCarDatabase()
+            R.id.nav_item_Soccer -> goToSoccer()
+
         }
         return true
     }
@@ -88,5 +91,9 @@ open class BaseActivityWithDrawer: AppCompatActivity() {
     private fun goToCarDatabase() {
         val goToCarDatabase = Intent(this, HomePage::class.java)
         startActivity(goToCarDatabase)
+    }
+    private fun goToSoccer() {
+        val goToSoccer = Intent(this, SoccerLanding::class.java)
+        startActivity(goToSoccer)
     }
 }

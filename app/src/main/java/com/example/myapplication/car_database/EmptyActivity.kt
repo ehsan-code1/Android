@@ -20,13 +20,13 @@ class EmptyActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_empty)
+        setContentView(R.layout.activity_empty_car)
         val dataToPass = intent.extras
         val dFrag = CarOptions()
 
         dFrag.arguments = dataToPass
 
-        supportFragmentManager.beginTransaction().replace(R.id.frame,dFrag).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.framecar,dFrag).commit()
     }
     /**
      * Adds helpmenu menu item to the optionsMenu if its present
