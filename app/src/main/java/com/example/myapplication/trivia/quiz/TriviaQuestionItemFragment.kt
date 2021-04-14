@@ -68,6 +68,7 @@ class TriviaQuestionItemFragment : Fragment(), View.OnClickListener {
             buttonToPositionMap[v.id]?.let {
                 parentActivity.returnDataFromQuizFragment(requireArguments().getInt(QUESTION_ID), it)
             }
+        // Tablet
         } else if (parentActivity is TriviaQuizActivity){
             buttonToPositionMap[v.id]?.let {
                 parentActivity.returnDataFromQuizFragment(requireArguments().getInt(QUESTION_ID), it)

@@ -72,4 +72,6 @@
     <string name="t_lb_help">Ange ditt namn och gå med i resultatlistan!\nOm du vill visa en popup-meny med mer information klickar du länge på en post i resultatlistan.</string>
     <string name="t_lb_hs_username">%s. %s</string>
     <string name="t_go_to_leaderboards">"Bästa Resultat "</string>
+    <string name="t_menu_help_text">Hjälp</string>
+    <string name="t_submit_dialog">Svara på alla frågor innan du skickar in dem.</string>
 </resources>

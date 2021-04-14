@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.myapplication.car_database.HomePage
+import com.example.myapplication.soccer.SoccerLanding
 import com.example.myapplication.songstar.SongsterSearch
 import com.example.myapplication.trivia.TriviaActivityLanding
 import com.google.android.material.navigation.NavigationView

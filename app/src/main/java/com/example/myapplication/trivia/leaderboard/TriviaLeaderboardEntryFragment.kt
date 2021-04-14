@@ -20,7 +20,7 @@ private const val AMOUNT = "amount"
 private const val TYPE = "type"
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] subclass to input user data and score after the quiz is submitted.
  * Use the [TriviaLeaderboardEntryFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -33,8 +33,6 @@ class TriviaLeaderboardEntryFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO: Retrieve name from SharedPreferences
-
         arguments?.let {
             prescore = it.getInt(PRESCORE)
             totalscore = it.getInt(TOTALSCORE)
@@ -45,7 +43,7 @@ class TriviaLeaderboardEntryFragment : Fragment() {
     }
 
     /**
-     * Sets the name field using the SharedPreferences interface
+     * Sets the name field using the SharedPreferences interface and the current string in the EditText
      */
     override fun onPause() {
         super.onPause()
@@ -55,6 +53,9 @@ class TriviaLeaderboardEntryFragment : Fragment() {
                 .apply()
     }
 
+    /**
+     * Inflate the view and set all the quiz information/score. Ask for user name to input into database.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -90,8 +91,7 @@ class TriviaLeaderboardEntryFragment : Fragment() {
                                 putInt(PRESCORE, totalscore)
                                 putString(DIFFICULTY, TriviaCommonUtils.QuestionDifficulty.getValue(difficulty).toString())
                             }
-
-
+                            // Return from fragment with user information
                             (requireActivity() as TriviaActivityLeaderboard).returnDataFromLBFragment(dataToReturn)
                         }
                     }

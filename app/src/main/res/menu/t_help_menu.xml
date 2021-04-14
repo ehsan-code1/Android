@@ -1,27 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <group>
-        <item android:id="@+id/trivia_menu_item"
-            android:title="Go To Trivia"
-            android:icon="@drawable/trivia"/>
-        <item android:id="@+id/songster_menu_item"
-            android:title="Go To Songstar"
-            android:icon="@drawable/song"/>
-        <item android:id="@+id/car_db_menu_item"
-            android:title="Go To Car Database"
-            android:icon="@drawable/car"/>
-    </group>
-
     <item
         android:id="@+id/t_menu_help_item"
         android:icon="@drawable/icons_help"
-        android:title=""
+        android:title="@string/t_menu_help_text"
         android:orderInCategory="1"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/t_menu_about_item"
         android:title="@string/t_about"
         android:orderInCategory="1"
-        app:showAsAction="always"/>
+        app:showAsAction="never"/>
 </menu>

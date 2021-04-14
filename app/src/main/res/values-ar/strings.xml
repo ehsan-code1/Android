@@ -38,4 +38,6 @@
     <string name="t_go_to_leaderboards">idk</string>
     <string name="t_lb_hs_username">%s. %s</string>
     <string name="about">About</string>
+    <string name="t_menu_help_text">idk</string>
+    <string name="t_submit_dialog">idk</string>
 </resources>

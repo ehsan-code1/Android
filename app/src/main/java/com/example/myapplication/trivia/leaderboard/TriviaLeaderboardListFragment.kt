@@ -15,7 +15,8 @@ import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] subclass which holds the listview of User objects. Each user has a name,
+ * a score, and a difficulty.
  * Use the [TriviaLeaderboardListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -24,10 +25,9 @@ class TriviaLeaderboardListFragment : Fragment() {
     private val adapter = LeaderboardAdapter()
     private val users = ArrayList<User>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    /**
+     * Load data from database and set into listview and [users]. Apply click listeners
+     */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -45,6 +45,11 @@ class TriviaLeaderboardListFragment : Fragment() {
                             .setPositiveButton("Yes") { _, _ ->
                                 db.delete(TriviaOpener.TABLE_NAME, "_id=?", arrayOf(id.toString()))
                                 users.remove(adapter.getItem(position))
+                                if (users.size > 10) {
+                                    // Clear the current user list and reload the entire list
+                                    users.clear()
+                                    loadDataFromDatabase()
+                                }
                                 adapter.notifyDataSetChanged()
                             }
                             .setNegativeButton("No") {_, _ -> }
@@ -57,6 +62,9 @@ class TriviaLeaderboardListFragment : Fragment() {
             }
     }
 
+    /**
+     * A function that opens the database, reads in all the highscore and sets them into the [users] ArrayList
+     */
     private fun loadDataFromDatabase() {
         // Initialize and connect to DB
         db = TriviaOpener(context!!).writableDatabase
@@ -72,9 +80,10 @@ class TriviaLeaderboardListFragment : Fragment() {
         val scoreIdx = results.getColumnIndex(TriviaOpener.COL_SCORE)
         val diffIdx = results.getColumnIndex(TriviaOpener.COL_DIFFICULTY)
         // Iterate through results and add messages from DB to list
-        while (results.moveToNext()) {
-            // TODO: Limit number of items to display?
 
+        // Limits the current highscores to 10 users (to retrieve from db)
+        var i = 0
+        while (results.moveToNext() && (i++ < 10)) {
             val id = results.getLong(idIdx)
             val username = results.getString(usernameIdx)
             val score = results.getInt(scoreIdx)
@@ -85,6 +94,9 @@ class TriviaLeaderboardListFragment : Fragment() {
         results.close()
     }
 
+    /**
+     * Simple data class to hold information for users and their highscores
+     */
     inner class User(
         val username: String,
         val totalScore: Int,
@@ -99,7 +111,6 @@ class TriviaLeaderboardListFragment : Fragment() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val item: User = getItem(position)
 
-            // TODO: Create layout for leaderboard user
             return layoutInflater.inflate(
                 R.layout.t_lb_layout_user, parent, false
             ).apply {
@@ -137,7 +148,6 @@ class TriviaLeaderboardListFragment : Fragment() {
          * this fragment using the provided parameters.
          * @return A new instance of fragment TriviaLeaderboardListFragment.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() = TriviaLeaderboardListFragment()
     }

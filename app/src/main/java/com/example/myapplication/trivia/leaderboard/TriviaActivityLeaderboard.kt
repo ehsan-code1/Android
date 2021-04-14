@@ -1,25 +1,13 @@
 package com.example.myapplication.trivia.leaderboard
 
 import android.content.ContentValues
-import android.database.sqlite.SQLiteDatabase
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.BaseAdapter
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
 import com.example.myapplication.trivia.common.TriviaCommonUtils
-import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty.EASY
-import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty.MEDIUM
-import com.example.myapplication.trivia.common.TriviaCommonUtils.QuestionDifficulty.HARD
-
 
 /**
  * Main activity for the post-quiz scorekeeping. Allows user to input a name and see a summary of their quiz results.
@@ -103,13 +91,12 @@ class TriviaActivityLeaderboard : BaseActivityWithDrawer(), ReturnDataFromLBFrag
     }
 
     /**
-     * Called on the submission of the [TriviaLeaderboardEntryFragment] fragment
+     * Called on the submission of the [TriviaLeaderboardEntryFragment] fragment.
+     * Enters the user data into the database, then swaps the entry fragment for the highscore display fragment.
      * @param dataToReturn a bundle of data including the name, difficulty, and final score for the user
      */
     override fun returnDataFromLBFragment(dataToReturn: Bundle) {
-        // Make new fragment containing current leaderboards, from database and replace current fragment
-
-        // Create and place new user into ContentValue
+        // Create and place new user info into ContentValue
         val cVals = ContentValues().apply {
             put(TriviaOpener.COL_USERNAME, dataToReturn.getString("name")!!)
             put(TriviaOpener.COL_DIFFICULTY, dataToReturn.getString(TriviaCommonUtils.DIFFICULTY)!!)

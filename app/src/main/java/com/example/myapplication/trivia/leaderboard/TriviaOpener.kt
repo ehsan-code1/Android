@@ -4,6 +4,9 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+/**
+ * SQLLite Helper class to track and manipulate the leaderboard/highscore database entries.
+ */
 class TriviaOpener(ctx: Context) : SQLiteOpenHelper(ctx, DATABASE_NAME, null, VERSION_NUM) {
     companion object {
         const val DATABASE_NAME : String = "triviaDB"

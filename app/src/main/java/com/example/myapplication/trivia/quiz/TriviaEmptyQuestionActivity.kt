@@ -1,7 +1,6 @@
 package com.example.myapplication.trivia.quiz
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.myapplication.BaseActivityWithDrawer
 import com.example.myapplication.R
@@ -42,7 +41,7 @@ class TriviaEmptyQuestionActivity : BaseActivityWithDrawer(), ReturnDataFromQuiz
     }
 
     /**
-     * Sets the result of the activity, and finished.
+     * Sets the result of the activity, and finishes.
      * Uses the questionId that was received when this activity was created, and the index of the button selection chosen
      * @param questionId the index of the question, to keep track of which question this activity belongs to
      * @param pos the index of the answer button chosen

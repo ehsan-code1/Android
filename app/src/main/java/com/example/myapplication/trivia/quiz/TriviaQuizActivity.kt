@@ -2,7 +2,6 @@ package com.example.myapplication.trivia.quiz
 
 import android.content.Intent
 import android.os.AsyncTask
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -32,14 +31,16 @@ import java.net.URL
 
 /**
  * Main Quiz activity. Implements a ListView and an Adapter to keep track of its items.
- * Currently uses dummy JSON data, with dummy async calls to populate the list.
+ * Makes an async call to the url made from the data from TriviaActivityLanding.
+ * Creates an ArrayList of [TriviaQuestion]s that are stored and displayed. Each question has three
+ * states: unanswered, correct, or incorrect.
  */
 class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment {
     private val adapter = QuizAdapter()
     private val parsedQuestions = ArrayList<TriviaQuestion>()
     private var totalQuestions = 0
     private var isTablet: Boolean = false
-    private lateinit var dFragment: TriviaQuestionItemFragment
+    private lateinit var dFragment: TriviaQuestionItemFragment // Current Question fragment (for tablets)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,22 +78,22 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
             val isBoolean = item.getType() == "boolean"
 
             if (isTablet) {
-                dFragment =
-                        TriviaQuestionItemFragment.newInstance(i, item.getQuestion(), item.getAnswers(), isBoolean)
+                dFragment = TriviaQuestionItemFragment.newInstance(i, item.getQuestion(), item.getAnswers(), isBoolean)
 
                 supportFragmentManager
                     .beginTransaction()
                     .replace(R.id.t_quiz_frame, dFragment)
                     .commit()
             } else {
-
-                val goToEmptyTriviaQuestion = Intent(this, TriviaEmptyQuestionActivity::class.java)
-                // Put bundle info
-                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.QUESTION_ID, i)
-                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.IS_BOOL, isBoolean)
-                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.QUESTION, item.getQuestion())
-                goToEmptyTriviaQuestion.putExtra(TriviaQuestionItemFragment.ANSWERS, item.getAnswers())
-
+                val goToEmptyTriviaQuestion =
+                        Intent(this, TriviaEmptyQuestionActivity::class.java)
+                        .apply {
+                            // Put bundle info
+                            putExtra(TriviaQuestionItemFragment.QUESTION_ID, i)
+                            putExtra(TriviaQuestionItemFragment.IS_BOOL, isBoolean)
+                            putExtra(TriviaQuestionItemFragment.QUESTION, item.getQuestion())
+                            putExtra(TriviaQuestionItemFragment.ANSWERS, item.getAnswers())
+                        }
                 startActivityForResult(goToEmptyTriviaQuestion, 0)
             }
         }
@@ -102,10 +103,9 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
             val allQsAnswered = checkAllQuestionsAnswered()
             if (!allQsAnswered) {
                 AlertDialog.Builder(this)
-                        .setPositiveButton("Yes") { _, _ -> }
-                        .setNegativeButton("No") { _, _ -> }
-                        .setTitle("Are you sure you want to submit the quiz?")
-                        .setMessage("You have not answered all of the questions.")
+                        .setPositiveButton("Okay") { _, _ -> }
+                        .setTitle("Unanswered Questions")
+                        .setMessage("Please answer all of the questions before submitting.")
                         .create()
                         .show()
             } else {
@@ -122,11 +122,6 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
                 finish()
             }
         }
-
-        /* Test logging of parsed questions */
-        for (q in parsedQuestions) {
-            Log.i(this.localClassName, q.toString())
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -135,6 +130,9 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
         return true
     }
 
+    /**
+     * Sets up the about and the help menu items
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item.itemId) {
@@ -179,6 +177,7 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
         item.setSelectedAnswer(pos)
         adapter.notifyDataSetChanged()
 
+        // If on tablet, clear the fragment once question is answered
         if (isTablet) {
             supportFragmentManager
                 .beginTransaction()
@@ -196,6 +195,7 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        // Check if back pressed
         if (data == null) return
 
         val answerIndex = data.extras?.getInt("answerIndex")!!
@@ -237,7 +237,8 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
     }
 
     /**
-     * Hardcoded (ie., Synchronous) "fetch" of test URI
+     * Class that asynchronously fetches and parses the JSON from the given url.
+     * Adds a new [TriviaQuestion] object to the [parsedQuestions] list for each question parsed.
      */
     inner class FetchTriviaQuestions: AsyncTask<String, Int, String>() {
         private val progressBar: ProgressBar = findViewById(R.id.t_quiz_progress_bar)
@@ -245,6 +246,7 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
         override fun doInBackground(vararg params: String?): String {
             Log.i(this.javaClass.simpleName, "Executing async fetch on ${params[0]}")
 
+            publishProgress(20)
             try {
                 val reader = BufferedReader(
                         InputStreamReader(
@@ -256,14 +258,15 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
                     it.forEach { s -> sb.append(s) }
                 }
 
+                publishProgress(40)
+
                 val quoteReplacedJson =  sb.toString().replace("&quot;", "&lsquo;")
                 val deencodedJson = HtmlCompat.fromHtml(quoteReplacedJson,
                                                         HtmlCompat.FROM_HTML_MODE_LEGACY).toString()
                 val results = JSONObject(deencodedJson).get("results") as JSONArray
 
                 val size = results.length()
-                val progressChunk = size / 100;
-                Log.i(this.javaClass.simpleName, "Fetched $size results.")
+                val progressChunk = 60 / size
 
                 for (i in (0 until size)) {
                     parsedQuestions.add(TriviaQuestion(
@@ -274,7 +277,8 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
                             results.getJSONObject(i)["incorrect_answers"] as JSONArray
                     ))
 
-                    publishProgress(progressChunk * i)
+                    Log.i(this.javaClass.simpleName, "Publish: ${(progressChunk * i) + 40}")
+                    publishProgress((progressChunk * i) + 40)
                 }
             } catch (e: IOException) {
                 println("ERROR fetching: ${e.message}")
@@ -298,7 +302,7 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
     }
 
     /**
-     * A private adapter class to handle the ListView of questions
+     * A private adapter class to handle the ListView of questions in the [parsedQuestions] ArrayList.
      */
     inner class QuizAdapter : BaseAdapter() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -322,7 +326,7 @@ class TriviaQuizActivity : BaseActivityWithDrawer(), ReturnDataFromQuizFragment 
 
 
         override fun getItemId(position: Int): Long {
-            return position.toLong() // Hack. Should add ID to Question? Not sure if needed
+            return position.toLong() // Questions in the listview do not need ids, as they are not stored in any db
         }
 
         override fun getCount(): Int {
