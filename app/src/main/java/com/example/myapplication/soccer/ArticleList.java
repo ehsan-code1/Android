@@ -37,21 +37,17 @@ public class ArticleList extends ArrayAdapter<Article> {
         LayoutInflater inflater = context.getLayoutInflater();
         Article art = articles.get(position);
 
-        View listViewItem = inflater.inflate(article_layout, null, true) ;
+        View listViewItem = inflater.inflate(article_layout, null, true);
         ImageView thumbnail = (ImageView) listViewItem.findViewById(R.id.thumbnail);
         TextView date = (TextView) listViewItem.findViewById(R.id.date);
         TextView title = (TextView) listViewItem.findViewById(R.id.articleTitle);
 
-        /*
-        try {
-            String url = art.getThumbnailImageUrl();
-            InputStream input = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(input, "src name");
+        //if thumbnail already loaded
+        if (art.hasThumbnailImage()) {
+            Drawable d = art.getThumbnailImage();
             thumbnail.setImageDrawable(d);
-        } catch (Exception e) {
-            Log.e("thumbnailImgErr", e.toString());
         }
-        */
+
 
         date.setText(art.getPubDate());
         title.setText(art.getTitle());

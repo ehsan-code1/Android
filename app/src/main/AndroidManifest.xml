@@ -10,9 +10,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-      
-        <activity android:name=".soccer.FavouriteArticles"></activity>
+        android:theme="@style/Theme.MyApplication"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".soccer.EmptyActivity"></activity>
+        <activity android:name=".soccer.FavouriteArticles" />
         <activity android:name=".soccer.SoccerLanding" />
         <activity android:name=".songstar.FavouriteList" />
         <activity android:name=".songstar.FragmentPhoneActivity" />

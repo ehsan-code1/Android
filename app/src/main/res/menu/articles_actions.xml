@@ -5,7 +5,7 @@
 
     <item android:id="@+id/favourites"
         android:title="favourites"
-        android:icon="@drawable/hard"
+        android:icon="@drawable/bookmark"
         android:orderInCategory="2"
         app:showAsAction="always"/>
 

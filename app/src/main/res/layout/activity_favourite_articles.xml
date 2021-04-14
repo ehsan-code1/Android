@@ -5,11 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".soccer.SoccerLanding"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:label="@string/favourite_Articles_Title">
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"/>
+
+    <ListView
+        android:id="@+id/articleBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

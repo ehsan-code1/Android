@@ -4,7 +4,7 @@
 
     <item android:id="@+id/all"
         android:title="all"
-        android:icon="@drawable/easy"
+        android:icon="@drawable/home"
         android:orderInCategory="1"
         app:showAsAction="always"/>
 
