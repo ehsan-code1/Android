@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".car_database.HomePage">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="318dp"
+        android:layout_height="315dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/logo"
+        android:cropToPadding="false"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.028"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_logo"
+        android:fontFamily="@font/alfa_slab_one"
+        android:padding="10sp"
+        android:text="@string/description"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.001"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/search"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/rounded_edittext"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:ems="10"
+        android:hint="@string/hint"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.356" />
+
+    <Button
+        android:id="@+id/searchb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="150dp"
+        android:background="@drawable/rounded_edittext"
+        android:backgroundTint="#8FE9F4"
+        android:text="@string/go"
+        android:textSize="25sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="0.138" />
+
+    <Button
+        android:id="@+id/favB"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:width="150dp"
+        android:background="@drawable/rounded_logo"
+        android:backgroundTint="#8FE9F4"
+        android:padding="10dp"
+        android:text="@string/view_your_saved_cars"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintVertical_bias="0.447" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

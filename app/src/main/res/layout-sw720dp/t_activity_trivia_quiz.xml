@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    android:orientation="vertical"
+    tools:context=".trivia.quiz.TriviaQuizActivity">
+
+    <include layout="@layout/t_common_header" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_weight="1">
+    <ListView
+        android:id="@+id/t_q_list_view"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginBottom="20dp"
+        android:background="@color/purple_500" />
+
+        <FrameLayout
+            android:id="@+id/t_quiz_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:layout_toEndOf="@id/t_q_list_view"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/t_quiz_progress_bar"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="10dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginHorizontal="50dp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/t_quiz_submit"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:textSize="25sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="50dp"
+            android:text="Submit" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Songster               Nouran Nouh           V1.0</string>
+    <string name="songster_Heading">ابحث عن مطرب</string>
+    <string name="songster_artistName">أدخل اسم المطرب أو الفرقه:</string>
+    <string name="songster_enter_artist_hint">أدخل هنا</string>
+    <string name="songster_search_button">ابحث</string>
+    <string name="songster_FavouriteList">المفضله</string>
+    <string name="songster_SongList">نتائج البحث</string>
+    <string name="BackButton">الرجوع</string>
+    <string name="songster">تطبيق الاغاني</string>
+    <string name="SongId">معرف الاغنيه</string>
+    <string name="ArtistId">معرف المغني</string>
+    <string name="ArtistName">اسم المفني:</string>
+    <string name="SongTitle">اسم الاغنيه</string>
+    <string name="Songster_Save">حفظ</string>
+    <string name="Songster_Search">بحث عن الاغنيه</string>
+    <string name="Songster_Search_Artist">البحث عن المغني</string>
+    <string name="Songster_Delete">حذف</string>
+    <string name="favouriteList">المفضله</string>
+    <string name="Songster_menu_about">عن التطبيق</string>
+    <string name="Songster_menu_help">اكتشف التطبيق</string>
+    <string name="Songster_moreInfoAboutSong">هل تريد ان تعرف المزيد عن هذه الاغنيه؟</string>
+    <string name="youSelected">لقد اخترت:</string>
+    <string name="confirm">نعم</string>
+    <string name="decline">لا</string>
+    <string name="agree">موافق</string>
+    <string name="nothingChanged">لا يوجد اي تغير</string>
+    <string name="SongsterSearch_EnterValidName">أدخل اسم مغني او فرقه</string>
+    <string name="SongsterSearch_AboutMenuItem">أدخل اسم مغنيك المفضل.لتعرف اكثر عن التطبيق اضغط علي رمز المساعده</string>
+    <string name="SongterSearch_AboutApp">Songster app created by Nouran Nouh  V1.0</string>
+    <string name="SongsterSearch_HelpMenuItem">أدخل أسم المغني او الفرقه الموسيقيه التي تريد ان تبحث عنها بعد ذلك اضغط زر البحث او اضغط زر المفضله لتصفح مغنيك المفضلين </string>
+    <string name="SongDetail_FavouriteListConfirmation_Add">هل تريد ان تحفظ هذه الاغنيه في المفضله؟</string>
+    <string name="duplicateMessage">هذه الاغنيه توجد بالفعل لديك في المفضله </string>
+    <string name="ConfirmationMessageofSave">لقد تم حفظ اغنيتك المفضله في المفضله</string>
+    <string name="AskingMessageToDelete">هل تريد حذف هذه الاغنيه؟ </string>
+    <string name="ConfirmationMessage_Of_Deletion">تم محواغنيه</string>
+    <string name="help">Make ID: </string>
+
+</resources>
