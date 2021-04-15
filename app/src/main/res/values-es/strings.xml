@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="soccer_Landing_Title">Artículos de Fútbol!</string>
+    <string name="favourite_Articles_Title">Tu Artículo Favorito!</string>
+    <string name="saveButton">Salvar</string>
+    <string name="openButton">Abrir</string>
+</resources>
