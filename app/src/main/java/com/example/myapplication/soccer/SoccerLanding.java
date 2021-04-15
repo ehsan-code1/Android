@@ -78,7 +78,9 @@ public class SoccerLanding extends AppCompatActivity {
         //This gets the toolbar from the layout:
         Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
-
+        Resources res = getResources();
+        String noRating = String.format(res.getString(R.string.noPreviousRating));
+        String previousRating = String.format(res.getString(R.string.PreviousRating));
         // retrieve rating
         shared = getSharedPreferences(PREF_NAME, MODE_PRIVATE);
         float prevRatingValue = (shared.getFloat(keyChannel, -1));
@@ -86,9 +88,9 @@ public class SoccerLanding extends AppCompatActivity {
         String ratingValueMessage;
         if (prevRatingValue == -1) {
             // display message in dialog indicating the rating value doesn't exist
-            ratingValueMessage = "No previous rating values found";
+            ratingValueMessage = noRating;
         } else {
-            ratingValueMessage = "Previous rating value: " + String.valueOf(prevRatingValue);
+            ratingValueMessage = previousRating + ": " + String.valueOf(prevRatingValue);
         }
 
         // get new rating
@@ -146,7 +148,9 @@ public class SoccerLanding extends AppCompatActivity {
         final Button posButton = (Button) dialogView.findViewById(R.id.posButton);
         final Button negButton = (Button) dialogView.findViewById(R.id.negButton);
 
-        dialogBuilder.setTitle("How would you rate this app?");
+        Resources res = getResources();
+        String dialogTitle = String.format(res.getString(R.string.dialogBoxTitle));
+        dialogBuilder.setTitle(dialogTitle);
 
         final AlertDialog b = dialogBuilder.create();
         b.show();
@@ -263,6 +267,7 @@ public class SoccerLanding extends AppCompatActivity {
                                 //Log.d("Parser", "within title");
                                 if (xpp.next() == XmlPullParser.TEXT) {
                                     title = xpp.getText();
+                                    //Thread.sleep(50);
                                     publishProgress(15);
 
                                 }
@@ -273,7 +278,7 @@ public class SoccerLanding extends AppCompatActivity {
                                 if (xpp.next() == XmlPullParser.TEXT) {
                                     pubDate = xpp.getText();
                                     publishProgress(25);
-                                    Thread.sleep(1000);
+                                    //Thread.sleep(50);
 
                                 }
                             }
@@ -281,6 +286,7 @@ public class SoccerLanding extends AppCompatActivity {
                                 //Log.d("Parser", "within link");
                                 if (xpp.next() == XmlPullParser.TEXT) {
                                     url = xpp.getText();
+                                    Thread.sleep(50);
                                     publishProgress(45);
 
                                 }
@@ -290,19 +296,21 @@ public class SoccerLanding extends AppCompatActivity {
                                 if (xpp.next() == XmlPullParser.TEXT) {
                                     description = xpp.getText();
                                     publishProgress(65);
-                                    Thread.sleep(1000);
+                                    //Thread.sleep(50);
 
                                 }
                             }
                             if (tagname.equals("content")) {
                                 //Log.d("Parser", "within media:content");
                                 imageUrl = xpp.getAttributeValue(null, "url");
+                                //Thread.sleep(50);
                                 publishProgress(85);
 
                             }
                             if (tagname.equals("thumbnail")) {
                                //Log.d("Parser", "within media:thumbnail");
                                 thumbnailImageUrl = xpp.getAttributeValue(null, "url");
+                                //Thread.sleep(50);
                                 publishProgress(100);
 
                             }
@@ -317,8 +325,8 @@ public class SoccerLanding extends AppCompatActivity {
                         if (tagname.equals("item")) {
                             Article temp = new Article(title, pubDate, url, description, imageUrl, thumbnailImageUrl);
                             articles.add(temp);
-
                             isItem = false;
+
                         }
 
                     }

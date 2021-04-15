@@ -50,10 +50,10 @@ public class FavouriteArticles extends AppCompatActivity {
         //Article(String title, String pubDate, String url, String description, String imageUrl, String thumbnailImageUrl)
 
 
-        /*
-        articles = new ArrayList<Article>();
-        articles.add(sampleArticle1);
-        */
+
+
+
+
 
         MyOpener db = new MyOpener(this);
 
