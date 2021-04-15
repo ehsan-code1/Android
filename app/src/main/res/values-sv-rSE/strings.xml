@@ -50,7 +50,7 @@
     <string name="make_id">idk</string>
     <string name="t_begin_game_btn_text">Starta</string>
     <string name="t_numQ_text">Antal frågor:</string>
-    <string name="t_difficulty_text" translatable="false">Svårigheter:</string>
+    <string name="t_difficulty_text">Svårigheter:</string>
     <string name="t_qtype_toast">%s frågor</string>
     <string name="t_start_button">Starta Trivia</string>
     <string name="t_tf_btn_text">S/F</string>
