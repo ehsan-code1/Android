@@ -28,7 +28,7 @@ import static com.example.myapplication.R.layout.favourite_article_layout;
 
 public class FavouriteArticles extends AppCompatActivity {
 
-    private Activity context;
+    private ViewGroup context;
     ArrayList<Article> articles;
     ListView articleBox;
     ArticleList artAdapter;
@@ -42,18 +42,12 @@ public class FavouriteArticles extends AppCompatActivity {
         setTitle(getResources().getText(R.string.favourite_Articles_Title));
 
         //This gets the toolbar from the layout:
-        Toolbar tBar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar tBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
 
         articleBox = (ListView) findViewById(R.id.articleBox);
 
         //Article(String title, String pubDate, String url, String description, String imageUrl, String thumbnailImageUrl)
-
-
-
-
-
-
 
         MyOpener db = new MyOpener(this);
 

@@ -104,6 +104,10 @@
     <string name="dialogBoxTitle">How would you like to rate the app?</string>
     <string name="saveButton">Save</string>
     <string name="openButton">Open</string>
+    <string name="openingArticle">Opening Article!</string>
+    <string name="openingArticleInBrowser">Opening Article In Browser!</string>
+    <string name="savingArticle">Saving Article!</string>
+    <string name="goTofavourite">Going to Favourite Articles</string>
     <string name="t_menu_help_text">Help</string>
     <string name="t_submit_dialog">Please answer all of the questions before submitting.</string>
 </resources>

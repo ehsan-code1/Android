@@ -7,4 +7,8 @@
     <string name="noPreviousRating">Sin Calificación Previa</string>
     <string name="PreviousRating">Calificación Anterior</string>
     <string name="dialogBoxTitle">¿Cómo le gustaría calificar la aplicación?</string>
+    <string name="openingArticle">Artículo de apertura!</string>
+    <string name="openingArticleInBrowser">Abrir artículo en el navegador!</string>
+    <string name="savingArticle">Guardar Artículo!</string>
+    <string name="goTofavourite">ir a artículos favoritos</string>
 </resources>

@@ -110,11 +110,15 @@ public class SoccerLanding extends AppCompatActivity {
             dataToPass.putString("imageURL", curr.getImageUrl());
             dataToPass.putString("thumbnailImageURL", curr.getThumbnailImageUrl());
 
-                // Clicking article goes to new activity that shows article.
+
                 Intent nextActivity = new Intent(SoccerLanding.this, EmptyActivity.class);
                 nextActivity.putExtras(dataToPass); //send data to next activity
                 startActivity(nextActivity); //go to next activity
-            //}
+
+
+            String openingArticle = String.format(res.getString(R.string.openingArticle));
+            Toast.makeText(getApplicationContext(),openingArticle,
+                    Toast.LENGTH_LONG).show();
         });
 
 
@@ -197,8 +201,9 @@ public class SoccerLanding extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Resources res = getResources();
+        String goToFavourites = String.format(res.getString(R.string.goTofavourite));
 
-        String message = null;
 
         //Look at menu XML file. Put a case for every id in that file:
         switch(item.getItemId())
@@ -206,7 +211,8 @@ public class SoccerLanding extends AppCompatActivity {
 
             case R.id.favourites:
                 Intent goFavourite = new Intent(this, FavouriteArticles.class);
-
+                Toast.makeText(getApplicationContext(),goToFavourites,
+                        Toast.LENGTH_LONG).show();
                 startActivity(goFavourite);
                 break;
         }

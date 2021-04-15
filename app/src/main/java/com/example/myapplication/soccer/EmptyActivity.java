@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.R;
 import com.squareup.picasso.Picasso;
@@ -57,6 +59,13 @@ public class EmptyActivity extends AppCompatActivity {
     }
     //opens up article in emulator browser
     public void openToBrowser(View v){
+        //string for translating
+        Resources res = getResources();
+        String openToBrowser = String.format(res.getString(R.string.openingArticleInBrowser));
+        Toast.makeText(getApplicationContext(),openToBrowser,
+                Toast.LENGTH_LONG).show();
+
+        //passing info
         Bundle dataToPass = getIntent().getExtras();
         String url = getIntent().getStringExtra("url");
         Intent i = new Intent(Intent.ACTION_VIEW);
@@ -65,6 +74,13 @@ public class EmptyActivity extends AppCompatActivity {
     }
     //save article in database for favourite articles
     public void save(View v){
+
+        Resources res = getResources();
+        String saveArticle = String.format(res.getString(R.string.savingArticle));
+        Toast.makeText(getApplicationContext(),saveArticle,
+                Toast.LENGTH_LONG).show();
+
+        //save to database
         MyOpener db = new MyOpener(this);
         Article art = new Article(getIntent().getStringExtra("title"), getIntent().getStringExtra("pubDate"), getIntent().getStringExtra("url"), getIntent().getStringExtra("description"), getIntent().getStringExtra("imageURL"), getIntent().getStringExtra("thumbnailImageUrl"));
         db.addArticles(art);
