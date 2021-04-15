@@ -87,5 +87,12 @@
     <string name="t_lb_hs_username">%s. %s</string>
     <string name="t_menu_help_text">idk</string>
     <string name="t_submit_dialog">idk</string>
+    <string name="soccer_Landing_Title">idk</string>
+    <string name="favourite_Articles_Title">idk</string>
+    <string name="noPreviousRating">idk</string>
+    <string name="PreviousRating">idk</string>
+    <string name="dialogBoxTitle">idk</string>
+    <string name="saveButton">idk</string>
+    <string name="openButton">idk</string>
 
 </resources>

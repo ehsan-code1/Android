@@ -12,13 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight"
         android:usesCleartextTraffic="true">
-        <activity android:name=".soccer.EmptyActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
-        <activity android:name=".soccer.FavouriteArticles" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".soccer.SoccerLanding" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity android:name=".songstar.FavouriteList" />
-        <activity android:name=".songstar.FragmentPhoneActivity" />
-        <activity android:name=".songstar.SongsterList" />
-        <activity android:name=".songstar.SongsterSearch"/>
+        <activity
+            android:name=".soccer.EmptyActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".soccer.FavouriteArticles" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" android:label="Soccer News Eric V1.0"  />
+        <activity android:name=".soccer.SoccerLanding" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" android:label="Soccer News Eric V1.0" />
+        <activity android:name=".songstar.FavouriteList" android:label="Songster Search Nouran V1.0" />
+        <activity android:name=".songstar.FragmentPhoneActivity" android:label="Songster Search Nouran V1.0"  />
+        <activity android:name=".songstar.SongsterList" android:label="Songster Search Nouran V1.0"  />
+        <activity android:name=".songstar.SongsterSearch" android:label="Songster Search Nouran V1.0" />
         <activity
             android:name=".trivia.leaderboard.TriviaActivityLeaderboard"
             android:theme="@style/Theme.MyApplication.NoActionBar" />
@@ -32,14 +34,16 @@
             android:name=".trivia.TriviaActivityLanding"
             android:label="@string/title_activity_trivia"
             android:theme="@style/Theme.MyApplication.NoActionBar"/>
-        <activity android:name=".car_database.MenuItems"  android:label="Muhammad Ehsan Khan V1.0"></activity>
-        <activity android:name=".car_database.SavedCars"  android:label="Muhammad Ehsan Khan V1.0"/>
         <activity
-            android:name=".car_database.EmptyActivity"  android:label="Muhammad Ehsan Khan V1.0"
+            android:name=".car_database.MenuItems"
+            android:label="Car Database Ehsan V1.0" />
+        <activity android:name=".car_database.SavedCars"  android:label="Car Database Ehsan V1.0"/>
+        <activity
+            android:name=".car_database.EmptyActivity"  android:label="Car Database Ehsan V1.0"
        />
-        <activity android:name=".car_database.CarsList"  android:label="Muhammad Ehsan Khan V1.0" />
+        <activity android:name=".car_database.CarsList"  android:label="Car Database Ehsan V1.0" />
         <activity android:name=".car_database.HomePage"
-            android:label="Muhammad Ehsan Khan V1.0"/>
+            android:label="Car Database Ehsan V1.0"/>
         <activity android:name=".MainActivity" android:theme="@style/Theme.MyApplication.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
