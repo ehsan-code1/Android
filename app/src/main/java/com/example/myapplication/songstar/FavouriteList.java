@@ -134,10 +134,10 @@ public class FavouriteList extends AppCompatActivity {
                        Toast toast= Toast.makeText(getApplicationContext(), R.string.nothingChanged, Toast.LENGTH_LONG);
                        //style Toast
                         View view = toast.getView();
-                        view.setBackgroundColor(Color.parseColor("#FF000000"));
-                        TextView text = (TextView) view.findViewById(android.R.id.message);
-                        text.setTextColor(Color.parseColor("#FFFFFFFF"));
-                        text.setTextSize(20);
+      //                  view.setBackgroundColor(Color.parseColor("#FF000000"));
+      //                  TextView text = (TextView) view.findViewById(android.R.id.message);
+      //                  text.setTextColor(Color.parseColor("#FFFFFFFF"));
+       //                 text.setTextSize(20);
                         toast.show();
 
                 //show alert dialog

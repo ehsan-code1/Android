@@ -156,10 +156,10 @@ public class SongDetail extends Fragment {
                                 db.insert(SongOpener.TABLE_NAME, null, cv);
                                 Toast toast=Toast.makeText(getActivity(),R.string.ConfirmationMessageofSave,Toast.LENGTH_LONG);
                                 View view1 = toast.getView();
-                                view1.setBackgroundColor(Color.parseColor("#FF000000"));
-                                TextView text = (TextView) view1.findViewById(android.R.id.message);
-                                text.setTextColor(Color.parseColor("#FFFFFFFF"));
-                                text.setTextSize(20);
+//                                view1.setBackgroundColor(Color.parseColor("#FF000000"));
+   //                             TextView text = (TextView) view1.findViewById(android.R.id.message);
+        //                        text.setTextColor(Color.parseColor("#FFFFFFFF"));
+        //                        text.setTextSize(20);
                                 toast.show();
                             }
 
@@ -167,10 +167,10 @@ public class SongDetail extends Fragment {
                         setNegativeButton(R.string.decline,(click,args)->{
                             Toast toast=Toast.makeText(getActivity(),R.string.nothingChanged,Toast.LENGTH_LONG);
                             View view1 = toast.getView();
-                            view1.setBackgroundColor(Color.parseColor("#FF000000"));
-                            TextView text = (TextView) view1.findViewById(android.R.id.message);
-                            text.setTextColor(Color.parseColor("#FFFFFFFF"));
-                            text.setTextSize(20);
+//                            view1.setBackgroundColor(Color.parseColor("#FF000000"));
+//                            TextView text = (TextView) view1.findViewById(android.R.id.message);
+//                            text.setTextColor(Color.parseColor("#FFFFFFFF"));
+//                            text.setTextSize(20);
                             toast.show();
 
 
@@ -213,10 +213,10 @@ public class SongDetail extends Fragment {
                         setNegativeButton(R.string.decline,(click,args)->{
                             Toast toast=Toast.makeText(getActivity(),R.string.nothingChanged,Toast.LENGTH_LONG);
                             View view1 = toast.getView();
-                            view1.setBackgroundColor(Color.parseColor("#FF000000"));
-                            TextView text = (TextView) view1.findViewById(android.R.id.message);
-                            text.setTextColor(Color.parseColor("#FFFFFFFF"));
-                            text.setTextSize(20);
+   //                         view1.setBackgroundColor(Color.parseColor("#FF000000"));
+                     //       TextView text = (TextView) view1.findViewById(android.R.id.message);
+                     //       text.setTextColor(Color.parseColor("#FFFFFFFF"));
+                      //      text.setTextSize(20);
                             toast.show();
                         }).create().show();
             });
