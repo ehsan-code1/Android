@@ -1,5 +1,6 @@
 package com.example.myapplication.soccer;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -89,6 +90,10 @@ public class FavouriteArticles extends AppCompatActivity {
 
                 finish();
                 break;
+            case R.id.help:
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+                alertDialog.setTitle("Soccer News Help").setMessage("Click on any article to see more details about it. Click" +
+                        "Save to save article in database, Click open to view article in browser").setPositiveButton("OK",null).show();
         }
 
         return true;

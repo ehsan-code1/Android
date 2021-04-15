@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -127,8 +128,10 @@ public class SoccerLanding extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
+        Snackbar snackbar=Snackbar.make(findViewById(R.id.progressBar),"Loading",Snackbar.LENGTH_LONG);
+        snackbar.show();
     }
+
 
     public Article getItem(int position) {
         return articles.get(position);
@@ -215,6 +218,13 @@ public class SoccerLanding extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
                 startActivity(goFavourite);
                 break;
+
+            case R.id.help:
+                AlertDialog.Builder alertDialog=new AlertDialog.Builder(this);
+                alertDialog.setTitle("Soccer News Help").setMessage("Click on any article to see more details about it. Click" +
+                        "Save to save article in database, Click open to view article in browser").setPositiveButton("OK",null).show();
+
+
         }
 
         return true;

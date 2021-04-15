@@ -96,10 +96,6 @@ public class SongsterList extends AppCompatActivity {
             }
         }
 
-
-
-
-
         //execute the url by using the artistName from searchpage
         String artistURL = SONG_URL+artistNameResult;
 

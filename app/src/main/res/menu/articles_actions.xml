@@ -9,4 +9,10 @@
         android:orderInCategory="2"
         app:showAsAction="always"/>
 
+    <item android:id="@+id/help"
+        android:title="favourites"
+        android:icon="@drawable/icons_help"
+        android:orderInCategory="2"
+        app:showAsAction="always"/>
+
 </menu>
