@@ -92,13 +92,13 @@
                      On HomePage, Click On Favourite Cars to see your cars you have Saved
                      Click On Buy to open Auto trader Link for that Model.
                      Click on Details to Google Search that model. </string>
-    <string name="about" translatable="false">Architect:
+    <string name="about">Architect:
                     Muhammad Ehsan Khan.
                     Version 1.0, Final Stable Release.
                     Project initiated on March 15th 2021.
                     Project Finalized on March 17th 2021.</string>
-    <string name="soccer_Landing_Title">Soccer Articles!</string>
-    <string name="favourite_Articles_Title">Your Favourited Articles!</string>
+    <string name="soccer_Landing_Title">Soccer News Eric V1.0</string>
+    <string name="favourite_Articles_Title">Your Favourites Articles!</string>
     <string name="noPreviousRating">No Previous Rating</string>
     <string name="PreviousRating">Previous Rating</string>
     <string name="dialogBoxTitle">How would you like to rate the app?</string>
